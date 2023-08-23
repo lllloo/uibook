@@ -4,7 +4,7 @@
 			<div class="label" v-if="label">{{ label }}</div>
 			<div class="input-wrap">
 				<slot name="start-icon"></slot>
-				<input :type="type" :placeholder="placeholder" v-model:value="value" />
+				<input :type="type" :placeholder="placeholder" v-model="value" />
 				<slot name="icon"></slot>
 			</div>
 		</label>
@@ -43,6 +43,12 @@ const value = computed({
 </script>
 
 <style lang="scss" scoped>
+input {
+	border: none;
+	outline: none;
+	background: transparent;
+	width: 100%;
+}
 .base-input {
 	width: 100%;
 	&.one-line {
