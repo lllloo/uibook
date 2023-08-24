@@ -1,0 +1,17 @@
+@import 'node_modules/modern-normalize/modern-normalize.css';
+:root {
+
+    --base-font-size: 16px;
+
+    --base-small-height: 32px;
+    --base-height: 40px;
+    --base-large-height: 48px;
+
+
+    --input-font-size: var(--base-font-size);
+
+    --input-small-height: var(--base-small-height);
+    --input-height: var(--base-height);
+    --input-large-height: var(--base-large-height);
+
+}
