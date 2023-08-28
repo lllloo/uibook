@@ -12,7 +12,7 @@ export default {
   },
   args: {
     label: '標題',
-    placeholder: "請輸入",
+    placeholder: '請輸入',
   },
   setup() {
     let model = ref('value')
