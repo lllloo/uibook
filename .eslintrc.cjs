@@ -2,9 +2,11 @@
 module.exports = {
   root: true,
   'extends': [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "plugin:storybook/recommended",
+    // "plugin:vue/vue3-essential",
+    // "plugin:vue/vue3-strongly-recommended",
+    'plugin:vue/vue3-recommended',
+    'eslint:recommended',
+    'plugin:storybook/recommended',
     './.eslintrc-auto-import.json',
   ],
   overrides: [
@@ -19,5 +21,9 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  ignorePatterns: ['cypress.config.js'],
+  'rules': {
+    'quotes': [2, 'single']
   }
 }

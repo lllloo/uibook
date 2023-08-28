@@ -1,5 +1,10 @@
-@import 'node_modules/modern-normalize/modern-normalize.css';
+@import '../node_modules/modern-normalize/modern-normalize.css';
 :root {
+    --primary-color: #14b8a6;
+    --primary-rgb: 20, 184, 166;
+
+    --gray-color: #94a3b8;
+    --gray-rgb: 148, 163, 184;
 
     --base-font-size: 16px;
 
@@ -8,10 +13,10 @@
     --base-large-height: 48px;
 
 
+    /* input */
     --input-font-size: var(--base-font-size);
 
     --input-small-height: var(--base-small-height);
     --input-height: var(--base-height);
     --input-large-height: var(--base-large-height);
-
 }
