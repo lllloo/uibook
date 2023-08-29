@@ -20,7 +20,7 @@ export default {
     },
     template: `
       <BaseField v-bind="args">
-        <div>內容</div>
+        <div>123</div>
       </BaseField>
     `,
   }),
@@ -30,7 +30,7 @@ export const Primary = {};
 
 export const OneLine = {
   args: {
-    label: '標題2',
+    label: '標題',
     oneLine: true
   },
 };

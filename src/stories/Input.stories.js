@@ -5,21 +5,28 @@ export default {
   title: 'Example/Input',
   component: BaseInput,
   tags: ['autodocs'],
-  argTypes: {
-    'v-model': {
-      control: 'text',
-    },
-  },
+  // argTypes: {
+  //   'v-model': {
+  //     control: 'text',
+  //   },
+  // },
   args: {
     label: '標題',
     placeholder: '請輸入',
   },
-  setup() {
-    let model = ref('value')
-    const updateModel = (event) => model.value = event
-    return { model, updateModel }
-  },
-  template: '<BaseInput v-bind="args" v-model="model" :modelValue="model" @update:modelValue="updateModel" />'
+  render: (args) => ({
+    components: { BaseInput },
+    setup() {
+      let model = ref('')
+      const updateModel = (event) => {
+        model.value = event
+      }
+      return { args, model, updateModel }
+    },
+    template: `
+      <BaseInput v-bind="args" :modelValue="model" @update:modelValue="updateModel" />
+    `,
+  }),
 };
 
 export const Primary = {

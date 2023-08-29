@@ -4,7 +4,7 @@
     :class="{
       'one-line': oneLine,
       'base-input--small': small,
-      'base-input--large': small,
+      'base-input--large': large,
     }"
   >
     <div

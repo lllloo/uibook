@@ -60,7 +60,6 @@ input {
     justify-content: center;
     align-items: center;
   }
-
   &--small {
     --input-height: var(--input-small-height);
   }
@@ -90,19 +89,10 @@ input {
   border: 1px solid var(--gray-color);
   background: #f2f0f0;
   
+  height: var(--input-height);
 
   .one-line & {
     width: 100%;
-  }
-
-  input {
-    padding: 0 15px;
-    height: var(--input-height);
-    transition: box-shadow .3s;
-    border: none;
-    &:focus {
-      box-shadow: 0 0 5px rgba(var(--primary-rgb), 1);
-    }
   }
 }
 </style>
