@@ -72,12 +72,6 @@ input {
 .base-input {
   width: 100%;
 
-  &.one-line {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   &--small {
     --input-height: var(--input-small-height);
   }
@@ -85,10 +79,16 @@ input {
   &--large {
     --input-height: var(--input-large-height);
   }
+
+  &.one-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .label {
-  font-size: 1rem;
+  font-size: var(--input-font-size);
   margin-bottom: 10px;
   font-weight: bold;
 
@@ -103,10 +103,8 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
+  border-radius: var(--input-base-border-radius);
   border: 1px solid var(--gray-color);
-  background: #f2f0f0;
-  
 
   .one-line & {
     width: 100%;
@@ -117,6 +115,7 @@ input {
     height: var(--input-height);
     transition: box-shadow .3s;
     border: none;
+
     &:focus {
       box-shadow: 0 0 5px rgba(var(--primary-rgb), 1);
     }

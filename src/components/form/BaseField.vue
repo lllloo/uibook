@@ -1,5 +1,5 @@
 <template>
-  <label
+  <div
     class="base-field"
     :class="{
       'one-line': oneLine,
@@ -10,13 +10,16 @@
     <div
       v-if="label"
       class="label"
-    >{{ label }}</div>
+    >
+      {{ label }}
+    </div>
     <div
+      v-if="hasSlot"
       class="input-wrap"
     >
-      <slot>1</slot>
+      <slot />
     </div>
-  </label>
+  </div>
 </template>
 
 <script setup>
@@ -39,27 +42,13 @@ const props = defineProps({
   },
 });
 
-console.log(useSlots(), !!useSlots().default);
 const hasSlot = !!useSlots().default;
-
 </script>
 
 <style lang="scss" scoped>
-input {
-  border: none;
-  outline: none;
-  background: transparent;
-  width: 100%;
-}
-
 .base-field {
   width: 100%;
 
-  &.one-line {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   &--small {
     --input-height: var(--input-small-height);
   }
@@ -67,10 +56,16 @@ input {
   &--large {
     --input-height: var(--input-large-height);
   }
+
+  &.one-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .label {
-  font-size: 1rem;
+  font-size: var(--input-font-size);
   margin-bottom: 10px;
   font-weight: bold;
 
@@ -83,12 +78,8 @@ input {
 
 .input-wrap {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
-  border: 1px solid var(--gray-color);
-  background: #f2f0f0;
-  
+  border-radius: var(--input-base-border-radius);
   height: var(--input-height);
 
   .one-line & {

@@ -7,8 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseCheckout: typeof import('./src/components/form/BaseCheckout.vue')['default']
     BaseField: typeof import('./src/components/form/BaseField.vue')['default']
     BaseInput: typeof import('./src/components/form/BaseInput.vue')['default']
+    BaseRadio: typeof import('./src/components/form/BaseRadio.vue')['default']
+    BaseSelect: typeof import('./src/components/form/BaseSelect.vue')['default']
     copy: typeof import('./src/components/form/BaseInput copy.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
