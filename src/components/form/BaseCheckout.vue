@@ -2,8 +2,9 @@
   <label
     class="base-checkout"
     :class="{
-      'base-input--small': small,
-      'base-input--large': large,
+      'base-checkout--small': small,
+      'base-checkout--large': large,
+      'out-line': outLine,
       'is-checked': type === 'boolean' ? syncValue : syncValue.includes(value)
     }"
   >
@@ -37,6 +38,18 @@ const props = defineProps({
 		type: String,
 		default: ''
 	},
+	small: {
+		type: Boolean,
+		default: false,
+	},
+	large: {
+		type: Boolean,
+		default: false,
+	},
+	outLine: {
+		type: Boolean,
+		default: false,
+	},
 })
 const emit = defineEmits(['update:modelValue'])
 const syncValue = computed({
@@ -50,17 +63,33 @@ var type = ref(typeof props.modelValue)
 
 <style lang="scss" scoped>
 .base-checkout {
-	display: flex;
+	display: inline-flex;
 	font-size: var(--input-font-size);
 
+	height: var(--input-height);
+
+	&--small {
+		--input-height: var(--input-small-height);
+	}
+
+	&--large {
+		--input-height: var(--input-large-height);
+	}
+	&.out-line {
+		border-radius: var(--base-border-radius);
+		padding: 0 10px;
+		border: 1px solid var(--primary-color);
+	}
+
 	&:not(.is-checked) {
-		.input-wrap  {
+		.input-wrap {
 			.checkbox {
 				border: 1px solid #C8CACB;
 				background: #fff;
+
 				>svg {
 					display: none;
-					
+
 				}
 			}
 		}
@@ -69,6 +98,7 @@ var type = ref(typeof props.modelValue)
 	.input-wrap {
 		display: flex;
 		align-items: center;
+
 		.checkbox {
 			display: inline-flex;
 			justify-content: center;
@@ -82,6 +112,10 @@ var type = ref(typeof props.modelValue)
 			background: var(--primary-color);
 			color: #fff;
 		}
+	}
+	.label {
+		display: flex;
+		align-items: center;
 	}
 
 	input {

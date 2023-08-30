@@ -2,29 +2,25 @@ import BaseInput from '@/components/form/BaseInput.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Example/Input',
+  title: 'Base/Input',
   component: BaseInput,
   tags: ['autodocs'],
-  // argTypes: {
-  //   'v-model': {
-  //     control: 'text',
-  //   },
-  // },
   args: {
     label: '標題',
     placeholder: '請輸入',
+    value: ''
   },
-  render: (args) => ({
+  render: (args, { updateArgs }) => ({
     components: { BaseInput },
     setup() {
-      let model = ref('')
-      const updateModel = (event) => {
-        model.value = event
-      }
-      return { args, model, updateModel }
+      const value = computed({
+        get: () => args.value,
+        set: (value) => updateArgs({ value })
+      })
+      return { args, value }
     },
     template: `
-      <BaseInput v-bind="args" :modelValue="model" @update:modelValue="updateModel" />
+      <BaseInput v-bind="args" v-model="value" />
     `,
   }),
 };

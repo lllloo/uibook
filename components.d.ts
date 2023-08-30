@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseButton: typeof import('./src/components/form/BaseButton.vue')['default']
     BaseCheckout: typeof import('./src/components/form/BaseCheckout.vue')['default']
     BaseField: typeof import('./src/components/form/BaseField.vue')['default']
     BaseInput: typeof import('./src/components/form/BaseInput.vue')['default']

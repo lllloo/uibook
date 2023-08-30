@@ -2,8 +2,9 @@
   <label
     class="base-radio"
     :class="{
-      'base-input--small': small,
-      'base-input--large': large,
+      'base-radio--small': small,
+      'base-radio--large': large,
+      'out-line': outLine,
       'is-checked': syncValue === value
     }"
   >
@@ -35,7 +36,18 @@ const props = defineProps({
 		type: String,
 		default: ''
 	},
-
+	small: {
+		type: Boolean,
+		default: false,
+	},
+	large: {
+		type: Boolean,
+		default: false,
+	},
+	outLine: {
+		type: Boolean,
+		default: false,
+	},
 })
 const emit = defineEmits(['update:modelValue'])
 const syncValue = computed({
@@ -47,8 +59,23 @@ const syncValue = computed({
 
 <style lang="scss" scoped>
 .base-radio {
-	display: flex;
+	display: inline-flex;
 	font-size: var(--input-font-size);
+
+	height: var(--input-height);
+
+	&--small {
+		--input-height: var(--input-small-height);
+	}
+
+	&--large {
+		--input-height: var(--input-large-height);
+	}
+	&.out-line {
+		border-radius: var(--base-border-radius);
+		padding: 0 10px;
+		border: 1px solid var(--primary-color);
+	}
 
 	&:not(.is-checked) {
 		.input-wrap  {
@@ -85,6 +112,10 @@ const syncValue = computed({
 				background: var(--primary-color);
 			}
 		}
+	}
+	.label {
+		display: flex;
+		align-items: center;
 	}
 
 	input {

@@ -1,0 +1,32 @@
+{/* Colors.mdx */}
+
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+
+<Meta title='Colors' />
+
+<ColorPalette>
+  <ColorItem
+    title='theme.color.grayscale'
+    subtitle='Some of the greys'
+    colors={{ 
+        White: '#FFFFFF', 
+        Alabaster: '#F8F8F8', 
+        Concrete: '#F3F3F3'
+    }}
+  />
+  <ColorItem
+    title='theme.color.primary'
+    subtitle='primary'
+    colors={{
+      code: '#14b8a6;',
+      rgba: 'rgba(20, 184, 166, .5)',
+    }}
+  />
+  <ColorItem
+    title='theme.color.gray'
+    subtitle='Gray'
+    colors={{
+      code: '#94a3b8;',
+    }}
+  />
+</ColorPalette>
