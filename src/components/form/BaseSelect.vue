@@ -6,19 +6,12 @@
     }"
     @click="open"
   >
-    {{ notSelected ? placeholder : showLabel }}
-    <select
-      ref="select"
-      v-model="value"
+    <input
+      ref="inputRef"
+      type="text"
+      :value="notSelected ? placeholder : showLabel"
+      readonly
     >
-      <option
-        v-for="(item, index) in options"
-        :key="index"
-        :value="item.value"
-      >
-        {{ item.label }}
-      </option>
-    </select>
     <ul>
       <li
         v-for="(item, index) in options"
@@ -49,9 +42,9 @@ const props = defineProps({
     default: '',
   },
 });
-const select = ref();
+const inputRef = ref();
 const open = () => {
-  select.value.focus();
+  inputRef.value.focus();
 };
 
 const emit = defineEmits(['update:modelValue', 'change']);
@@ -71,6 +64,12 @@ const notSelected = computed(() => {
 });
 </script>
 <style lang="scss" scoped>
+input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+}
 .base-select {
   position: relative;
   width: 100%;
@@ -96,13 +95,14 @@ const notSelected = computed(() => {
   height: var(--select-height);
   border-radius: var(--select-base-border-radius);
 
-  select {
-    width: 0;
-    opacity: 0;
-
+  input {
+    width: 100%;
     &:focus {
       ~ul {
         display: flex;
+      }
+      ~.down {
+        transform: rotate(180deg);
       }
     }
   }
