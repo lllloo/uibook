@@ -11,7 +11,7 @@
     <div class="input-wrap">
       <input
         v-model="syncValue"
-        :value="value || null"
+        :value="value"
         type="checkbox"
       >
       <div class="checkbox">
@@ -89,7 +89,6 @@ var type = ref(typeof props.modelValue)
 
 				>svg {
 					display: none;
-
 				}
 			}
 		}

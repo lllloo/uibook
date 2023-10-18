@@ -8,18 +8,16 @@ export default {
   tags: ['autodocs'],
   args: {
     label: 'Radio',
+    modelValue: ''
   },
-  render: (args) => ({
+  render: (args, { vModel }) => ({
     components: { BaseRadio },
     setup() {
-      let model = ref('')
-      const updateModel = (event) => {
-        model.value = event
-      }
-      return { args, model, updateModel }
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
     },
     template: `
-      <BaseRadio v-bind="args" :modelValue="model" @update:modelValue="updateModel" value="1" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
     `,
   }),
 };
@@ -35,19 +33,16 @@ export const OutLine = {
 
 
 export const WithWrap = {
-  render: (args) => ({
+  render: (args, { vModel }) => ({
     components: { BaseField, BaseRadio },
     setup() {
-      let model = ref('1')
-      const updateModel = (event) => {
-        model.value = event
-      }
-      return { args, model, updateModel }
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
     },
     template: `
       <BaseField label="標題">
-        <BaseRadio v-bind="args" :modelValue="model" @update:modelValue="updateModel" value="1" />
-        <BaseRadio v-bind="args" :modelValue="model" @update:modelValue="updateModel" value="2" />
+        <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+        <BaseRadio v-bind="args" v-model="modelValue" value="2" />
       </BaseField>
     `,
   }),

@@ -5,11 +5,6 @@ export default {
   title: 'Base/Field',
   component: BaseField,
   tags: ['autodocs'],
-  argTypes: {
-    'v-model': {
-      control: 'text',
-    },
-  },
   args: {
     label: '標題',
   },

@@ -6,9 +6,16 @@ import { useArgs } from '@storybook/client-api'
 
 export const decorators = [
   (story, context) => {
+    const args = context.args
     const [_, updateArgs] = useArgs()
-    return story({ ...context, updateArgs })
-  },
+    const vModel = (key) => computed({
+      get: () => args[key],
+      set: (value) => {
+        updateArgs({ ...args ,[key]: value })
+      }
+    });
+    return story({ ...context, vModel })
+  }
 ]
 
 /** @type { import('@storybook/vue3').Preview } */

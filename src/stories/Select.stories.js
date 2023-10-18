@@ -6,31 +6,22 @@ export default {
   title: 'Base/Select',
   component: BaseSelect,
   tags: ['autodocs'],
-  // argTypes: {
-  //   'v-model': {
-  //     control: 'text',
-  //   },
-  // },
   args: {
-    label: '標題',
     placeholder: '請輸入',
     options: [
       { label: '選項1', value: '1' },
       { label: '選項2', value: '2' },
       { label: '選項3', value: '3' },
-    ]
+    ],
   },
-  render: (args) => ({
+  render: (args, { vModel }) => ({
     components: { BaseSelect },
     setup() {
-      let model = ref('')
-      const updateModel = (event) => {
-        model.value = event
-      }
-      return { args, model, updateModel }
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
     },
     template: `
-      <BaseSelect v-bind="args" :modelValue="model" @update:modelValue="updateModel" />
+      <BaseSelect v-bind="args" v-model="modelValue" />
     `,
   }),
 };
@@ -39,21 +30,16 @@ export const Primary = {
   args: {},
 };
 
-
-
 export const WithWrap = {
-  render: (args) => ({
+  render: (args, { vModel }) => ({
     components: { BaseField, BaseSelect },
     setup() {
-      let model = ref('')
-      const updateModel = (event) => {
-        model.value = event
-      }
-      return { args, model, updateModel }
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
     },
     template: `
       <BaseField label="標題">
-        <BaseSelect v-bind="args" :modelValue="model" @update:modelValue="updateModel" />
+        <BaseSelect v-bind="args" v-model="modelValue" />
       </BaseField>
     `,
   }),

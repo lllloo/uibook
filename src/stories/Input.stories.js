@@ -8,19 +8,16 @@ export default {
   args: {
     label: '標題',
     placeholder: '請輸入',
-    value: ''
+    modelValue: ''
   },
-  render: (args, { updateArgs }) => ({
+  render: (args, { vModel }) => ({
     components: { BaseInput },
     setup() {
-      const value = computed({
-        get: () => args.value,
-        set: (value) => updateArgs({ value })
-      })
-      return { args, value }
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
     },
     template: `
-      <BaseInput v-bind="args" v-model="value" />
+      <BaseInput v-bind="args" v-model="modelValue" />
     `,
   }),
 };
