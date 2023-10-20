@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   small: {
     type: Boolean,
     default: false,
@@ -22,27 +22,31 @@ const props = defineProps({
     default: false,
   },
 });
-const emit = defineEmits(['onClick']);
+defineEmits(['onClick']);
 </script>
 
 <style lang="scss" scoped>
 button {
-  // border: none;
-  // outline: none;
-  // background: transparent;
-  // width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
 }
 
 .base-button {
-  width: 100%;
+  --base-padding-button: var(--base-padding);
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: var(--base-padding-button) calc(var(--base-padding-button) * 2);
+  border-radius: 0.25rem;
 
   &--small {
-    --input-height: var(--input-small-height);
+    --base-padding-button: var(--base-small-padding);
   }
 
   &--large {
-    --input-height: var(--input-large-height);
+    --base-padding-button: var(--base-large-padding);
   }
 }
-
 </style>

@@ -15,6 +15,17 @@
     --base-border-radius: 5px;
 
 
+
+    --base-padding: 0.5rem;
+    --base-small-padding: calc(var(--base-padding) - 0.125rem);
+    --base-large-padding: calc(var(--base-padding) + 0.125rem);
+
+    /* --base-padding-y: var(--base-padding);
+    --base-padding-x: calc(var(--base-padding-y) * 2); */
+
+
+
+
     /* input */
     --input-font-size: var(--base-font-size);
 
@@ -30,6 +41,6 @@
     --select-small-height: var(--base-small-height);
     --select-height: var(--base-height);
     --select-large-height: var(--base-large-height);
-    
+
     --select-base-border-radius: var(--base-border-radius);
 }

@@ -6,27 +6,23 @@ export default {
   title: 'Base/Checkout',
   component: BaseCheckout,
   tags: ['autodocs'],
-  argsTypes: {
-    modelValue: {
+  argTypes: {
+    'modelValue': {
       control: 'boolean',
+      name: 'v-model',
     }
   },
   args: {
     label: 'Checkout',
-    // modelValue: false,
   },
   render: (args, { vModel }) => ({
     components: { BaseCheckout },
     setup() {
       const modelValue = vModel('modelValue')
-      const aaa = (value) => {
-        console.log(value);
-      }
-      console.log(args);
-      return { args, modelValue, aaa }
+      return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args"  @update:model-value="aaa" />
+      <BaseCheckout v-bind="args" v-model="modelValue" />
     `,
   }),
 };
@@ -41,6 +37,12 @@ export const OutLine = {
 
 
 export const WithWrap = {
+  argTypes: {
+    'modelValue': {
+      control: 'array',
+      name: 'v-model',
+    }
+  },
   args: {
     modelValue: []
   },
@@ -52,7 +54,7 @@ export const WithWrap = {
     },
     template: `
       <BaseField label="標題">
-        <BaseCheckout v-bind="args" v-model="modelValue" value="1" />
+        <BaseCheckout v-bind="args" v-model="modelValue" value="1" style="margin-right: 10px;" />
         <BaseCheckout v-bind="args" v-model="modelValue" value="2" />
       </BaseField>
     `,
