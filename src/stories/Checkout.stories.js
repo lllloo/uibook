@@ -1,5 +1,5 @@
-import BaseCheckout from '@/components/form/BaseCheckout.vue';
-import BaseField from '@/components/form/BaseField.vue';
+import BaseCheckout from '@/components/form/BaseCheckout.vue'
+import BaseField from '@/components/form/BaseField.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
@@ -7,13 +7,13 @@ export default {
   component: BaseCheckout,
   tags: ['autodocs'],
   argTypes: {
-    'modelValue': {
+    modelValue: {
       control: 'boolean',
-      name: 'v-model',
+      name: 'v-model'
     }
   },
   args: {
-    label: 'Checkout',
+    label: 'Checkout'
   },
   render: (args, { vModel }) => ({
     components: { BaseCheckout },
@@ -23,24 +23,23 @@ export default {
     },
     template: `
       <BaseCheckout v-bind="args" v-model="modelValue" />
-    `,
-  }),
-};
+    `
+  })
+}
 
-export const Primary = {};
+export const Primary = {}
 
 export const OutLine = {
   args: {
-    outLine: true,
-  },
-};
-
+    outLine: true
+  }
+}
 
 export const WithWrap = {
   argTypes: {
-    'modelValue': {
+    modelValue: {
       control: 'array',
-      name: 'v-model',
+      name: 'v-model'
     }
   },
   args: {
@@ -57,6 +56,6 @@ export const WithWrap = {
         <BaseCheckout v-bind="args" v-model="modelValue" value="1" style="margin-right: 10px;" />
         <BaseCheckout v-bind="args" v-model="modelValue" value="2" />
       </BaseField>
-    `,
-  }),
-};
+    `
+  })
+}

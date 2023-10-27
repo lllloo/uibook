@@ -1,4 +1,4 @@
-import BaseButton from '@/components/form/BaseButton.vue';
+import BaseButton from '@/components/form/BaseButton.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
@@ -14,13 +14,13 @@ export default {
       <BaseButton v-bind="args">
         Button
       </BaseButton>
-    `,
-  }),
-};
+    `
+  })
+}
 
 export const Primary = {
-  args: {},
-};
+  args: {}
+}
 
 export const Size = {
   decorators: [
@@ -44,6 +44,6 @@ export const Size = {
       <BaseButton large>
         Large
       </BaseButton>
-    `,
-  }),
-};
+    `
+  })
+}

@@ -1,8 +1,11 @@
 <template>
-  <button class="base-button" :class="{
-    'base-button--small': small,
-    'base-button--large': large,
-  }">
+  <button
+    class="base-button"
+    :class="{
+      'base-button--small': small,
+      'base-button--large': large
+    }"
+  >
     <slot />
   </button>
 </template>
@@ -11,13 +14,13 @@
 defineProps({
   small: {
     type: Boolean,
-    default: false,
+    default: false
   },
   large: {
     type: Boolean,
-    default: false,
-  },
-});
+    default: false
+  }
+})
 </script>
 
 <style lang="scss" scoped>

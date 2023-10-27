@@ -4,20 +4,13 @@
     :class="{
       'one-line': oneLine,
       'base-input--small': small,
-      'base-input--large': large,
+      'base-input--large': large
     }"
   >
-    <div
-      v-if="label"
-      class="label"
-    >{{ label }}</div>
+    <div v-if="label" class="label">{{ label }}</div>
     <div class="input-wrap">
       <slot name="start-icon" />
-      <input
-        v-model="value"
-        :type="type"
-        :placeholder="placeholder"
-      >
+      <input v-model="value" :type="type" :placeholder="placeholder" />
       <slot name="icon" />
     </div>
   </label>
@@ -27,38 +20,38 @@
 const props = defineProps({
   modelValue: {
     type: String,
-    default: '',
+    default: ''
   },
   type: {
     type: String,
-    default: 'text',
+    default: 'text'
   },
   label: {
     type: String,
-    default: '',
+    default: ''
   },
   placeholder: {
     type: String,
-    default: '',
+    default: ''
   },
   oneLine: {
     type: Boolean,
-    default: false,
+    default: false
   },
   small: {
     type: Boolean,
-    default: false,
+    default: false
   },
   large: {
     type: Boolean,
-    default: false,
-  },
-});
-const emit = defineEmits(['update:modelValue']);
+    default: false
+  }
+})
+const emit = defineEmits(['update:modelValue'])
 const value = computed({
   get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val),
-});
+  set: (val) => emit('update:modelValue', val)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -113,7 +106,7 @@ input {
   input {
     padding: 0 15px;
     height: var(--input-height);
-    transition: box-shadow .3s;
+    transition: box-shadow 0.3s;
     border: none;
 
     &:focus {

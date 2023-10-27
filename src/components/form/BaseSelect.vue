@@ -2,22 +2,17 @@
   <div
     class="base-select"
     :class="{
-      selected: !notSelected,
+      selected: !notSelected
     }"
     @click="open"
   >
-    <input
-      ref="inputRef"
-      type="text"
-      :value="notSelected ? placeholder : showLabel"
-      readonly
-    >
+    <input ref="inputRef" type="text" :value="notSelected ? placeholder : showLabel" readonly />
     <ul>
       <li
         v-for="(item, index) in options"
         :key="index"
         :class="{
-          checked: item.value === value,
+          checked: item.value === value
         }"
         @mousedown="value = item.value"
       >
@@ -31,37 +26,37 @@
 const props = defineProps({
   options: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   modelValue: {
     type: String,
-    default: '',
+    default: ''
   },
   placeholder: {
     type: String,
-    default: '',
-  },
-});
-const inputRef = ref();
+    default: ''
+  }
+})
+const inputRef = ref()
 const open = () => {
-  inputRef.value.focus();
-};
+  inputRef.value.focus()
+}
 
-const emit = defineEmits(['update:modelValue', 'change']);
+const emit = defineEmits(['update:modelValue', 'change'])
 const value = computed({
   get: () => props.modelValue,
   set: (val) => {
-    emit('update:modelValue', val);
-    emit('change', val);
-  },
-});
+    emit('update:modelValue', val)
+    emit('change', val)
+  }
+})
 const showLabel = computed(() => {
-  return props.options.find((item) => item.value === value.value)?.label;
-});
+  return props.options.find((item) => item.value === value.value)?.label
+})
 
 const notSelected = computed(() => {
-  return value.value === '';
-});
+  return value.value === ''
+})
 </script>
 <style lang="scss" scoped>
 input {
@@ -98,10 +93,10 @@ input {
   input {
     width: 100%;
     &:focus {
-      ~ul {
+      ~ ul {
         display: flex;
       }
-      ~.down {
+      ~ .down {
         transform: rotate(180deg);
       }
     }

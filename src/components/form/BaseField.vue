@@ -4,19 +4,13 @@
     :class="{
       'one-line': oneLine,
       'base-field--small': small,
-      'base-field--large': small,
+      'base-field--large': small
     }"
   >
-    <div
-      v-if="label"
-      class="label"
-    >
+    <div v-if="label" class="label">
       {{ label }}
     </div>
-    <div
-      v-if="hasSlot"
-      class="input-wrap"
-    >
+    <div v-if="hasSlot" class="input-wrap">
       <slot />
     </div>
   </div>
@@ -26,23 +20,23 @@
 const props = defineProps({
   label: {
     type: String,
-    default: '',
+    default: ''
   },
   oneLine: {
     type: Boolean,
-    default: false,
+    default: false
   },
   small: {
     type: Boolean,
-    default: false,
+    default: false
   },
   large: {
     type: Boolean,
-    default: false,
-  },
-});
+    default: false
+  }
+})
 
-const hasSlot = !!useSlots().default;
+const hasSlot = !!useSlots().default
 </script>
 
 <style lang="scss" scoped>

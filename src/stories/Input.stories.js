@@ -1,4 +1,4 @@
-import BaseInput from '@/components/form/BaseInput.vue';
+import BaseInput from '@/components/form/BaseInput.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
@@ -18,16 +18,16 @@ export default {
     },
     template: `
       <BaseInput v-bind="args" v-model="modelValue" />
-    `,
-  }),
-};
+    `
+  })
+}
 
 export const Primary = {
-  args: {},
-};
+  args: {}
+}
 
 export const OneLine = {
   args: {
     oneLine: true
-  },
-};
+  }
+}

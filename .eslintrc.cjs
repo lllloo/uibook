@@ -7,6 +7,7 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
     'plugin:storybook/recommended',
+    '@vue/eslint-config-prettier/skip-formatting',
     './.eslintrc-auto-import.json',
   ],
   overrides: [
@@ -23,7 +24,4 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   ignorePatterns: ['cypress.config.js'],
-  'rules': {
-    'quotes': [2, 'single']
-  }
 }

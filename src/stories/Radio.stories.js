@@ -1,5 +1,5 @@
-import BaseRadio from '@/components/form/BaseRadio.vue';
-import BaseField from '@/components/form/BaseField.vue';
+import BaseRadio from '@/components/form/BaseRadio.vue'
+import BaseField from '@/components/form/BaseField.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
@@ -18,19 +18,17 @@ export default {
     },
     template: `
       <BaseRadio v-bind="args" v-model="modelValue" value="1" />
-    `,
-  }),
-};
+    `
+  })
+}
 
-export const Primary = {};
+export const Primary = {}
 
 export const OutLine = {
   args: {
-    outLine: true,
-  },
-};
-
-
+    outLine: true
+  }
+}
 
 export const WithWrap = {
   render: (args, { vModel }) => ({
@@ -44,6 +42,6 @@ export const WithWrap = {
         <BaseRadio v-bind="args" v-model="modelValue" value="1" />
         <BaseRadio v-bind="args" v-model="modelValue" value="2" />
       </BaseField>
-    `,
-  }),
-};
+    `
+  })
+}
