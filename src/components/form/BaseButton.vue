@@ -1,12 +1,8 @@
 <template>
-  <button
-    class="base-button"
-    :class="{
-      'base-button--small': small,
-      'base-button--large': large,
-    }"
-    @click="$emit('onClick')"
-  >
+  <button class="base-button" :class="{
+    'base-button--small': small,
+    'base-button--large': large,
+  }">
     <slot />
   </button>
 </template>
@@ -22,7 +18,6 @@ defineProps({
     default: false,
   },
 });
-defineEmits(['onClick']);
 </script>
 
 <style lang="scss" scoped>
@@ -34,7 +29,7 @@ button {
 
 .base-button {
   --base-padding-button: var(--base-padding);
-  background: var(--primary-color);
+  background: var(--primary);
   color: #fff;
   font-size: 1rem;
   line-height: 1.5;
@@ -47,6 +42,14 @@ button {
 
   &--large {
     --base-padding-button: var(--base-large-padding);
+  }
+
+  &:hover {
+    background: var(--primary-tint);
+  }
+
+  &:active {
+    background: var(--primary-shade);
   }
 }
 </style>

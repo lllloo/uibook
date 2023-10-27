@@ -1,7 +1,8 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
 :root {
-    --primary-color: #14b8a6;
-    --primary-rgb: 20, 184, 166;
+    --primary: #38bdf8;
+    --primary-tint: #4cc4f9;
+    --primary-shade: #32aadf;
 
     --gray-color: #94a3b8;
     --gray-rgb: 148, 163, 184;

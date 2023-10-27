@@ -5,23 +5,13 @@ export default {
   title: 'Base/Button',
   component: BaseButton,
   tags: ['autodocs'],
-  // argTypes: {
-  //   'v-model': {
-  //     control: 'text',
-  //   },
-  // },
-  args: {
-  },
   render: (args) => ({
     components: { BaseButton },
     setup() {
-      const onClick = () => {
-        console.log('onClick');
-      }
-      return { args, onClick }
+      return { args }
     },
     template: `
-      <BaseButton v-bind="args" @onClick="onClick">
+      <BaseButton v-bind="args">
         Button
       </BaseButton>
     `,
@@ -30,4 +20,30 @@ export default {
 
 export const Primary = {
   args: {},
+};
+
+export const Size = {
+  decorators: [
+    (story) => ({
+      components: { story },
+      template: '<div class="decorators"><story/></div>'
+    })
+  ],
+  render: (args) => ({
+    components: { BaseButton },
+    setup() {
+      return { args }
+    },
+    template: `
+      <BaseButton small>
+        Small
+      </BaseButton>
+      <BaseButton>
+        Button
+      </BaseButton>
+      <BaseButton large>
+        Large
+      </BaseButton>
+    `,
+  }),
 };
