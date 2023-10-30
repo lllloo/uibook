@@ -1,5 +1,5 @@
-import BaseCheckout from '@/components/form/BaseCheckout.vue'
-import BaseField from '@/components/form/BaseField.vue'
+import BaseCheckout from '@/components/base/BaseCheckout.vue'
+import BaseField from '@/components/base/BaseField.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {

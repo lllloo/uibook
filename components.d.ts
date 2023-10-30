@@ -7,12 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    BaseButton: typeof import('./src/components/form/BaseButton.vue')['default']
-    BaseCheckout: typeof import('./src/components/form/BaseCheckout.vue')['default']
-    BaseField: typeof import('./src/components/form/BaseField.vue')['default']
-    BaseInput: typeof import('./src/components/form/BaseInput.vue')['default']
-    BaseRadio: typeof import('./src/components/form/BaseRadio.vue')['default']
-    BaseSelect: typeof import('./src/components/form/BaseSelect.vue')['default']
+    BaseButton: typeof import('./src/components/base/BaseButton.vue')['default']
+    BaseCheckout: typeof import('./src/components/base/BaseCheckout.vue')['default']
+    BaseField: typeof import('./src/components/base/BaseField.vue')['default']
+    BaseInput: typeof import('./src/components/base/BaseInput.vue')['default']
+    BaseRadio: typeof import('./src/components/base/BaseRadio.vue')['default']
+    BaseSelect: typeof import('./src/components/base/BaseSelect.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
