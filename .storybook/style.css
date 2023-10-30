@@ -1,11 +1,12 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
 :root {
-    --primary: #38bdf8;
-    --primary-tint: #4cc4f9;
-    --primary-shade: #32aadf;
-
-    --gray-color: #94a3b8;
-    --gray-rgb: 148, 163, 184;
+    --white: #fff;
+    --black: #000;
+    --primary: #60a5fa;
+    --success: #4ade80;
+    --warning: #facc15;
+    --danger: #f87171;
+    --disable: #9ca3af;
 
     --base-font-size: 16px;
 
@@ -17,8 +18,11 @@
 
 
 
-    --base-padding: 0.5rem;
+    /* 6px */
+    --base-padding: 0.375rem;
+    /* 4px */
     --base-small-padding: calc(var(--base-padding) - 0.125rem);
+    /* 8px */
     --base-large-padding: calc(var(--base-padding) + 0.125rem);
 
     /* --base-padding-y: var(--base-padding);

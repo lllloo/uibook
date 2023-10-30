@@ -1,11 +1,11 @@
 <template>
-  <button
-    class="base-button"
-    :class="{
-      'base-button--small': small,
-      'base-button--large': large
-    }"
-  >
+  <button class="base-button" :class="{
+    'base-button--small': small,
+    'base-button--large': large,
+    'base-button--outline': outline,
+    'base-button--text': text,
+    [`base-button--${type}`]: type,
+  }">
     <slot />
   </button>
 </template>
@@ -17,6 +17,18 @@ defineProps({
     default: false
   },
   large: {
+    type: Boolean,
+    default: false
+  },
+  type: {
+    type: String,
+    default: null
+  },
+  outline: {
+    type: Boolean,
+    default: false
+  },
+  text: {
     type: Boolean,
     default: false
   }
@@ -31,28 +43,54 @@ button {
 }
 
 .base-button {
-  --base-padding-button: var(--base-padding);
-  background: var(--primary);
-  color: #fff;
+  --base-button-padding: var(--base-padding);
+  --color: var(--black);
+
   font-size: 1rem;
   line-height: 1.5;
-  padding: var(--base-padding-button) calc(var(--base-padding-button) * 2);
   border-radius: 0.25rem;
+  padding: var(--base-button-padding) calc(var(--base-button-padding) * 2);
 
   &--small {
-    --base-padding-button: var(--base-small-padding);
+    --base-button-padding: var(--base-small-padding);
   }
 
   &--large {
-    --base-padding-button: var(--base-large-padding);
+    --base-button-padding: var(--base-large-padding);
   }
 
-  &:hover {
-    background: var(--primary-tint);
+
+
+  border: 1px solid var(--color);
+  background: var(--color);
+  color: var(--white);
+
+  &--primary,
+  &--success,
+  &--warring,
+  &--danger {
+    color: var(--white);
   }
 
-  &:active {
-    background: var(--primary-shade);
+  &--primary {
+    --color: var(--primary);
+  }
+
+  &--success {
+    --color: var(--success);
+  }
+
+  &--warring {
+    --color: var(--warning);
+  }
+
+  &--danger {
+    --color: var(--danger);
+  }
+
+  &--outline {
+    background: transparent;
+    color: var(--color);
   }
 }
 </style>
