@@ -13,7 +13,6 @@ declare module 'vue' {
     BaseInput: typeof import('./src/components/form/BaseInput.vue')['default']
     BaseRadio: typeof import('./src/components/form/BaseRadio.vue')['default']
     BaseSelect: typeof import('./src/components/form/BaseSelect.vue')['default']
-    copy: typeof import('./src/components/form/BaseInput copy.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
