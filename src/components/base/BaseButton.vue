@@ -1,11 +1,17 @@
 <template>
-  <button class="base-button" :class="{
-    'base-button--small': small,
-    'base-button--large': large,
-    'base-button--outline': outline,
-    'base-button--text': text,
-    [`base-button--${type}`]: type,
-  }">
+  <button
+    :class="{
+      'base-button': true,
+      'base-button--small': small,
+      'base-button--large': large,
+      'base-button--outline': outline,
+      'base-button--text': text,
+      'base-button--circle': circle,
+      'base-button--radius': radius,
+      'base-button--disable': disable,
+      [`base-button--${type}`]: type
+    }"
+  >
     <slot />
   </button>
 </template>
@@ -31,6 +37,18 @@ defineProps({
   text: {
     type: Boolean,
     default: false
+  },
+  radius: {
+    type: Boolean,
+    default: false
+  },
+  circle: {
+    type: Boolean,
+    default: false
+  },
+  disable: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -46,9 +64,10 @@ button {
   --base-button-padding: var(--base-padding);
   --color: var(--black);
 
+  cursor: pointer;
   font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
   padding: var(--base-button-padding) calc(var(--base-button-padding) * 2);
 
   &--small {
@@ -58,8 +77,6 @@ button {
   &--large {
     --base-button-padding: var(--base-large-padding);
   }
-
-
 
   border: 1px solid var(--color);
   background: var(--color);
@@ -91,6 +108,21 @@ button {
   &--outline {
     background: transparent;
     color: var(--color);
+  }
+
+  &--radius {
+    border-radius: calc(var(--base-button-padding) * 3);
+  }
+
+  &--circle {
+    line-height: 1;
+    border-radius: 50%;
+    padding: var(--base-button-padding);
+  }
+
+  &--disable {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 }
 </style>

@@ -1,20 +1,23 @@
 <template>
   <label
-    class="base-checkout"
     :class="{
+      'base-checkout': true,
       'base-checkout--small': small,
       'base-checkout--large': large,
-      'out-line': outLine,
+      'base-checkout--outline': outline,
       'is-checked': type === 'boolean' ? syncValue : syncValue.includes(value)
     }"
   >
-    <div class="input-wrap">
-      <input v-model="syncValue" :value="value" type="checkbox" />
-      <div class="checkbox">
-        <i class="fas fa-check" />
-      </div>
+    <input v-model="syncValue" :value="value" type="checkbox" />
+    <div class="base-checkout__checkout">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+        <path
+          d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+        />
+      </svg>
     </div>
-    <div class="label">
+    <div class="base-checkout__label">
       {{ label }}
     </div>
   </label>
@@ -42,7 +45,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  outLine: {
+  outline: {
     type: Boolean,
     default: false
   }
@@ -58,61 +61,36 @@ var type = ref(typeof props.modelValue)
 
 <style lang="scss" scoped>
 .base-checkout {
-  display: inline-flex;
-  font-size: var(--input-font-size);
+  --base-button-padding: var(--base-padding);
+  --border-color: #c8cacb;
+  --color: var(--base-checkbox-color);
 
-  height: var(--input-height);
+  display: inline-flex;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-button-padding) var(--base-button-padding);
 
   &--small {
-    --input-height: var(--input-small-height);
+    --base-button-padding: var(--base-small-padding);
   }
 
   &--large {
-    --input-height: var(--input-large-height);
-  }
-  &.out-line {
-    border-radius: var(--base-border-radius);
-    padding: 0 10px;
-    border: 1px solid var(--primary-color);
+    --base-button-padding: var(--base-large-padding);
   }
 
-  &:not(.is-checked) {
-    .input-wrap {
-      .checkbox {
-        border: 1px solid #c8cacb;
-        background: #fff;
+  &--outline {
+    border: 1px solid var(--border-color);
 
-        > svg {
-          display: none;
-        }
-      }
+    &.is-checked {
+      border: 1px solid var(--color);
+      color: var(--color);
     }
   }
 
-  .input-wrap {
-    display: flex;
-    align-items: center;
-
-    .checkbox {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
-      border: 1px solid var(--primary-color);
-      overflow: hidden;
-      border-radius: var(--base-border-radius);
-      background: var(--primary-color);
-      color: #fff;
-    }
-  }
-  .label {
-    display: flex;
-    align-items: center;
-  }
-
-  input {
+  input[type='checkbox'] {
+    display: none;
     opacity: 0;
     outline: none;
     position: absolute;
@@ -120,6 +98,41 @@ var type = ref(typeof props.modelValue)
     width: 0;
     height: 0;
     z-index: -1;
+
+    &:checked {
+      + .base-checkout__checkout {
+        border: 1px solid var(--color);
+        background: var(--color);
+
+        > svg {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__checkout {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    border-radius: var(--base-border-radius);
+    background: #fff;
+
+    > svg {
+      width: 80%;
+      fill: #fff;
+      display: none;
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
   }
 }
 </style>

@@ -50,6 +50,42 @@ export const Type = {
       <BaseButton type="danger">
         Danger
       </BaseButton>
+
+      <br>
+
+      <BaseButton radius>
+        Default
+      </BaseButton>
+      <BaseButton type="primary" radius>
+        Primary
+      </BaseButton>
+      <BaseButton type="success" radius>
+        Success
+      </BaseButton>
+      <BaseButton type="warring" radius>
+        Warring
+      </BaseButton>
+      <BaseButton type="danger" radius>
+        Danger
+      </BaseButton>
+
+      <br>
+
+      <BaseButton circle>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="primary" circle>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="success" circle>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="warring" circle>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="danger" circle>
+        <i class="fas fa-search"></i>
+      </BaseButton>
     `
   })
 }
@@ -94,6 +130,69 @@ export const Outline = {
         Warring
       </BaseButton>
       <BaseButton type="danger" outline>
+        Danger
+      </BaseButton>
+
+      <br>
+
+      <BaseButton radius outline>
+        Default
+      </BaseButton>
+      <BaseButton type="primary" radius outline>
+        Primary
+      </BaseButton>
+      <BaseButton type="success" radius outline>
+        Success
+      </BaseButton>
+      <BaseButton type="warring" radius outline>
+        Warring
+      </BaseButton>
+      <BaseButton type="danger" radius outline>
+        Danger
+      </BaseButton>
+
+      <br>
+
+      <BaseButton circle outline>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="primary" circle outline>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="success" circle outline>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="warring" circle outline>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+      <BaseButton type="danger" circle outline>
+        <i class="fas fa-search"></i>
+      </BaseButton>
+    `
+  })
+}
+
+
+export const Disable = {
+  render: (args) => ({
+    components: { BaseButton },
+    setup() {
+      return { args }
+    },
+    template: `
+      <BaseButton disable>
+        Default
+      </BaseButton>
+      <BaseButton type="primary" disable>
+        Primary
+      </BaseButton>
+      <BaseButton type="success" disable>
+        Success
+      </BaseButton>
+      <BaseButton type="warring" disable>
+        Warring
+      </BaseButton>
+      <BaseButton type="danger" disable>
         Danger
       </BaseButton>
     `

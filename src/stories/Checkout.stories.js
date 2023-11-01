@@ -27,11 +27,11 @@ export default {
   })
 }
 
-export const Primary = {}
+export const Default = {}
 
-export const OutLine = {
+export const Outline = {
   args: {
-    outLine: true
+    outline: true
   }
 }
 
