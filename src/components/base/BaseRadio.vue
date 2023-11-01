@@ -52,23 +52,23 @@ const syncValue = computed({
 
 <style lang="scss" scoped>
 .base-radio {
-  --base-button-padding: var(--base-padding);
+  --padding: var(--base-padding);
   --border-color: #c8cacb;
-  --color: var(--base-checkbox-color);
+  --color: var(--base-radio-color);
 
   display: inline-flex;
   cursor: pointer;
   font-size: 1rem;
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
-  padding: var(--base-button-padding) var(--base-button-padding);
+  padding: var(--padding) var(--padding);
 
   &--small {
-    --input-height: var(--input-small-height);
+    --padding: var(--base-small-padding);
   }
 
   &--large {
-    --input-height: var(--input-large-height);
+    --padding: var(--base-large-padding);
   }
 
   &--outline {

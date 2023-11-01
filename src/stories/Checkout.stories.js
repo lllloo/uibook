@@ -29,6 +29,21 @@ export default {
 
 export const Default = {}
 
+export const Size = {
+  render: (args, { vModel }) => ({
+    components: { BaseCheckout },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseCheckout v-bind="args" v-model="modelValue" small outline />
+      <BaseCheckout v-bind="args" v-model="modelValue" outline />
+      <BaseCheckout v-bind="args" v-model="modelValue" large outline />
+    `
+  })
+}
+
 export const Outline = {
   args: {
     outline: true

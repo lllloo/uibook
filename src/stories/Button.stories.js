@@ -5,12 +5,6 @@ export default {
   title: 'Base/Button',
   component: BaseButton,
   tags: ['autodocs'],
-  decorators: [
-    (story) => ({
-      components: { story },
-      template: '<div class="decorators"><story/></div>'
-    })
-  ],
   render: (args) => ({
     components: { BaseButton },
     setup() {

@@ -61,7 +61,7 @@ var type = ref(typeof props.modelValue)
 
 <style lang="scss" scoped>
 .base-checkout {
-  --base-button-padding: var(--base-padding);
+  --padding: var(--base-padding);
   --border-color: #c8cacb;
   --color: var(--base-checkbox-color);
 
@@ -70,14 +70,14 @@ var type = ref(typeof props.modelValue)
   font-size: 1rem;
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
-  padding: var(--base-button-padding) var(--base-button-padding);
+  padding: var(--padding) var(--padding);
 
   &--small {
-    --base-button-padding: var(--base-small-padding);
+    --padding: var(--base-small-padding);
   }
 
   &--large {
-    --base-button-padding: var(--base-large-padding);
+    --padding: var(--base-large-padding);
   }
 
   &--outline {

@@ -19,6 +19,12 @@
     /* checkbox */
     --base-checkbox-color: var(--primary);
 
+    /* radio */
+    --base-radio-color: var(--primary);
+
+    /* input */
+    --base-input-color : var(--primary);
+
     
     --base-small-height: 32px;
     --base-height: 40px;

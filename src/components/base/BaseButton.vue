@@ -61,21 +61,21 @@ button {
 }
 
 .base-button {
-  --base-button-padding: var(--base-padding);
+  --padding: var(--base-padding);
   --color: var(--black);
 
   cursor: pointer;
   font-size: 1rem;
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
-  padding: var(--base-button-padding) calc(var(--base-button-padding) * 2);
+  padding: var(--padding) calc(var(--padding) * 2);
 
   &--small {
-    --base-button-padding: var(--base-small-padding);
+    --padding: var(--base-small-padding);
   }
 
   &--large {
-    --base-button-padding: var(--base-large-padding);
+    --padding: var(--base-large-padding);
   }
 
   border: 1px solid var(--color);
@@ -111,13 +111,13 @@ button {
   }
 
   &--radius {
-    border-radius: calc(var(--base-button-padding) * 3);
+    border-radius: calc(var(--padding) * 3);
   }
 
   &--circle {
     line-height: 1;
     border-radius: 50%;
-    padding: var(--base-button-padding);
+    padding: var(--padding);
   }
 
   &--disable {

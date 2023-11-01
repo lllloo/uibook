@@ -25,6 +25,21 @@ export default {
 
 export const Default = {}
 
+export const Size = {
+  render: (args, { vModel }) => ({
+    components: { BaseRadio },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" small outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="3" large outline />
+    `
+  })
+}
+
 export const Outline = {
   args: {
     outline: true

@@ -22,12 +22,23 @@ export default {
   })
 }
 
-export const Primary = {
+export const Default = {
   args: {}
 }
 
-export const OneLine = {
-  args: {
-    oneLine: true
-  }
+export const Default2 = {
+  render: (args, { vModel }) => ({
+    components: { BaseInput },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseInput v-bind="args" v-model="modelValue" small /> 
+      <br>
+      <BaseInput v-bind="args" v-model="modelValue" />
+      <br>
+      <BaseInput v-bind="args" v-model="modelValue" large />
+    `
+  })
 }
