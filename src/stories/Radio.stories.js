@@ -18,15 +18,16 @@ export default {
     },
     template: `
       <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" />
     `
   })
 }
 
-export const Primary = {}
+export const Default = {}
 
-export const OutLine = {
+export const Outline = {
   args: {
-    outLine: true
+    outline: true
   }
 }
 
