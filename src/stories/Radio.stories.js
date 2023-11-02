@@ -46,6 +46,23 @@ export const Outline = {
   }
 }
 
+export const Disabled = {
+  args: {
+    disabled: true
+  },
+  render: (args, { vModel }) => ({
+    components: { BaseRadio },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
+    `
+  })
+}
+
 export const WithWrap = {
   render: (args, { vModel }) => ({
     components: { BaseField, BaseRadio },

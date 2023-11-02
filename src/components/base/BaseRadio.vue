@@ -5,10 +5,11 @@
       'base-radio--small': small,
       'base-radio--large': large,
       'base-radio--outline': outline,
+      'is-disabled': disabled,
       'is-checked': syncValue === value
     }"
   >
-    <input v-model="syncValue" :value="value" type="radio" />
+    <input v-model="syncValue" :value="value" type="radio" :disabled="disabled" />
     <div class="base-radio__radio" />
     <div class="base-radio__label">
       {{ label }}
@@ -39,6 +40,10 @@ const props = defineProps({
     default: false
   },
   outline: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
     type: Boolean,
     default: false
   }
@@ -78,6 +83,11 @@ const syncValue = computed({
       border: 1px solid var(--color);
       color: var(--color);
     }
+  }
+
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   input[type='radio'] {

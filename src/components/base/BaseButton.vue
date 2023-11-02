@@ -8,7 +8,7 @@
       'base-button--text': text,
       'base-button--circle': circle,
       'base-button--radius': radius,
-      'base-button--disable': disable,
+      'is-disable': disable,
       [`base-button--${type}`]: type
     }"
   >
@@ -120,7 +120,7 @@ button {
     padding: var(--padding);
   }
 
-  &--disable {
+  &.is-disable {
     opacity: 0.7;
     cursor: not-allowed;
   }

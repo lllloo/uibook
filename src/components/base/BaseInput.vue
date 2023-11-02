@@ -3,11 +3,12 @@
     :class="{
       'base-input': true,
       'base-input--small': small,
-      'base-input--large': large
+      'base-input--large': large,
+      'is-disabled': disabled
     }"
   >
     <slot name="start-icon" />
-    <input v-model="value" :type="type" :placeholder="placeholder" />
+    <input v-model="value" :type="type" :placeholder="placeholder" :disabled="disabled" />
     <slot name="icon" />
   </div>
 </template>
@@ -37,6 +38,10 @@ const props = defineProps({
   large: {
     type: Boolean,
     default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -54,6 +59,7 @@ input {
 }
 
 .base-input {
+  width: 100%;
   --padding: var(--base-padding);
   --border-color: #c8cacb;
   --color: var(--base-input-color);
@@ -75,16 +81,16 @@ input {
     --padding: var(--base-large-padding);
   }
 
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
   input {
-    // transition: box-shadow 0.3s;
     border: none;
     padding: 0;
     line-height: var(--base-line-height);
     height: calc(var(--base-line-height) * 16px + var(--padding) * 2);
-
-    // &:focus {
-    //   box-shadow: 0 0 5px rgba(var(--primary-rgb), 1);
-    // }
   }
 }
 </style>

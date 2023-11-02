@@ -5,10 +5,11 @@
       'base-checkout--small': small,
       'base-checkout--large': large,
       'base-checkout--outline': outline,
+      'is-disabled': disabled,
       'is-checked': type === 'boolean' ? syncValue : syncValue.includes(value)
     }"
   >
-    <input v-model="syncValue" :value="value" type="checkbox" />
+    <input v-model="syncValue" :value="value" type="checkbox" :disabled="disabled" />
     <div class="base-checkout__checkout">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
@@ -48,6 +49,10 @@ const props = defineProps({
   outline: {
     type: Boolean,
     default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -82,11 +87,15 @@ var type = ref(typeof props.modelValue)
 
   &--outline {
     border: 1px solid var(--border-color);
-
     &.is-checked {
       border: 1px solid var(--color);
       color: var(--color);
     }
+  }
+
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   input[type='checkbox'] {

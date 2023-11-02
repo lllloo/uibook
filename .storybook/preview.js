@@ -20,7 +20,11 @@ export const decorators = [
   },
   (story) => ({
     components: { story },
-    template: '<div class="decorators"><story/></div>'
+    template: `
+      <div class="decorators">
+        <story/>
+      </div>
+    `
   })
 ]
 

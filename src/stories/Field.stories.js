@@ -1,4 +1,5 @@
 import BaseField from '@/components/base/BaseField.vue'
+import BaseInput from '@/components/base/BaseInput.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
@@ -9,19 +10,19 @@ export default {
     label: '標題'
   },
   render: (args) => ({
-    components: { BaseField },
+    components: { BaseField, BaseInput },
     setup() {
       return { args }
     },
     template: `
       <BaseField v-bind="args">
-        <div>123</div>
+        <BaseInput label="標題" placeholder="請輸入" />
       </BaseField>
     `
   })
 }
 
-export const Primary = {}
+export const Default = {}
 
 export const OneLine = {
   args: {

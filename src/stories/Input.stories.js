@@ -26,7 +26,7 @@ export const Default = {
   args: {}
 }
 
-export const Default2 = {
+export const Size = {
   render: (args, { vModel }) => ({
     components: { BaseInput },
     setup() {
@@ -35,10 +35,14 @@ export const Default2 = {
     },
     template: `
       <BaseInput v-bind="args" v-model="modelValue" small /> 
-      <br>
       <BaseInput v-bind="args" v-model="modelValue" />
-      <br>
       <BaseInput v-bind="args" v-model="modelValue" large />
     `
   })
+}
+
+export const Disabled = {
+  args: {
+    disabled: true
+  }
 }

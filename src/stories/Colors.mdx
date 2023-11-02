@@ -6,28 +6,38 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks'
 
 <ColorPalette>
   <ColorItem
-    title="theme.color.grayscale"
-    subtitle="Some of the greys"
+    title="primary"
+    subtitle="--primary"
     colors={{
-      White: '#FFFFFF',
-      Alabaster: '#F8F8F8',
-      Concrete: '#F3F3F3'
+      code: '#60a5fa;'
     }}
   />
   <ColorItem
-    title="theme.color.primary"
-    subtitle="primary"
+    title="success"
+    subtitle="--success"
     colors={{
-      tint: '#4cc4f9',
-      default: '#38bdf8',
-      shade: '#32aadf'
+      code: '#4ade80;'
     }}
   />
   <ColorItem
-    title="theme.color.gray"
-    subtitle="Gray"
+    title="warning"
+    subtitle="--warning"
     colors={{
-      code: '#94a3b8;'
+      code: '#facc15;'
+    }}
+  />
+  <ColorItem
+    title="danger"
+    subtitle="--danger"
+    colors={{
+      code: '#f87171;'
+    }}
+  />
+  <ColorItem
+    title="disable"
+    subtitle="--disable"
+    colors={{
+      code: '#9ca3af;'
     }}
   />
 </ColorPalette>

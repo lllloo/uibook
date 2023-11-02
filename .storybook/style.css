@@ -25,28 +25,4 @@
     /* input */
     --base-input-color : var(--primary);
 
-    
-    --base-small-height: 32px;
-    --base-height: 40px;
-    --base-large-height: 48px;
-    
-
-
-    /* input */
-    --input-font-size: var(--base-font-size);
-
-    --input-small-height: var(--base-small-height);
-    --input-height: var(--base-height);
-    --input-large-height: var(--base-large-height);
-
-    --input-base-border-radius: var(--base-border-radius);
-
-    /* select */
-    --select-font-size: var(--base-font-size);
-
-    --select-small-height: var(--base-small-height);
-    --select-height: var(--base-height);
-    --select-large-height: var(--base-large-height);
-
-    --select-base-border-radius: var(--base-border-radius);
 }

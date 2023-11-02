@@ -1,28 +1,23 @@
 <template>
   <div
+    ref="buttonRef"
     class="base-select"
     :class="{
+      'base-select': true,
+      'base-select--small': small,
+      'base-select--large': large,
       selected: !notSelected
     }"
     @click="open"
   >
     <input ref="inputRef" type="text" :value="notSelected ? placeholder : showLabel" readonly />
-    <ul>
-      <li
-        v-for="(item, index) in options"
-        :key="index"
-        :class="{
-          checked: item.value === value
-        }"
-        @mousedown="value = item.value"
-      >
-        {{ item.label }}
-      </li>
-    </ul>
     <i class="down fas fa-chevron-down" />
+    <BaseSelectTooltip ref="tooltipRef" v-model="value" :options="options" :style="floatingStyles" />
   </div>
 </template>
 <script setup>
+import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/vue'
+
 const props = defineProps({
   options: {
     type: Array,
@@ -35,6 +30,14 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: ''
+  },
+  small: {
+    type: Boolean,
+    default: false
+  },
+  large: {
+    type: Boolean,
+    default: false
   }
 })
 const inputRef = ref()
@@ -50,6 +53,7 @@ const value = computed({
     emit('change', val)
   }
 })
+
 const showLabel = computed(() => {
   return props.options.find((item) => item.value === value.value)?.label
 })
@@ -57,91 +61,73 @@ const showLabel = computed(() => {
 const notSelected = computed(() => {
   return value.value === ''
 })
+
+const buttonRef = ref()
+const tooltipRef = ref()
+
+const { floatingStyles } = useFloating(buttonRef, tooltipRef, {
+  placement: 'bottom',
+  middleware: [offset(10), flip(), shift()],
+  whileElementsMounted: autoUpdate
+})
 </script>
 <style lang="scss" scoped>
 input {
   border: none;
   outline: none;
   background: transparent;
-  width: 100%;
 }
+
 .base-select {
+  --padding: var(--base-padding);
+  --border-color: #c8cacb;
+  --color: var(--primary);
+
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  padding: 0 var(--padding);
+
   position: relative;
   width: 100%;
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0 10px;
-  color: #999999;
+  border: 1px solid var(--border-color);
 
   &.selected {
     color: #333;
   }
 
   &--small {
-    --input-height: var(--input-small-height);
+    --padding: var(--base-small-padding);
   }
 
   &--large {
-    --input-height: var(--input-large-height);
+    --padding: var(--base-large-padding);
   }
-
-  border: 1px solid var(--gray-color);
-  height: var(--select-height);
-  border-radius: var(--select-base-border-radius);
 
   input {
+    padding: 0;
     width: 100%;
+    height: calc(var(--base-line-height) * 16px + var(--padding) * 2);
     &:focus {
-      ~ ul {
+      ~ .down {
+        transform: translateY(-50%) rotate(180deg);
+      }
+      ~ div :deep ul {
         display: flex;
       }
-      ~ .down {
-        transform: rotate(180deg);
-      }
     }
   }
 
-  ul,
-  li {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-
-  ul {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: calc(100% + 2px);
-    flex-direction: column;
-    border-radius: 5px;
-    background: #fff;
-    width: 100%;
-    z-index: 1;
-    border: 1px solid #dcdcdc;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.16);
-    overflow: hidden;
-
-    li {
-      height: 40px;
-      padding: 0 10px;
-      display: flex;
-      align-items: center;
-      color: #333;
-
-      &.checked,
-      &:hover {
-        background: var(--primary-color);
-        color: #fff;
-      }
-    }
-  }
   .down {
     position: absolute;
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
+    transform-origin: 50%;
   }
 }
 </style>

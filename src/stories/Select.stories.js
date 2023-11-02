@@ -6,6 +6,16 @@ export default {
   title: 'Base/Select',
   component: BaseSelect,
   tags: ['autodocs'],
+  decorators: [
+    (story) => ({
+      components: { story },
+      template: `
+        <div class="decorators" style="width: 100%;padding-bottom:120px;">
+          <story />
+        </div>
+      `
+    })
+  ],
   args: {
     placeholder: '請輸入',
     options: [
@@ -28,6 +38,21 @@ export default {
 
 export const Primary = {
   args: {}
+}
+
+export const Size = {
+  render: (args, { vModel }) => ({
+    components: { BaseSelect },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseSelect v-bind="args" v-model="modelValue" small />
+      <BaseSelect v-bind="args" v-model="modelValue" />
+      <BaseSelect v-bind="args" v-model="modelValue" large />
+    `
+  })
 }
 
 export const WithWrap = {

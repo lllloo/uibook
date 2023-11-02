@@ -7,10 +7,10 @@
       'base-field--large': small
     }"
   >
-    <div v-if="label" class="label">
+    <div v-if="label" class="base-field__label">
       {{ label }}
     </div>
-    <div v-if="hasSlot" class="input-wrap">
+    <div v-if="hasSlot" class="base-field__wrap">
       <slot />
     </div>
   </div>
@@ -41,14 +41,20 @@ const hasSlot = !!useSlots().default
 
 <style lang="scss" scoped>
 .base-field {
+  --padding: var(--base-padding);
+
   width: 100%;
+  font-size: 1rem;
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  // padding: 0 calc(var(--padding) * 2);
 
   &--small {
-    --input-height: var(--input-small-height);
+    --padding: var(--base-small-padding);
   }
 
   &--large {
-    --input-height: var(--input-large-height);
+    --padding: var(--base-large-padding);
   }
 
   &.one-line {
@@ -56,28 +62,25 @@ const hasSlot = !!useSlots().default
     justify-content: center;
     align-items: center;
   }
-}
 
-.label {
-  font-size: var(--input-font-size);
-  margin-bottom: 10px;
-  font-weight: bold;
+  &__label {
+    margin-bottom: 10px;
+    font-weight: bold;
 
-  .one-line & {
-    flex-shrink: 0;
-    margin-bottom: 0;
-    margin-right: 10px;
+    .one-line & {
+      flex-shrink: 0;
+      margin-bottom: 0;
+      margin-right: 10px;
+    }
   }
-}
 
-.input-wrap {
-  display: flex;
-  align-items: center;
-  border-radius: var(--input-base-border-radius);
-  height: var(--input-height);
+  &__wrap {
+    display: flex;
+    align-items: center;
 
-  .one-line & {
-    width: 100%;
+    .one-line & {
+      width: 100%;
+    }
   }
 }
 </style>

@@ -50,6 +50,23 @@ export const Outline = {
   }
 }
 
+export const Disabled = {
+  args: {
+    disabled: true
+  },
+  render: (args, { vModel }) => ({
+    components: { BaseCheckout },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseCheckout v-bind="args" v-model="modelValue" />
+      <BaseCheckout v-bind="args" v-model="modelValue" outline />
+    `
+  })
+}
+
 export const WithWrap = {
   argTypes: {
     modelValue: {

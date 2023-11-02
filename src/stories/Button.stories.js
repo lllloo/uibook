@@ -166,7 +166,6 @@ export const Outline = {
   })
 }
 
-
 export const Disable = {
   render: (args) => ({
     components: { BaseButton },
