@@ -20,17 +20,7 @@
     />
     <i class="down fas fa-chevron-down" />
 
-    <div v-if="isFocus" ref="tooltipRef" class="base-tooltip" :style="floatingStyles">
-      <div
-        ref="arrowRef"
-        class="base-tooltip__arrow"
-        :class="{
-          [placement]: true
-        }"
-        :style="{
-          left: `${middlewareData.arrow?.x}px`
-        }"
-      />
+    <BaseTooltip v-if="isFocus" :reference="buttonRef" full>
       <ul>
         <li
           v-for="(item, index) in options"
@@ -43,12 +33,10 @@
           {{ item.label }}
         </li>
       </ul>
-    </div>
+    </BaseTooltip>
   </div>
 </template>
 <script setup>
-import { useFloating, offset, flip, shift, arrow, autoUpdate } from '@floating-ui/vue'
-
 const props = defineProps({
   options: {
     type: Array,
@@ -93,16 +81,8 @@ const notSelected = computed(() => {
   return value.value === ''
 })
 
-const isFocus = ref(true)
-
+const isFocus = ref(false)
 const buttonRef = ref()
-const tooltipRef = ref()
-const arrowRef = ref()
-const { floatingStyles, middlewareData, placement } = useFloating(buttonRef, tooltipRef, {
-  placement: 'bottom',
-  middleware: [offset(10), flip(), shift(), arrow({ element: arrowRef })],
-  whileElementsMounted: autoUpdate
-})
 </script>
 <style lang="scss" scoped>
 input {
@@ -145,12 +125,10 @@ input {
     padding: 0;
     width: 100%;
     height: calc(var(--base-line-height) * 16px + var(--padding) * 2);
+
     &:focus {
       ~ .down {
         transform: translateY(-50%) rotate(180deg);
-      }
-      ~ div :deep ul {
-        display: flex;
       }
     }
   }
@@ -163,37 +141,6 @@ input {
     transform-origin: 50%;
   }
 
-  .base-tooltip {
-    --padding: var(--base-padding);
-    --border-color: #c8cacb;
-    --color: var(--primary);
-
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    &__arrow {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      z-index: 1;
-      background: #fff;
-      border: 1px solid var(--border-color);
-      &.top {
-        bottom: 0;
-        transform: rotate(45deg) translateY(6px);
-        border-top-color: transparent;
-        border-left-color: transparent;
-      }
-      &.bottom {
-        top: 0;
-        transform: rotate(45deg) translateY(-6px);
-        border-bottom-color: transparent;
-        border-right-color: transparent;
-      }
-    }
-  }
   ul,
   li {
     margin: 0;
@@ -202,19 +149,12 @@ input {
   }
 
   ul {
-    // display: none;
+    display: flex;
     flex-direction: column;
-    border-radius: 5px;
-    background: #fff;
-    width: 100%;
-    z-index: 1;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
 
     li {
       height: 40px;
-      padding: 0 10px;
+      padding: 0;
       display: flex;
       align-items: center;
       color: #333;
