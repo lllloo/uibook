@@ -1,28 +1,22 @@
-import BaseCheckout from '@/components/base/BaseCheckout.vue'
+import BaseRadio from '@/components/base/BaseRadio.vue'
 import BaseField from '@/components/base/BaseField.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Base/Checkout',
-  component: BaseCheckout,
-  tags: ['autodocs'],
-  argTypes: {
-    modelValue: {
-      control: 'boolean',
-      name: 'v-model'
-    }
-  },
+  component: BaseRadio,
   args: {
-    label: 'Checkout'
+    label: 'Radio',
+    modelValue: ''
   },
   render: (args, { vModel }) => ({
-    components: { BaseCheckout },
+    components: { BaseRadio },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" />
     `
   })
 }
@@ -31,15 +25,15 @@ export const Default = {}
 
 export const Size = {
   render: (args, { vModel }) => ({
-    components: { BaseCheckout },
+    components: { BaseRadio },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" small outline />
-      <BaseCheckout v-bind="args" v-model="modelValue" outline />
-      <BaseCheckout v-bind="args" v-model="modelValue" large outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" small outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="3" large outline />
     `
   })
 }
@@ -55,38 +49,29 @@ export const Disabled = {
     disabled: true
   },
   render: (args, { vModel }) => ({
-    components: { BaseCheckout },
+    components: { BaseRadio },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" />
-      <BaseCheckout v-bind="args" v-model="modelValue" outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
     `
   })
 }
 
 export const WithWrap = {
-  argTypes: {
-    modelValue: {
-      control: 'array',
-      name: 'v-model'
-    }
-  },
-  args: {
-    modelValue: []
-  },
   render: (args, { vModel }) => ({
-    components: { BaseField, BaseCheckout },
+    components: { BaseField, BaseRadio },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
       <BaseField label="標題">
-        <BaseCheckout v-bind="args" v-model="modelValue" value="1" style="margin-right: 10px;" />
-        <BaseCheckout v-bind="args" v-model="modelValue" value="2" />
+        <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+        <BaseRadio v-bind="args" v-model="modelValue" value="2" />
       </BaseField>
     `
   })

@@ -2,9 +2,7 @@ import BaseButton from '@/components/base/BaseButton.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  title: 'Base/Button',
   component: BaseButton,
-  tags: ['autodocs'],
   render: (args) => ({
     components: { BaseButton },
     setup() {

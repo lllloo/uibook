@@ -11,7 +11,8 @@ const config = {
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    // 全域開啟自動文檔案
+    autodocs: true,
   },
 };
 export default config;
