@@ -1,47 +1,30 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup></script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <h1>Hello App!</h1>
+    <p>
+      <router-link to="/">Go to Home</router-link>
+      <router-link to="/image-list">Go to About</router-link>
+    </p>
   </header>
-
   <main>
-    <TheWelcome />
+    <router-view v-slot="{ Component }">
+      <keep-alive :include="keepAliveList">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
   </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.view-transition-image {
+  contain: layout;
+  view-transition-name: image;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: .5s;
 }
 </style>

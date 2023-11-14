@@ -45,7 +45,6 @@ const { floatingStyles, middlewareData, placement } = useFloating(buttonRef, too
   middleware: [offset(10), flip(), shift(), arrow({ element: arrowRef })],
   whileElementsMounted: autoUpdate
 })
-
 </script>
 <style lang="scss" scoped>
 .base-tooltip {
