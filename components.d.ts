@@ -13,6 +13,7 @@ declare module 'vue' {
     BaseInput: typeof import('./src/components/base/BaseInput.vue')['default']
     BaseRadio: typeof import('./src/components/base/BaseRadio.vue')['default']
     BaseSelect: typeof import('./src/components/base/BaseSelect.vue')['default']
+    BaseSelectMultiple: typeof import('./src/components/base/BaseSelectMultiple.vue')['default']
     BaseSelectTooltip: typeof import('./src/components/base/BaseSelectTooltip.vue')['default']
     BaseTooltip: typeof import('./src/components/atom/BaseTooltip.vue')['default']
     copy: typeof import('./src/components/ImageList copy.vue')['default']

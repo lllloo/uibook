@@ -26,9 +26,9 @@
           v-for="(item, index) in options"
           :key="index"
           :class="{
-            checked: value === item.value
+            checked: value.includes(item.value)
           }"
-          @mousedown="value = item.value"
+          @mousedown="clickItem(item)"
         >
           {{ item.label }}
         </li>
@@ -43,8 +43,8 @@ const props = defineProps({
     default: () => []
   },
   modelValue: {
-    type: String,
-    default: ''
+    type: Array,
+    default: () => []
   },
   placeholder: {
     type: String,
@@ -74,12 +74,21 @@ const value = computed({
 })
 
 const showLabel = computed(() => {
-  return props.options.find((item) => item.value === value.value)?.label
+  return props.options.filter((item) => value.value.includes(item.value)).map((item) => item.label)
 })
 
 const notSelected = computed(() => {
-  return value.value === ''
+  return value.value.length === 0
 })
+
+const clickItem = (item) => {
+    const index = value.value.indexOf(item.value);
+    if (index >= 0) {
+        value.value.splice(index, 1);
+        return;
+    }
+    value.value = [...value.value, item.value];
+};
 
 const isFocus = ref(false)
 const buttonRef = ref()
