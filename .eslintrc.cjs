@@ -27,6 +27,8 @@ module.exports = {
   ignorePatterns: [
     'cypress.config.js',
     'cypress-image-diff.config.js',
-    'cypress/support/*'
+    'cypress/support/*',
+    'postcss.config.js',
+    'tailwind.config.js'
   ],
 }
