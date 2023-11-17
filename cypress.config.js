@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+const getCompareSnapshotsPlugin = require('cypress-image-diff-js/dist/plugin');
 
 module.exports = defineConfig({
   e2e: {
@@ -9,6 +10,9 @@ module.exports = defineConfig({
     devServer: {
       framework: "vue",
       bundler: "vite",
+    },
+    setupNodeEvents(on, config) {
+      getCompareSnapshotsPlugin(on, config);
     },
   },
 });

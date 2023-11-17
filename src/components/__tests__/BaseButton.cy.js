@@ -8,6 +8,6 @@ describe('<BaseButton />', () => {
         default: 'Hello there!'
       }
     })
-    cy.contains('Hello there!')
+    cy.contains('Hello there!').compareSnapshot('base-button')
   })
 })

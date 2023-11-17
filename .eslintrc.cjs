@@ -26,6 +26,7 @@ module.exports = {
   },
   ignorePatterns: [
     'cypress.config.js',
+    'cypress-image-diff.config.js',
     'cypress/support/*'
   ],
 }
