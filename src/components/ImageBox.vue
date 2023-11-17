@@ -8,15 +8,13 @@
   </div>
 </template>
 <script setup>
-import { onBeforeRouteLeave } from 'vue-router';
-
+import { onBeforeRouteLeave } from 'vue-router'
 
 onBeforeRouteLeave((to, from, next) => {
   document.startViewTransition(() => {
-    next();
+    next()
   })
 })
-
 </script>
 <style lang="scss">
 .image-wrap {
@@ -26,5 +24,4 @@ onBeforeRouteLeave((to, from, next) => {
     width: 100%;
   }
 }
-
 </style>

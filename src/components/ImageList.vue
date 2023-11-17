@@ -1,9 +1,6 @@
 <template>
   <ul>
-    <li
-      v-for="(item, index) in Array(12)"
-      :key="index"
-      >
+    <li v-for="(item, index) in Array(12)" :key="index">
       <img
         :class="{
           'view-transition-image': index === choose
@@ -18,13 +15,12 @@
 <script setup>
 const router = useRouter()
 const choose = ref(0)
-const goto =  async (path, index) => {
-  choose.value = index;
+const goto = async (path, index) => {
+  choose.value = index
   await nextTick()
   document.startViewTransition(() => {
     router.push(path)
   })
-
 }
 </script>
 <style lang="scss">

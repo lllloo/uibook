@@ -82,13 +82,13 @@ const notSelected = computed(() => {
 })
 
 const clickItem = (item) => {
-    const index = value.value.indexOf(item.value);
-    if (index >= 0) {
-        value.value.splice(index, 1);
-        return;
-    }
-    value.value = [...value.value, item.value];
-};
+  const index = value.value.indexOf(item.value)
+  if (index >= 0) {
+    value.value.splice(index, 1)
+    return
+  }
+  value.value = [...value.value, item.value]
+}
 
 const isFocus = ref(false)
 const buttonRef = ref()

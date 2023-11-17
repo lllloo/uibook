@@ -10,5 +10,6 @@ describe('button', () => {
       }
     })
     expect(wrapper.text()).toContain('button')
+    expect(wrapper.text()).toMatchInlineSnapshot('"button"')
   })
 })

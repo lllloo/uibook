@@ -4,8 +4,12 @@
   <header>
     <h1>Hello App!</h1>
     <p>
-      <router-link to="/">Go to Home</router-link>
-      <router-link to="/image-list">Go to About</router-link>
+      <router-link to="/">
+        <BaseButton> Go to Home </BaseButton>
+      </router-link>
+      <router-link to="/image-list">
+        <BaseButton> Go to About </BaseButton>
+      </router-link>
     </p>
   </header>
   <main>
@@ -25,6 +29,6 @@
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: .5s;
+  animation-duration: 0.5s;
 }
 </style>

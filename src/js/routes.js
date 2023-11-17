@@ -1,7 +1,7 @@
 var routes = [
   {
     path: '/',
-    component: () => import('@/components/TheWelcome.vue')
+    redirect: '/image-list'
   },
   {
     path: '/image-list',

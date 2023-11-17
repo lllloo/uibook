@@ -1,0 +1,26 @@
+@import '../../node_modules/modern-normalize/modern-normalize.css';
+:root {
+  --white: #fff;
+  --black: #000;
+  --primary: #60a5fa;
+  --success: #4ade80;
+  --warning: #facc15;
+  --danger: #f87171;
+  --disable: #9ca3af;
+
+  --base-line-height: 1.125;
+  --base-border-radius: 0.25rem;
+
+  --base-padding: 0.375rem;
+  --base-small-padding: calc(var(--base-padding) - 0.125rem);
+  --base-large-padding: calc(var(--base-padding) + 0.125rem);
+
+  /* checkbox */
+  --base-checkbox-color: var(--primary);
+
+  /* radio */
+  --base-radio-color: var(--primary);
+
+  /* input */
+  --base-input-color: var(--primary);
+}
