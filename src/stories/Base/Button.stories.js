@@ -89,13 +89,13 @@ export const Size = {
       return { args }
     },
     template: `
-      <BaseButton small>
+      <BaseButton class="small">
         Small
       </BaseButton>
       <BaseButton>
         Button
       </BaseButton>
-      <BaseButton large>
+      <BaseButton class="large">
         Large
       </BaseButton>
     `

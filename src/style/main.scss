@@ -1,0 +1,8 @@
+.base-element {
+  &.small {
+    padding: var(--base-small-padding);
+  }
+  &.large {
+    padding: var(--base-large-padding);
+  }
+}

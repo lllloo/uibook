@@ -1,9 +1,7 @@
 <template>
   <button
+    class="base-element base-button"
     :class="{
-      'base-button': true,
-      'base-button--small': small,
-      'base-button--large': large,
       'base-button--outline': outline,
       'base-button--text': text,
       'base-button--circle': circle,
@@ -18,14 +16,6 @@
 
 <script setup>
 defineProps({
-  small: {
-    type: Boolean,
-    default: false
-  },
-  large: {
-    type: Boolean,
-    default: false
-  },
   type: {
     type: String,
     default: null
@@ -69,14 +59,6 @@ button {
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
   padding: var(--padding) calc(var(--padding) * 2);
-
-  &--small {
-    --padding: var(--base-small-padding);
-  }
-
-  &--large {
-    --padding: var(--base-large-padding);
-  }
 
   border: 1px solid var(--color);
   background: var(--color);

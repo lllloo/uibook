@@ -1,4 +1,14 @@
-/* @import '../../node_modules/modern-normalize/modern-normalize.css'; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-light: #c5fffa;
+    --color-primary: #15ece2;
+    --color-primary-dark: #008080;
+  }
+}
 
 :root {
   --white: #fff;
@@ -25,3 +35,4 @@
   /* input */
   --base-input-color: var(--primary);
 }
+

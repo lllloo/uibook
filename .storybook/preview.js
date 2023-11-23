@@ -1,6 +1,6 @@
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
-import '@/assets/style.css'
+import '@/style/main.css'
 import './decorators.css'
 
 import { useArgs } from '@storybook/client-api'
