@@ -18,14 +18,13 @@ export default {
     components: { BaseTooltip, BaseButton },
     setup() {
       const modelValue = vModel('modelValue')
-      const buttonRef = ref()
       const isFocus = ref(false)
-      return { args, modelValue, buttonRef, isFocus }
+      return { args, modelValue, isFocus }
     },
     template: `
       <BaseButton ref="buttonRef" @click="isFocus = !isFocus">
         Default
-        <BaseTooltip v-if="isFocus" :reference="buttonRef">
+        <BaseTooltip v-if="isFocus">
           123
         </BaseTooltip>
       </BaseButton>

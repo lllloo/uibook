@@ -1,6 +1,5 @@
 <template>
   <div
-    ref="buttonRef"
     class="base-select"
     :class="{
       'base-select': true,
@@ -20,7 +19,7 @@
     />
     <i class="down fas fa-chevron-down" />
 
-    <BaseTooltip v-if="isFocus" :reference="buttonRef" full>
+    <BaseTooltip v-if="isFocus" full>
       <ul>
         <li
           v-for="(item, index) in options"
@@ -82,7 +81,6 @@ const notSelected = computed(() => {
 })
 
 const isFocus = ref(false)
-const buttonRef = ref()
 </script>
 <style lang="scss" scoped>
 input {

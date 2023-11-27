@@ -28,7 +28,8 @@ import { useFloating, offset, flip, shift, arrow, autoUpdate } from '@floating-u
 const props = defineProps({
   reference: {
     type: Object,
-    required: true
+    required: false,
+    default: null
   },
   full: {
     type: Boolean,
@@ -36,11 +37,14 @@ const props = defineProps({
   }
 })
 
-const buttonRef = computed(() => props.reference)
+const placementRef = computed(() => {
+  if (!props.reference) return tooltipRef.value?.parentElement
+  return props.reference
+})
 const tooltipRef = ref()
 const arrowRef = ref()
 
-const { floatingStyles, middlewareData, placement } = useFloating(buttonRef, tooltipRef, {
+const { floatingStyles, middlewareData, placement } = useFloating(placementRef, tooltipRef, {
   placement: 'bottom',
   middleware: [offset(10), flip(), shift(), arrow({ element: arrowRef })],
   whileElementsMounted: autoUpdate
