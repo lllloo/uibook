@@ -1,21 +1,21 @@
-import AutoHeightTextarea from '@/components/base/AutoHeightTextarea.vue'
+import BaseAutoHeightTextarea from '@/components/base/BaseAutoHeightTextarea.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  component: AutoHeightTextarea,
+  component: BaseAutoHeightTextarea,
   args: {
     label: '標題',
     placeholder: '請輸入',
     modelValue: ''
   },
   render: (args, { vModel }) => ({
-    components: { AutoHeightTextarea },
+    components: { BaseAutoHeightTextarea },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <AutoHeightTextarea v-bind="args" v-model="modelValue" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" />
     `
   })
 }
@@ -26,15 +26,15 @@ export const Default = {
 
 // export const Size = {
 //   render: (args, { vModel }) => ({
-//     components: { AutoHeightTextarea },
+//     components: { BaseAutoHeightTextarea },
 //     setup() {
 //       const modelValue = vModel('modelValue')
 //       return { args, modelValue }
 //     },
 //     template: `
-//       <AutoHeightTextarea v-bind="args" v-model="modelValue" small /> 
-//       <AutoHeightTextarea v-bind="args" v-model="modelValue" />
-//       <AutoHeightTextarea v-bind="args" v-model="modelValue" large />
+//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" small /> 
+//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" />
+//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" large />
 //     `
 //   })
 // }

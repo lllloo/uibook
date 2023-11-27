@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AutoHeightTextarea: typeof import('./src/components/base/AutoHeightTextarea.vue')['default']
+    BaseAutoHeightTextarea: typeof import('./src/components/base/BaseAutoHeightTextarea.vue')['default']
     BaseButton: typeof import('./src/components/base/BaseButton.vue')['default']
     BaseCheckout: typeof import('./src/components/base/BaseCheckout.vue')['default']
     BaseField: typeof import('./src/components/base/BaseField.vue')['default']
