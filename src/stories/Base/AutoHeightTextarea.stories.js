@@ -32,7 +32,7 @@ export const Default = {
 //       return { args, modelValue }
 //     },
 //     template: `
-//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" small /> 
+//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" small />
 //       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" />
 //       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" large />
 //     `

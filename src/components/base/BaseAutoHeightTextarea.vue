@@ -96,7 +96,7 @@ textarea {
     font-family: inherit;
     border: 2px solid transparent;
   }
-  
+
   pre {
     visibility: hidden;
   }
@@ -113,14 +113,13 @@ textarea {
     border: 2px solid var(--border-color);
     border-radius: 4px;
     &::placeholder {
-        color: #818387;
+      color: #818387;
     }
-    &:focus{
+    &:focus {
       box-shadow: none;
       outline: none;
       border-color: var(--primary);
     }
   }
-
 }
 </style>

@@ -20,6 +20,29 @@ export const Default = {
   args: {}
 }
 
+export const Text = {
+  render: (args) => ({
+    components: { BaseButton },
+    setup() {
+      return { args }
+    },
+    template: `
+      <BaseButton type="primary" text>
+        Primary
+      </BaseButton>
+      <BaseButton type="success" text>
+        Success
+      </BaseButton>
+      <BaseButton type="warring" text>
+        Warring
+      </BaseButton>
+      <BaseButton type="danger" text>
+        Danger
+      </BaseButton>
+    `
+  })
+}
+
 export const Type = {
   render: (args) => ({
     components: { BaseButton },
@@ -27,9 +50,6 @@ export const Type = {
       return { args }
     },
     template: `
-      <BaseButton>
-        Default
-      </BaseButton>
       <BaseButton type="primary">
         Primary
       </BaseButton>
@@ -45,9 +65,6 @@ export const Type = {
 
       <br>
 
-      <BaseButton radius>
-        Default
-      </BaseButton>
       <BaseButton type="primary" radius>
         Primary
       </BaseButton>
@@ -63,9 +80,6 @@ export const Type = {
 
       <br>
 
-      <BaseButton circle>
-        <i class="fas fa-search"></i>
-      </BaseButton>
       <BaseButton type="primary" circle>
         <i class="fas fa-search"></i>
       </BaseButton>
@@ -109,9 +123,6 @@ export const Outline = {
       return { args }
     },
     template: `
-      <BaseButton outline>
-        Default
-      </BaseButton>
       <BaseButton type="primary" outline>
         Primary
       </BaseButton>
@@ -127,9 +138,6 @@ export const Outline = {
 
       <br>
 
-      <BaseButton radius outline>
-        Default
-      </BaseButton>
       <BaseButton type="primary" radius outline>
         Primary
       </BaseButton>
@@ -145,9 +153,6 @@ export const Outline = {
 
       <br>
 
-      <BaseButton circle outline>
-        <i class="fas fa-search"></i>
-      </BaseButton>
       <BaseButton type="primary" circle outline>
         <i class="fas fa-search"></i>
       </BaseButton>
@@ -171,9 +176,6 @@ export const Disable = {
       return { args }
     },
     template: `
-      <BaseButton disable>
-        Default
-      </BaseButton>
       <BaseButton type="primary" disable>
         Primary
       </BaseButton>

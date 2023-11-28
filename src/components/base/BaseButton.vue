@@ -1,13 +1,13 @@
 <template>
   <button
-    class="base-element base-button"
+    class="base-button"
     :class="{
       'base-button--outline': outline,
       'base-button--text': text,
       'base-button--circle': circle,
       'base-button--radius': radius,
       'is-disable': disable,
-      [`base-button--${type}`]: type
+      [type]: !!type
     }"
   >
     <slot />
@@ -46,50 +46,30 @@ defineProps({
 <style lang="scss" scoped>
 button {
   border: none;
-  outline: none;
   background: transparent;
 }
 
 .base-button {
+  --color: var(--white);
+  --background: var(--color-primary);
   --padding: var(--base-padding);
-  --color: var(--black);
+  --line-height: var(--base-line-height);
 
   cursor: pointer;
   font-size: 1rem;
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: var(--padding) calc(var(--padding) * 2);
-
-  border: 1px solid var(--color);
-  background: var(--color);
+  line-height: var(--line-height);
+  border-radius: var(--padding);
+  padding: var(--padding) calc(var(--padding) * 2 - 0.125rem);
+  background: var(--background);
   color: var(--white);
-
-  &--primary,
-  &--success,
-  &--warring,
-  &--danger {
-    color: var(--white);
-  }
-
-  &--primary {
-    --color: var(--primary);
-  }
-
-  &--success {
-    --color: var(--success);
-  }
-
-  &--warring {
-    --color: var(--warning);
-  }
-
-  &--danger {
-    --color: var(--danger);
+  &:hover {
+    --background: var(--color-primary-light);
   }
 
   &--outline {
+    box-shadow: inset 0 0 0 1px var(--background);
     background: transparent;
-    color: var(--color);
+    color: var(--background);
   }
 
   &--radius {
@@ -102,9 +82,63 @@ button {
     padding: var(--padding);
   }
 
+  &--text {
+    background: transparent;
+    color: var(--color-primary);
+    &:hover {
+      background: var(--color-primary-lightest);
+    }
+  }
+
   &.is-disable {
     opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  // size
+  &.small {
+    padding: var(--base-small-padding) calc(var(--base-small-padding) * 2);
+  }
+  &.large {
+    padding: var(--base-large-padding) calc(var(--base-large-padding) * 2 - 0.25rem);
+  }
+
+  // color
+  &.success {
+    --background: var(--color-success);
+    &:hover {
+      --background: var(--color-success-light);
+    }
+    &.base-button--text {
+      color: var(--color-success);
+      &:hover {
+        background: var(--color-success-lightest);
+      }
+    }
+  }
+  &.warring {
+    --background: var(--color-warning);
+    &:hover {
+      --background: var(--color-warning-light);
+    }
+    &.base-button--text {
+      color: var(--color-warning);
+      &:hover {
+        background: var(--color-warning-lightest);
+      }
+    }
+  }
+  &.danger {
+    --background: var(--color-danger);
+    &:hover {
+      --background: var(--color-danger-light);
+    }
+    &.base-button--text {
+      color: var(--color-danger);
+      &:hover {
+        background: var(--color-danger-lightest);
+      }
+    }
   }
 }
 </style>
