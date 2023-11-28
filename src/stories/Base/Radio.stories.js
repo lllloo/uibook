@@ -31,9 +31,9 @@ export const Size = {
       return { args, modelValue }
     },
     template: `
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" small outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" class="small" outline />
       <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
-      <BaseRadio v-bind="args" v-model="modelValue" value="3" large outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="3" class="large" outline />
     `
   })
 }

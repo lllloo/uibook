@@ -54,11 +54,12 @@ button {
   --background: var(--color-primary);
   --padding: var(--base-padding);
   --line-height: var(--base-line-height);
+  --border-radius: var(--base-border-radius);
 
   cursor: pointer;
   font-size: 1rem;
   line-height: var(--line-height);
-  border-radius: var(--padding);
+  border-radius: var(--border-radius);
   padding: var(--padding) calc(var(--padding) * 2 - 0.125rem);
   background: var(--background);
   color: var(--white);

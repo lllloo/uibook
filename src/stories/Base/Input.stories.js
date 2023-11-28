@@ -32,9 +32,9 @@ export const Size = {
       return { args, modelValue }
     },
     template: `
-      <BaseInput v-bind="args" v-model="modelValue" small /> 
+      <BaseInput v-bind="args" v-model="modelValue" class="small" /> 
       <BaseInput v-bind="args" v-model="modelValue" />
-      <BaseInput v-bind="args" v-model="modelValue" large />
+      <BaseInput v-bind="args" v-model="modelValue" class="large" />
     `
   })
 }

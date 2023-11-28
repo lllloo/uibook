@@ -1,9 +1,7 @@
 <template>
   <div
+    class="auto-height-textarea"
     :class="{
-      'auto-height-textarea': true,
-      'auto-height-textarea--small': small,
-      'auto-height-textarea--large': large,
       'is-disabled': disabled
     }"
   >
@@ -18,10 +16,6 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  type: {
-    type: String,
-    default: 'text'
-  },
   label: {
     type: String,
     default: ''
@@ -29,14 +23,6 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: ''
-  },
-  small: {
-    type: Boolean,
-    default: false
-  },
-  large: {
-    type: Boolean,
-    default: false
   },
   disabled: {
     type: Boolean,
@@ -58,43 +44,29 @@ textarea {
 }
 
 .auto-height-textarea {
-  width: 100%;
   --padding: var(--base-padding);
-  --border-color: #c8cacb;
-  --color: var(--base-input-color);
+  --border-color: var(--color-gray);
+  --line-height: var(--base-line-height);
+  --border-radius: var(--base-border-radius);
 
-  margin: 0;
+  width: 100%;
   font-size: 1rem;
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: 0;
-  border: 0;
+  line-height: var(--line-height);
+  border-radius: var(--border-radius);
   position: relative;
-
-  &--small {
-    --padding: var(--base-small-padding);
-  }
-
-  &--large {
-    --padding: var(--base-large-padding);
-  }
-
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
 
   pre,
   textarea {
     margin: 0;
     padding: var(--padding) calc(var(--padding) * 2);
     min-height: var(--base-line-height);
+    border-radius: var(--border-radius);
     word-break: break-word;
     line-height: inherit;
     white-space: pre-wrap;
     font-size: inherit;
     font-family: inherit;
-    border: 2px solid transparent;
+    border: none;
   }
 
   pre {
@@ -110,16 +82,26 @@ textarea {
     resize: none;
     // 有時候太快會產生 scrollbar 會造成scrollbar出現問題
     overflow: hidden;
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
-    &::placeholder {
-      color: #818387;
-    }
+    box-shadow: inset 0 0 0 1px var(--border-color);
     &:focus {
-      box-shadow: none;
-      outline: none;
-      border-color: var(--primary);
+      box-shadow: inset 0 0 0 1px var(--color-primary);
     }
+  }
+
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    textarea {
+      cursor: not-allowed;
+    }
+  }
+
+  &.small {
+    --padding: var(--base-small-padding);
+  }
+
+  &.large {
+    --padding: var(--base-large-padding);
   }
 }
 </style>

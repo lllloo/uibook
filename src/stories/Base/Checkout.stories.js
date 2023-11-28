@@ -35,9 +35,9 @@ export const Size = {
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" small outline />
+      <BaseCheckout v-bind="args" v-model="modelValue" class="small" outline />
       <BaseCheckout v-bind="args" v-model="modelValue" outline />
-      <BaseCheckout v-bind="args" v-model="modelValue" large outline />
+      <BaseCheckout v-bind="args" v-model="modelValue" class="large" outline />
     `
   })
 }

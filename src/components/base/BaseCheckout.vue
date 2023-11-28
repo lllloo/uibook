@@ -1,9 +1,7 @@
 <template>
   <label
+    class="base-checkout"
     :class="{
-      'base-checkout': true,
-      'base-checkout--small': small,
-      'base-checkout--large': large,
       'base-checkout--outline': outline,
       'is-disabled': disabled,
       'is-checked': type === 'boolean' ? syncValue : syncValue.includes(value)
@@ -18,7 +16,7 @@
         />
       </svg>
     </div>
-    <div class="base-checkout__label">
+    <div v-if="label" class="base-checkout__label">
       {{ label }}
     </div>
   </label>
@@ -37,14 +35,6 @@ const props = defineProps({
   value: {
     type: String,
     default: ''
-  },
-  small: {
-    type: Boolean,
-    default: false
-  },
-  large: {
-    type: Boolean,
-    default: false
   },
   outline: {
     type: Boolean,
@@ -65,49 +55,41 @@ var type = ref(typeof props.modelValue)
 </script>
 
 <style lang="scss" scoped>
+input[type='checkbox'] {
+  display: none;
+  opacity: 0;
+  outline: none;
+  position: absolute;
+  margin: 0;
+  width: 0;
+  height: 0;
+  z-index: -1;
+}
+
 .base-checkout {
+  --color: var(--color-primary);
   --padding: var(--base-padding);
-  --border-color: #c8cacb;
-  --color: var(--base-checkbox-color);
+  --border-color: var(--color-gray);
+  --line-height: var(--base-line-height);
+  --border-radius: var(--base-border-radius);
 
-  display: inline-flex;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
   font-size: 1rem;
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: var(--padding) var(--padding);
-
-  &--small {
-    --padding: var(--base-small-padding);
-  }
-
-  &--large {
-    --padding: var(--base-large-padding);
-  }
+  line-height: var(--line-height);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
 
   &--outline {
-    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 0 1px var(--border-color);
     &.is-checked {
-      border: 1px solid var(--color);
+      box-shadow: inset 0 0 0 1px var(--color);
       color: var(--color);
     }
   }
 
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  input[type='checkbox'] {
-    display: none;
-    opacity: 0;
-    outline: none;
-    position: absolute;
-    margin: 0;
-    width: 0;
-    height: 0;
-    z-index: -1;
-
+  input {
     &:checked {
       + .base-checkout__checkout {
         border: 1px solid var(--color);
@@ -129,7 +111,7 @@ var type = ref(typeof props.modelValue)
     margin-right: 5px;
     border: 1px solid var(--border-color);
     overflow: hidden;
-    border-radius: var(--base-border-radius);
+    border-radius: var(--border-radius);
     background: #fff;
 
     > svg {
@@ -142,6 +124,20 @@ var type = ref(typeof props.modelValue)
   &__label {
     display: flex;
     align-items: center;
+  }
+
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  // size
+  &.small {
+    --padding: var(--base-small-padding);
+  }
+
+  &.large {
+    --padding: var(--base-large-padding);
   }
 }
 </style>

@@ -1,9 +1,7 @@
 <template>
   <label
+    class="base-radio"
     :class="{
-      'base-radio': true,
-      'base-radio--small': small,
-      'base-radio--large': large,
       'base-radio--outline': outline,
       'is-disabled': disabled,
       'is-checked': syncValue === value
@@ -11,7 +9,7 @@
   >
     <input v-model="syncValue" :value="value" type="radio" :disabled="disabled" />
     <div class="base-radio__radio" />
-    <div class="base-radio__label">
+    <div v-if="label" class="base-radio__label">
       {{ label }}
     </div>
   </label>
@@ -31,14 +29,6 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  small: {
-    type: Boolean,
-    default: false
-  },
-  large: {
-    type: Boolean,
-    default: false
-  },
   outline: {
     type: Boolean,
     default: false
@@ -56,49 +46,41 @@ const syncValue = computed({
 </script>
 
 <style lang="scss" scoped>
+input[type='radio'] {
+  opacity: 0;
+  outline: none;
+  position: absolute;
+  margin: 0;
+  width: 0;
+  height: 0;
+  z-index: -1;
+}
+
 .base-radio {
+  --color: var(--color-primary);
   --padding: var(--base-padding);
-  --border-color: #c8cacb;
-  --color: var(--base-radio-color);
+  --border-color: var(--color-gray);
+  --line-height: var(--base-line-height);
+  --border-radius: var(--base-border-radius);
 
-  display: inline-flex;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
   font-size: 1rem;
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: var(--padding) var(--padding);
-
-  &--small {
-    --padding: var(--base-small-padding);
-  }
-
-  &--large {
-    --padding: var(--base-large-padding);
-  }
+  line-height: var(--line-height);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
 
   &--outline {
-    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 0 1px var(--border-color);
 
     &.is-checked {
-      border: 1px solid var(--color);
+      box-shadow: inset 0 0 0 1px var(--color);
       color: var(--color);
     }
   }
 
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  input[type='radio'] {
-    opacity: 0;
-    outline: none;
-    position: absolute;
-    margin: 0;
-    width: 0;
-    height: 0;
-    z-index: -1;
-
+  input {
     &:checked {
       + .base-radio__radio {
         border: 6px solid var(--color);
@@ -112,16 +94,30 @@ const syncValue = computed({
     align-items: center;
     width: 18px;
     height: 18px;
-    margin-right: 5px;
     overflow: hidden;
     border-radius: 50%;
-    border: 1px solid #c8cacb;
+    border: 1px solid var(--border-color);
     background: #fff;
   }
 
   &__label {
     display: flex;
     align-items: center;
+    margin-left: 5px;
+  }
+
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  // size
+  &.small {
+    --padding: var(--base-small-padding);
+  }
+
+  &.large {
+    --padding: var(--base-large-padding);
   }
 }
 </style>

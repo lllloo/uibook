@@ -24,23 +24,23 @@ export const Default = {
   args: {}
 }
 
-// export const Size = {
-//   render: (args, { vModel }) => ({
-//     components: { BaseAutoHeightTextarea },
-//     setup() {
-//       const modelValue = vModel('modelValue')
-//       return { args, modelValue }
-//     },
-//     template: `
-//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" small />
-//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" />
-//       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" large />
-//     `
-//   })
-// }
+export const Size = {
+  render: (args, { vModel }) => ({
+    components: { BaseAutoHeightTextarea },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" class="small" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" class="large" />
+    `
+  })
+}
 
-// export const Disabled = {
-//   args: {
-//     disabled: true
-//   }
-// }
+export const Disabled = {
+  args: {
+    disabled: true
+  }
+}

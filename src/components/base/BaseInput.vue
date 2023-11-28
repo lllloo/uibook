@@ -1,15 +1,11 @@
 <template>
   <div
+    class="base-input"
     :class="{
-      'base-input': true,
-      'base-input--small': small,
-      'base-input--large': large,
       'is-disabled': disabled
     }"
   >
-    <slot name="start-icon" />
     <input v-model="value" :type="type" :placeholder="placeholder" :disabled="disabled" />
-    <slot name="icon" />
   </div>
 </template>
 
@@ -31,14 +27,6 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  small: {
-    type: Boolean,
-    default: false
-  },
-  large: {
-    type: Boolean,
-    default: false
-  },
   disabled: {
     type: Boolean,
     default: false
@@ -59,38 +47,39 @@ input {
 }
 
 .base-input {
-  width: 100%;
   --padding: var(--base-padding);
-  --border-color: #c8cacb;
-  --color: var(--base-input-color);
+  --border-color: var(--color-gray);
+  --line-height: var(--base-line-height);
+  --border-radius: var(--base-border-radius);
 
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
   font-size: 1rem;
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: 0 calc(var(--padding) * 2);
-  border: 1px solid var(--border-color);
 
-  &--small {
-    --padding: var(--base-small-padding);
-  }
-
-  &--large {
-    --padding: var(--base-large-padding);
+  input {
+    width: 100%;
+    line-height: var(--line-height);
+    border-radius: var(--border-radius);
+    padding: var(--padding) calc(var(--padding) * 2);
+    box-shadow: inset 0 0 0 1px var(--border-color);
+    &:focus {
+      box-shadow: inset 0 0 0 1px var(--color-primary);
+    }
   }
 
   &.is-disabled {
     opacity: 0.7;
     cursor: not-allowed;
+    input {
+      cursor: not-allowed;
+    }
   }
 
-  input {
-    border: none;
-    padding: 0;
-    line-height: var(--base-line-height);
-    height: calc(var(--base-line-height) * 16px + var(--padding) * 2);
+  &.small {
+    --padding: var(--base-small-padding);
+  }
+
+  &.large {
+    --padding: var(--base-large-padding);
   }
 }
 </style>
