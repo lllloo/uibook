@@ -2,18 +2,18 @@
   <div
     class="base-select"
     :class="{
-      'base-select': true,
-      'base-select--small': small,
-      'base-select--large': large,
-      selected: !notSelected
+      selected: !notSelected,
+      'is-disabled': disabled
     }"
     @click="open"
   >
     <input
       ref="inputRef"
       type="text"
-      :value="notSelected ? placeholder : showLabel"
+      :value="notSelected ? null : showLabel"
+      :placeholder="placeholder"
       readonly
+      :disabled="disabled"
       @focus="isFocus = true"
       @blur="isFocus = false"
     />
@@ -49,11 +49,7 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  small: {
-    type: Boolean,
-    default: false
-  },
-  large: {
+  disabled: {
     type: Boolean,
     default: false
   }
@@ -89,42 +85,33 @@ input {
   background: transparent;
 }
 
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 .base-select {
+  --color: var(--color-primary);
   --padding: var(--base-padding);
-  --border-color: #c8cacb;
-  --color: var(--primary);
+  --border-color: var(--color-gray);
+  --line-height: var(--base-line-height);
+  --border-radius: var(--base-border-radius);
 
   cursor: pointer;
-  font-size: 1rem;
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: 0 var(--padding);
-
-  position: relative;
   width: 100%;
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
-  border: 1px solid var(--border-color);
-
-  &.selected {
-    color: #333;
-  }
-
-  &--small {
-    --padding: var(--base-small-padding);
-  }
-
-  &--large {
-    --padding: var(--base-large-padding);
-  }
+  font-size: 1rem;
+  position: relative;
 
   input {
-    padding: 0;
     width: 100%;
-    height: calc(var(--base-line-height) * 16px + var(--padding) * 2);
-
+    line-height: var(--line-height);
+    border-radius: var(--border-radius);
+    padding: var(--padding) calc(var(--padding) * 2);
+    box-shadow: inset 0 0 0 1px var(--border-color);
     &:focus {
+      box-shadow: inset 0 0 0 1px var(--color);
       ~ .down {
         transform: translateY(-50%) rotate(180deg);
       }
@@ -139,20 +126,13 @@ input {
     transform-origin: 50%;
   }
 
-  ul,
-  li {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-
   ul {
     display: flex;
     flex-direction: column;
 
     li {
-      height: 40px;
-      padding: 0;
+      line-height: var(--line-height);
+      padding: var(--padding) 0;
       display: flex;
       align-items: center;
       color: #333;
@@ -162,6 +142,26 @@ input {
         color: var(--color);
       }
     }
+  }
+
+  &.selected {
+    color: var(--color);
+  }
+
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    input {
+      cursor: not-allowed;
+    }
+  }
+
+  &.small {
+    --padding: var(--base-small-padding);
+  }
+
+  &.large {
+    --padding: var(--base-large-padding);
   }
 }
 </style>

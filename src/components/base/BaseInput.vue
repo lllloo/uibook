@@ -47,6 +47,7 @@ input {
 }
 
 .base-input {
+  --color: var(--color-primary);
   --padding: var(--base-padding);
   --border-color: var(--color-gray);
   --line-height: var(--base-line-height);
@@ -62,7 +63,7 @@ input {
     padding: var(--padding) calc(var(--padding) * 2);
     box-shadow: inset 0 0 0 1px var(--border-color);
     &:focus {
-      box-shadow: inset 0 0 0 1px var(--color-primary);
+      box-shadow: inset 0 0 0 1px var(--color);
     }
   }
 

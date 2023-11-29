@@ -46,11 +46,17 @@ export const Size = {
       return { args, modelValue }
     },
     template: `
-      <BaseSelect v-bind="args" v-model="modelValue" small />
+      <BaseSelect v-bind="args" v-model="modelValue" class="small" />
       <BaseSelect v-bind="args" v-model="modelValue" />
-      <BaseSelect v-bind="args" v-model="modelValue" large />
+      <BaseSelect v-bind="args" v-model="modelValue" class="large" />
     `
   })
+}
+
+export const Disabled = {
+  args: {
+    disabled: true
+  }
 }
 
 export const WithWrap = {
