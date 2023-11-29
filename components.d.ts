@@ -15,6 +15,7 @@ declare module 'vue' {
     BaseRadio: typeof import('./src/components/base/BaseRadio.vue')['default']
     BaseSelect: typeof import('./src/components/base/BaseSelect.vue')['default']
     BaseSelectMultiple: typeof import('./src/components/base/BaseSelectMultiple.vue')['default']
+    BaseTextarea: typeof import('./src/components/base/BaseTextarea.vue')['default']
     BaseTooltip: typeof import('./src/components/atom/BaseTooltip.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']

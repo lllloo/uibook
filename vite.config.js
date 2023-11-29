@@ -24,9 +24,7 @@ export default defineConfig({
         globalsPropValue: true,
       },
     }),
-    Components({
-      dirs: [ 'src/components' ],
-    }),
+    Components({}),
   ],
   resolve: {
     alias: {

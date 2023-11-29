@@ -1,11 +1,11 @@
 <template>
   <div
-    class="base-input"
+    class="base-textarea"
     :class="{
       'is-disabled': disabled
     }"
   >
-    <input v-model="value" :type="type" :placeholder="placeholder" :disabled="disabled" />
+    <textarea v-model="value" :placeholder="placeholder" :disabled="disabled" :rows="rows" />
   </div>
 </template>
 
@@ -15,9 +15,9 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  type: {
-    type: String,
-    default: 'text'
+  rows: {
+    type: Number,
+    default: 2
   },
   placeholder: {
     type: String,
@@ -36,13 +36,13 @@ const value = computed({
 </script>
 
 <style lang="scss" scoped>
-input {
+textarea {
   border: none;
   outline: none;
   background: transparent;
 }
 
-.base-input {
+.base-textarea {
   --color: var(--color-primary);
   --padding: var(--base-padding);
   --border-color: var(--color-gray);
@@ -52,7 +52,7 @@ input {
   width: 100%;
   font-size: 1rem;
 
-  input {
+  textarea {
     width: 100%;
     line-height: var(--line-height);
     border-radius: var(--border-radius);
@@ -66,7 +66,7 @@ input {
   &.is-disabled {
     opacity: 0.7;
     cursor: not-allowed;
-    input {
+    textarea {
       cursor: not-allowed;
     }
   }
