@@ -63,6 +63,8 @@ button {
   padding: var(--padding) calc(var(--padding) * 2 - 0.125rem);
   background: var(--background);
   color: var(--white);
+  fill: var(--white);
+
   &:hover {
     --background: var(--color-primary-light);
   }
@@ -71,6 +73,7 @@ button {
     box-shadow: inset 0 0 0 1px var(--background);
     background: transparent;
     color: var(--background);
+    fill: var(--background);
   }
 
   &--radius {
