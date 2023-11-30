@@ -1,4 +1,4 @@
-import{B as a}from"./BaseField-ea666822.js";import{B as i}from"./BaseInput-ee7da2c3.js";import"./vue.esm-bundler-54d62a26.js";import"./_plugin-vue_export-helper-c27b6911.js";const g={component:a,args:{label:"標題"},render:c=>({components:{BaseField:a,BaseInput:i},setup(){return{args:c}},template:`
+import{B as a}from"./BaseField-86906fb6.js";import{B as i}from"./BaseInput-c9d99ccf.js";import"./vue.esm-bundler-54d62a26.js";import"./_plugin-vue_export-helper-c27b6911.js";const g={component:a,args:{label:"標題"},render:c=>({components:{BaseField:a,BaseInput:i},setup(){return{args:c}},template:`
       <BaseField v-bind="args">
         <BaseInput label="標題" placeholder="請輸入" />
       </BaseField>
