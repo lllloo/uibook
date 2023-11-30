@@ -5,10 +5,16 @@
       'one-line': oneLine
     }"
   >
-    <div v-if="label" class="base-field__label">
+    <div
+      v-if="label"
+      class="base-field__label"
+    >
       {{ label }}
     </div>
-    <div v-if="hasSlot" class="base-field__wrap">
+    <div
+      v-if="hasSlot"
+      class="base-field__wrap"
+    >
       <slot />
     </div>
   </div>

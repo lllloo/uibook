@@ -5,7 +5,12 @@
       'is-disabled': disabled
     }"
   >
-    <input v-model="value" :type="type" :placeholder="placeholder" :disabled="disabled" />
+    <input
+      v-model="value"
+      :type="type"
+      :placeholder="placeholder"
+      :disabled="disabled"
+    />
   </div>
 </template>
 

@@ -1,6 +1,9 @@
 <template>
   <ul>
-    <li v-for="(item, index) in Array(3)" :key="index">
+    <li
+      v-for="(item, index) in Array(3)"
+      :key="index"
+    >
       <img
         :class="{
           'view-transition-image': index === choose

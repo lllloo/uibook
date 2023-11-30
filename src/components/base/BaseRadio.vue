@@ -7,9 +7,17 @@
       'is-checked': syncValue === value
     }"
   >
-    <input v-model="syncValue" :value="value" type="radio" :disabled="disabled" />
+    <input
+      v-model="syncValue"
+      :value="value"
+      type="radio"
+      :disabled="disabled"
+    />
     <div class="base-radio__radio" />
-    <div v-if="label" class="base-radio__label">
+    <div
+      v-if="label"
+      class="base-radio__label"
+    >
       {{ label }}
     </div>
   </label>

@@ -6,7 +6,11 @@
     }"
   >
     <pre>{{ value }}<br></pre>
-    <textarea v-model="value" :placeholder="placeholder" :disabled="disabled" />
+    <textarea
+      v-model="value"
+      :placeholder="placeholder"
+      :disabled="disabled"
+    />
   </div>
 </template>
 

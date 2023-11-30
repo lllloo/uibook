@@ -31,7 +31,10 @@
       />
     </svg>
 
-    <BaseTooltip v-if="isFocus" full>
+    <BaseTooltip
+      v-if="isFocus"
+      full
+    >
       <ul>
         <li
           v-for="(item, index) in options"

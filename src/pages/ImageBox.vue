@@ -1,5 +1,11 @@
 <template>
-  <a href="javascript:;" class="inline-block mb-2" @click="back"> Back </a>
+  <a
+    href="javascript:;"
+    class="inline-block mb-2"
+    @click="back"
+  >
+    Back
+  </a>
   <div class="image-wrap">
     <img
       class="view-transition-image"

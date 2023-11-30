@@ -5,7 +5,12 @@
       'is-disabled': disabled
     }"
   >
-    <textarea v-model="value" :placeholder="placeholder" :disabled="disabled" :rows="rows" />
+    <textarea
+      v-model="value"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :rows="rows"
+    />
   </div>
 </template>
 
