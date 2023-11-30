@@ -1,13 +1,13 @@
 <template>
   <ul>
-    <li v-for="(item, index) in Array(12)" :key="index">
+    <li v-for="(item, index) in Array(3)" :key="index">
       <img
         :class="{
           'view-transition-image': index === choose
         }"
-        :src="`https://picsum.photos/id/${index % 3}/400/600`"
+        :src="`https://picsum.photos/id/${index}/600/400`"
         alt=""
-        @click="goto(`/image/${index % 3}`, index)"
+        @click="goto(`/image/${index}`, index)"
       />
     </li>
   </ul>
@@ -18,10 +18,14 @@ const choose = ref(0)
 const goto = async (path, index) => {
   choose.value = index
   await nextTick()
-  document.startViewTransition(() => {
-    router.push(path)
-  })
+  router.push(path)
 }
+
+onBeforeRouteLeave((to, from, next) => {
+  document.startViewTransition(() => {
+    next()
+  })
+})
 </script>
 <style lang="scss">
 ul,
@@ -32,13 +36,12 @@ li {
 }
 
 ul {
-  max-width: 1024px;
   display: flex;
   flex-wrap: wrap;
-
+  margin: -10px;
   li {
     width: calc(100% / 3);
-
+    padding: 10px;
     img {
       width: 100%;
     }

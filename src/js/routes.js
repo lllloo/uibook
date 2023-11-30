@@ -1,15 +1,18 @@
+import ImageList from '@/pages/ImageList.vue'
+import ImageBox from '@/pages/ImageBox.vue'
+
 var routes = [
   {
     path: '/',
-    redirect: '/image-list'
+    component: () => import('@/pages/Home.vue')
   },
   {
     path: '/image-list',
-    component: () => import('@/components/ImageList.vue')
+    component: ImageList
   },
   {
     path: '/image/:id',
-    component: () => import('@/components/ImageBox.vue')
+    component: ImageBox
   }
 ]
 
