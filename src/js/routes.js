@@ -4,7 +4,7 @@ import ImageBox from '@/pages/ImageBox.vue'
 var routes = [
   {
     path: '/',
-    component: () => import('@/pages/Home.vue')
+    component: () => import('@/pages/HomePage.vue')
   },
   {
     path: '/image-list',
