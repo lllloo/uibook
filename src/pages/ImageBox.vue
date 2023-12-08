@@ -1,7 +1,7 @@
 <template>
   <a
     href="javascript:;"
-    class="inline-block mb-2"
+    class="mb-2 inline-block"
     @click="back"
   >
     Back

@@ -77,7 +77,7 @@
                       <div class="ml-3 flex h-7 items-center">
                         <button
                           type="button"
-                          class="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          class="focus:ring-indigo-500 relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2"
                           @click="mobileMenuOpen = false"
                         >
                           <span class="absolute -inset-2.5" />
