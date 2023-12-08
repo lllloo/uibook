@@ -5,8 +5,10 @@
       'is-disabled': disabled
     }"
   >
+    <slot></slot>
     <input
       v-model="value"
+      :class="inputClass"
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -31,6 +33,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  inputClass: {
+    type: String,
+    default: ''
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -48,23 +54,30 @@ input {
 }
 
 .base-input {
-  --color: var(--color-primary);
-  --padding: var(--base-padding);
-  --border-color: var(--color-gray);
-  --line-height: var(--base-line-height);
-  --border-radius: var(--base-border-radius);
+  --padding: var(--base-padding, 0.375rem);
+  --font-size: var(--base-font-size, 1rem);
+  --line-height: var(--base-line-height, 1.25);
+  --border-size: 1px;
+  --border-radius: var(--base-border-radius, 0.25rem);
 
+  --color: var(--color-black);
+  --background: var(--color-white);
+  --border-color: var(--color-gray);
+
+  position: relative;
   width: 100%;
-  font-size: 1rem;
+  font-size: var(--base-font-size);
+  border-radius: var(--border-radius);
 
   input {
     width: 100%;
     line-height: var(--line-height);
-    border-radius: var(--border-radius);
-    padding: var(--padding) calc(var(--padding) * 2);
-    box-shadow: inset 0 0 0 1px var(--border-color);
+    border-radius: inherit;
+    padding: calc(var(--padding) - 1px) calc(var(--padding) * 2);
+    border: var(--border-size) solid var(--border-color);
+    color: var(--color);
     &:focus {
-      box-shadow: inset 0 0 0 1px var(--color);
+      border: 1px solid;
     }
   }
 
@@ -74,14 +87,6 @@ input {
     input {
       cursor: not-allowed;
     }
-  }
-
-  &.small {
-    --padding: var(--base-small-padding);
-  }
-
-  &.large {
-    --padding: var(--base-large-padding);
   }
 }
 </style>

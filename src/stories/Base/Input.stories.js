@@ -24,6 +24,21 @@ export const Default = {
   args: {}
 }
 
+
+export const Color = {
+  render: (args, { vModel }) => ({
+    components: { BaseInput },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseInput v-bind="args" v-model="modelValue" />
+      <BaseInput class="primary" v-bind="args" v-model="modelValue" />
+    `
+  })
+}
+
 export const Size = {
   render: (args, { vModel }) => ({
     components: { BaseInput },

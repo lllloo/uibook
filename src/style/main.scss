@@ -1,6 +1,5 @@
-.base-button,
-.base-input {
-  &.primary {
+.primary {
+  &.base-button {
     --color: var(--color-primary);
     --background: var(--white);
 
@@ -17,5 +16,10 @@
         --background: var(--color-primary-dark);
       }
     }
+  }
+
+  &.base-input {
+    --color: var(--color-primary);
+    --background: var(--white);
   }
 }
