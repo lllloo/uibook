@@ -8,6 +8,10 @@ defineProps({
     type: Boolean,
     default: false
   },
+  text: {
+    type: Boolean,
+    default: false
+  },
   disabled: {
     type: Boolean,
     default: false
@@ -17,10 +21,11 @@ defineProps({
 
 <template>
   <button
-    class="base base-button"
+    class="base-button"
     :class="{
       'base-button--circle': circle,
       'base-button--radius': radius,
+      'base-button--text': text,
       'is-disabled': disabled
     }"
     :disabled="disabled"
@@ -36,14 +41,15 @@ button {
 }
 
 .base-button {
-  --border-radius: var(--base-border-radius, 0.25rem);
   --padding: var(--base-padding, 0.375rem);
   --font-size: var(--base-font-size, 1rem);
   --line-height: var(--base-line-height, 1.25);
+  --border-size: 1px;
+  --border-radius: var(--base-border-radius, 0.25rem);
 
   --color: var(--color-black);
   --background: var(--color-white);
-  --border-color: var(--color-black);
+  --border-color: var(--border-color);
 
   display: flex;
   justify-content: center;
@@ -52,14 +58,16 @@ button {
   font-size: var(--font-size);
   line-height: var(--line-height);
   border-radius: var(--border-radius);
-  padding: var(--padding) calc(var(--padding) * 2 - 0.125rem);
+  padding: calc(var(--padding) - 1px) calc(var(--padding) * 2);
 
   color: var(--color);
   background: var(--background);
-  box-shadow: inset 0 0 0 1px var(--border-color);
+  border: var(--border-size) solid var(--border-color,);
+
   &:hover {
     --color: var(--color-white);
     --background: var(--color-black);
+    --border-color: var(--background);
   }
 
   &--radius {
@@ -70,7 +78,11 @@ button {
     line-height: 1;
     width: calc(var(--font-size) + var(--padding) * 2);
     border-radius: 50%;
-    padding: var(--padding);
+    padding: calc(var(--padding) - var(--border-size));
+  }
+
+  &--text {
+    --border-color: transparent;
   }
 
   &.is-disabled {

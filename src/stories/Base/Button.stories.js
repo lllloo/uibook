@@ -74,6 +74,24 @@ export const Size = {
   })
 }
 
+export const Text = {
+  render: (args) => ({
+    components: { BaseButton },
+    setup() {
+      return { args }
+    },
+    template: `
+      <BaseButton text>
+        Button
+      </BaseButton>
+
+      <BaseButton class="primary" text>
+        Button
+      </BaseButton>
+    `
+  })
+}
+
 export const Fill = {
   render: (args) => ({
     components: { BaseButton },
@@ -86,6 +104,16 @@ export const Fill = {
       </BaseButton>
 
       <BaseButton class="primary fill">
+        Button
+      </BaseButton>
+
+      <br>
+
+      <BaseButton class="fill hover:!bg-white hover:!text-black">
+        Button
+      </BaseButton>
+
+      <BaseButton class="primary fill hover:!bg-white hover:!text-primary">
         Button
       </BaseButton>
     `
