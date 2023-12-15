@@ -96,13 +96,5 @@ textarea {
       cursor: not-allowed;
     }
   }
-
-  &.small {
-    --padding: var(--base-small-padding);
-  }
-
-  &.large {
-    --padding: var(--base-large-padding);
-  }
 }
 </style>

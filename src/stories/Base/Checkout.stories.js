@@ -27,6 +27,29 @@ export default {
 
 export const Default = {}
 
+export const Outline = {
+  args: {
+    outline: true
+  }
+}
+
+export const Color = {
+  render: (args, { vModel }) => ({
+    components: { BaseCheckout },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseCheckout v-bind="args" v-model="modelValue" />
+      <BaseCheckout v-bind="args" v-model="modelValue" class="primary" />
+      <br>
+      <BaseCheckout v-bind="args" v-model="modelValue" outline />
+      <BaseCheckout v-bind="args" v-model="modelValue" class="primary" outline />
+    `
+  })
+}
+
 export const Size = {
   render: (args, { vModel }) => ({
     components: { BaseCheckout },
@@ -40,12 +63,6 @@ export const Size = {
       <BaseCheckout v-bind="args" v-model="modelValue" class="large" outline />
     `
   })
-}
-
-export const Outline = {
-  args: {
-    outline: true
-  }
 }
 
 export const Disabled = {

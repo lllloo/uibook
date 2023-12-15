@@ -4,7 +4,7 @@
     :class="{
       'base-checkout--outline': outline,
       'is-disabled': disabled,
-      'is-checked': type === 'boolean' ? syncValue : syncValue.includes(value)
+      'is-checked': isChecked
     }"
   >
     <input
@@ -40,6 +40,7 @@ const props = defineProps({
     default: ''
   },
   modelValue: {
+    /** @type import('vue').PropType<boolean|Array<string|number>> */
     type: [Array, Boolean],
     default: false
   },
@@ -62,7 +63,13 @@ const syncValue = computed({
   set: (val) => emit('update:modelValue', val)
 })
 
-var type = ref(typeof props.modelValue)
+const isChecked = computed(() => {
+  if (typeof syncValue.value === 'boolean') {
+    return syncValue.value
+  } else {
+    return syncValue.value.includes(props.value)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -78,32 +85,30 @@ input[type='checkbox'] {
 }
 
 .base-checkout {
-  --color: var(--color-primary);
   --padding: var(--base-padding);
+  --font-size: var(--base-font-size, 1rem);
+  --line-height: var(--base-line-height, 1.25);
+  --border-size: 1px;
+  --border-radius: var(--base-border-radius, 0.25rem);
+
+  --color: var(--color-black);
+  --background: var(--color-white);
   --border-color: var(--color-gray);
-  --line-height: var(--base-line-height);
-  --border-radius: var(--base-border-radius);
 
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: var(--base-font-size);
   line-height: var(--line-height);
   border-radius: var(--border-radius);
   padding: var(--padding);
 
-  &--outline {
-    box-shadow: inset 0 0 0 1px var(--border-color);
-    &.is-checked {
-      box-shadow: inset 0 0 0 1px var(--color);
-      color: var(--color);
-    }
-  }
+  color: var(--color);
 
   input {
     &:checked {
       + .base-checkout__checkout {
-        border: 1px solid var(--color);
+        border: 1px solid;
         background: var(--color);
 
         > svg {
@@ -123,11 +128,11 @@ input[type='checkbox'] {
     border: 1px solid var(--border-color);
     overflow: hidden;
     border-radius: var(--border-radius);
-    background: #fff;
+    background: var(--background);
 
     > svg {
       width: 80%;
-      fill: #fff;
+      fill: var(--color-white);
       display: none;
     }
   }
@@ -137,18 +142,17 @@ input[type='checkbox'] {
     align-items: center;
   }
 
+  &--outline {
+    border: var(--border-size) solid;
+  }
+
   &.is-disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
 
-  // size
-  &.small {
-    --padding: var(--base-small-padding);
-  }
-
-  &.large {
-    --padding: var(--base-large-padding);
+  &.primary {
+    --color: var(--color-primary);
   }
 }
 </style>

@@ -98,5 +98,25 @@ button {
       --background: var(--color-black-light);
     }
   }
+
+  // color
+  &.primary {
+    --color: var(--color-primary);
+    --background: var(--white);
+
+    &:hover {
+      --color: var(--white);
+      --background: var(--color-primary);
+    }
+
+    &.fill {
+      --color: var(--white);
+      --background: var(--color-primary);
+
+      &:hover {
+        --background: var(--color-primary-dark);
+      }
+    }
+  }
 }
 </style>

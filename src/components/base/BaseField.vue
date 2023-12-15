@@ -67,13 +67,5 @@ const hasSlot = !!useSlots().default
       width: 100%;
     }
   }
-
-  &.small {
-    --padding: var(--base-small-padding);
-  }
-
-  &.large {
-    --padding: var(--base-large-padding);
-  }
 }
 </style>

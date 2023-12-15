@@ -23,6 +23,29 @@ export default {
 
 export const Default = {}
 
+export const Outline = {
+  args: {
+    outline: true
+  }
+}
+
+export const Color = {
+  render: (args, { vModel }) => ({
+    components: { BaseRadio },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" class="primary" />
+      <br>
+      <BaseRadio v-bind="args" v-model="modelValue" value="3" outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="4" class="primary" outline />
+    `
+  })
+}
+
 export const Size = {
   render: (args, { vModel }) => ({
     components: { BaseRadio },
@@ -36,12 +59,6 @@ export const Size = {
       <BaseRadio v-bind="args" v-model="modelValue" value="3" class="large" outline />
     `
   })
-}
-
-export const Outline = {
-  args: {
-    outline: true
-  }
 }
 
 export const Disabled = {

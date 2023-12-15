@@ -5,10 +5,11 @@
       'is-disabled': disabled
     }"
   >
-    <slot></slot>
+    <slot />
     <input
       v-model="value"
       :class="inputClass"
+      :name="name"
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -35,6 +36,10 @@ const props = defineProps({
     default: false
   },
   inputClass: {
+    type: String,
+    default: ''
+  },
+  name: {
     type: String,
     default: ''
   }
@@ -68,6 +73,7 @@ input {
   width: 100%;
   font-size: var(--base-font-size);
   border-radius: var(--border-radius);
+  color: var(--color);
 
   input {
     width: 100%;
@@ -87,6 +93,16 @@ input {
     input {
       cursor: not-allowed;
     }
+  }
+
+  :deep(svg) {
+    fill: currentColor;
+  }
+
+  // color
+  &.primary {
+    --color: var(--color-primary);
+    --background: var(--white);
   }
 }
 </style>
