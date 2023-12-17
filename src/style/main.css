@@ -55,8 +55,13 @@
 .small {
   --base-padding: calc(var(--base-size-padding) - 0.125rem);
 }
+
 .large {
   --base-padding: calc(var(--base-size-padding) + 0.125rem);
+}
+
+.radius {
+  --base-border-radius: var(--base-font-size);
 }
 
 /* @keyframes fade-in {

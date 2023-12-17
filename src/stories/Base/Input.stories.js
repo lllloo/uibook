@@ -38,6 +38,20 @@ export const Color = {
   })
 }
 
+export const Type = {
+  render: (args, { vModel }) => ({
+    components: { BaseInput },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseInput v-bind="args" v-model="modelValue" />
+      <BaseInput v-bind="args" v-model="modelValue" class="radius" />
+    `
+  })
+}
+
 export const Size = {
   render: (args, { vModel }) => ({
     components: { BaseInput },

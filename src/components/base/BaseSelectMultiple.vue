@@ -53,6 +53,7 @@
 <script setup>
 const props = defineProps({
   options: {
+    /** @type import('vue').PropType<{label: string, value: string|number}[]> */
     type: Array,
     default: () => []
   },
@@ -117,25 +118,28 @@ li {
 }
 
 .base-select {
-  --color: var(--color-primary);
-  --padding: var(--base-padding);
+  --border-size: 1px;
+  --padding: calc(var(--base-padding) - var(--border-size));
+
+  --color: var(--color-black);
+  --background: var(--color-white);
   --border-color: var(--color-gray);
-  --line-height: var(--base-line-height);
-  --border-radius: var(--base-border-radius);
 
   cursor: pointer;
-  width: 100%;
-  font-size: 1rem;
   position: relative;
+  width: 100%;
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  color: var(--color);
 
   input {
     width: 100%;
-    line-height: var(--line-height);
-    border-radius: var(--border-radius);
+    border-radius: inherit;
     padding: var(--padding) calc(var(--padding) * 2);
-    box-shadow: inset 0 0 0 1px var(--border-color);
+    border: var(--border-size) solid var(--border-color);
     &:focus {
-      box-shadow: inset 0 0 0 1px var(--color);
+      --border-color: var(--color-black);
       ~ .down {
         transform: translateY(-50%) rotate(180deg);
       }

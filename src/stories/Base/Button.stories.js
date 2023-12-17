@@ -44,7 +44,7 @@ export const Type = {
       <BaseButton>
         Primary
       </BaseButton>
-      <BaseButton radius>
+      <BaseButton class="radius">
         Primary
       </BaseButton>
       <BaseButton  circle>

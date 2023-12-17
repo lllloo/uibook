@@ -85,11 +85,8 @@ input[type='checkbox'] {
 }
 
 .base-checkout {
-  --padding: var(--base-padding);
-  --font-size: var(--base-font-size, 1rem);
-  --line-height: var(--base-line-height, 1.25);
   --border-size: 1px;
-  --border-radius: var(--base-border-radius, 0.25rem);
+  --padding: calc(var(--base-padding) - var(--border-size));
 
   --color: var(--color-black);
   --background: var(--color-white);
@@ -99,9 +96,9 @@ input[type='checkbox'] {
   display: inline-flex;
   align-items: center;
   font-size: var(--base-font-size);
-  line-height: var(--line-height);
-  border-radius: var(--border-radius);
-  padding: var(--padding);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-padding);
 
   color: var(--color);
 
@@ -124,10 +121,9 @@ input[type='checkbox'] {
     align-items: center;
     width: 18px;
     height: 18px;
-    margin-right: 5px;
     border: 1px solid var(--border-color);
     overflow: hidden;
-    border-radius: var(--border-radius);
+    border-radius: var(--base-border-radius);
     background: var(--background);
 
     > svg {
@@ -140,6 +136,7 @@ input[type='checkbox'] {
   &__label {
     display: flex;
     align-items: center;
+    margin-left: var(--padding)
   }
 
   &--outline {

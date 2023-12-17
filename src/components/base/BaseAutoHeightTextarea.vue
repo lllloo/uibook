@@ -44,33 +44,35 @@ textarea {
 }
 
 .auto-height-textarea {
-  --color: var(--color-primary);
-  --padding: var(--base-padding);
-  --border-color: var(--color-gray);
-  --line-height: var(--base-line-height);
-  --border-radius: var(--base-border-radius);
+  --border-size: 1px;
+  --padding: calc(var(--base-padding) - var(--border-size));
 
-  width: 100%;
-  font-size: 1rem;
-  line-height: var(--line-height);
-  border-radius: var(--border-radius);
+  --color: var(--color-black);
+  --background: var(--color-white);
+  --border-color: var(--color-gray);
+
   position: relative;
+  width: 100%;
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  color: var(--color);
+  
 
   pre,
   textarea {
     margin: 0;
+    border-radius: inherit;
     padding: var(--padding) calc(var(--padding) * 2);
-    min-height: var(--base-line-height);
-    border-radius: var(--border-radius);
     word-break: break-word;
     line-height: inherit;
     white-space: pre-wrap;
     font-size: inherit;
     font-family: inherit;
-    border: none;
   }
-
+  
   pre {
+    border: none;
     visibility: hidden;
   }
 
@@ -83,9 +85,9 @@ textarea {
     resize: none;
     // 有時候太快會產生 scrollbar 會造成scrollbar出現問題
     overflow: hidden;
-    box-shadow: inset 0 0 0 1px var(--border-color);
+    border: var(--border-size) solid var(--border-color);
     &:focus {
-      box-shadow: inset 0 0 0 1px var(--color);
+      --border-color: var(--color-black);
     }
   }
 

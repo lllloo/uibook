@@ -48,23 +48,27 @@ textarea {
 }
 
 .base-textarea {
-  --color: var(--color-primary);
-  --padding: var(--base-padding);
-  --border-color: var(--color-gray);
-  --line-height: var(--base-line-height);
-  --border-radius: var(--base-border-radius);
+  --border-size: 1px;
+  --padding: calc(var(--base-padding) - var(--border-size));
 
+  --color: var(--color-black);
+  --background: var(--color-white);
+  --border-color: var(--color-gray);
+
+  position: relative;
   width: 100%;
-  font-size: 1rem;
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  color: var(--color);
 
   textarea {
     width: 100%;
-    line-height: var(--line-height);
-    border-radius: var(--border-radius);
+    border-radius: inherit;
     padding: var(--padding) calc(var(--padding) * 2);
-    box-shadow: inset 0 0 0 1px var(--border-color);
+    border: var(--border-size) solid var(--border-color);
     &:focus {
-      box-shadow: inset 0 0 0 1px var(--color);
+      --border-color: var(--color-black);
     }
   }
 

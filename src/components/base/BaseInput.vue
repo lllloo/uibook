@@ -59,11 +59,8 @@ input {
 }
 
 .base-input {
-  --padding: var(--base-padding, 0.375rem);
-  --font-size: var(--base-font-size, 1rem);
-  --line-height: var(--base-line-height, 1.25);
   --border-size: 1px;
-  --border-radius: var(--base-border-radius, 0.25rem);
+  --padding: calc(var(--base-padding) - var(--border-size));
 
   --color: var(--color-black);
   --background: var(--color-white);
@@ -72,19 +69,22 @@ input {
   position: relative;
   width: 100%;
   font-size: var(--base-font-size);
-  border-radius: var(--border-radius);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
   color: var(--color);
 
   input {
     width: 100%;
-    line-height: var(--line-height);
     border-radius: inherit;
-    padding: calc(var(--padding) - 1px) calc(var(--padding) * 2);
+    padding: var(--padding) calc(var(--padding) * 2);
     border: var(--border-size) solid var(--border-color);
-    color: var(--color);
     &:focus {
-      border: 1px solid;
+      --border-color: var(--color-black);
     }
+  }
+
+  :deep(svg) {
+    fill: currentColor;
   }
 
   &.is-disabled {
@@ -95,14 +95,12 @@ input {
     }
   }
 
-  :deep(svg) {
-    fill: currentColor;
-  }
 
   // color
   &.primary {
-    --color: var(--color-primary);
-    --background: var(--white);
+    input:focus {
+      --border-color: var(--color-primary);
+    }
   }
 }
 </style>

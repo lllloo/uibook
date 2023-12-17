@@ -65,11 +65,8 @@ input[type='radio'] {
 }
 
 .base-radio {
-  --padding: var(--base-padding);
-  --font-size: var(--base-font-size, 1rem);
-  --line-height: var(--base-line-height, 1.25);
   --border-size: 1px;
-  --border-radius: var(--base-border-radius);
+  --padding: calc(var(--base-padding) - var(--border-size));
 
   --color: var(--color-black);
   --background: var(--color-white);
@@ -79,8 +76,8 @@ input[type='radio'] {
   display: inline-flex;
   align-items: center;
   font-size: var(--base-font-size);
-  line-height: var(--line-height);
-  border-radius: var(--border-radius);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
   padding: var(--padding);
 
   color: var(--color);
@@ -108,7 +105,7 @@ input[type='radio'] {
   &__label {
     display: flex;
     align-items: center;
-    margin-left: 5px;
+    margin-left: var(--padding)
   }
 
   &--outline {

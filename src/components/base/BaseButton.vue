@@ -24,7 +24,6 @@ defineProps({
     class="base-button"
     :class="{
       'base-button--circle': circle,
-      'base-button--radius': radius,
       'base-button--text': text,
       'is-disabled': disabled
     }"
@@ -41,24 +40,17 @@ button {
 }
 
 .base-button {
-  --padding: var(--base-padding, 0.375rem);
-  --font-size: var(--base-font-size, 1rem);
-  --line-height: var(--base-line-height, 1.25);
   --border-size: 1px;
-  --border-radius: var(--base-border-radius, 0.25rem);
+  --padding: calc(var(--base-padding) - var(--border-size));
 
   --color: var(--color-black);
   --background: var(--color-white);
   --border-color: var(--border-color);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-  border-radius: var(--border-radius);
-  padding: calc(var(--padding) - 1px) calc(var(--padding) * 2);
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  padding: var(--padding) calc(var(--padding) * 2);
 
   color: var(--color);
   background: var(--background);
@@ -70,15 +62,10 @@ button {
     --border-color: var(--background);
   }
 
-  &--radius {
-    border-radius: calc(var(--padding) * 3);
-  }
-
   &--circle {
-    line-height: 1;
-    width: calc(var(--font-size) + var(--padding) * 2);
+    width: calc(var(--base-font-size) * var(--base-line-height) + var(--padding) * 2 + var(--border-size) * 2);
     border-radius: 50%;
-    padding: calc(var(--padding) - var(--border-size));
+    padding: var(--padding);
   }
 
   &--text {
