@@ -6,13 +6,27 @@
     }"
   >
     <slot />
+    <template v-if="isPassword">
+      <IconEye
+        v-if="isShowPassword"
+        class="password-icon"
+        @click="isShowPassword = !isShowPassword"
+      />
+      <IconEyeSlash
+        v-else
+        class="password-icon"
+        @click="isShowPassword = !isShowPassword"
+      >
+      </IconEyeSlash>
+    </template>
     <input
       v-model="value"
       :class="inputClass"
       :name="name"
-      :type="type"
+      :type="isShowPassword ? 'text' : type"
       :placeholder="placeholder"
       :disabled="disabled"
+      :autocomplete="isPassword ? 'off' : 'on'"
     />
   </div>
 </template>
@@ -49,6 +63,9 @@ const value = computed({
   get: () => props.modelValue,
   set: (val) => emit('update:modelValue', val)
 })
+
+const isPassword = computed(() => props.type === 'password')
+const isShowPassword = ref(false)
 </script>
 
 <style lang="scss" scoped>
@@ -87,6 +104,18 @@ input {
     fill: currentColor;
   }
 
+  .password-icon {
+    width: 16px;
+    position: absolute;
+    right: calc(var(--padding) * 2);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+  }
+
   &.is-disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -94,7 +123,6 @@ input {
       cursor: not-allowed;
     }
   }
-
 
   // color
   &.primary {

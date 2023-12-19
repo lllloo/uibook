@@ -105,7 +105,7 @@ input[type='radio'] {
   &__label {
     display: flex;
     align-items: center;
-    margin-left: var(--padding)
+    margin-left: var(--padding);
   }
 
   &--outline {

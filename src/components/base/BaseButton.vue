@@ -63,7 +63,9 @@ button {
   }
 
   &--circle {
-    width: calc(var(--base-font-size) * var(--base-line-height) + var(--padding) * 2 + var(--border-size) * 2);
+    width: calc(
+      var(--base-font-size) * var(--base-line-height) + var(--padding) * 2 + var(--border-size) * 2
+    );
     border-radius: 50%;
     padding: var(--padding);
   }

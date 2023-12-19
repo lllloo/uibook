@@ -57,7 +57,6 @@ textarea {
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
   color: var(--color);
-  
 
   pre,
   textarea {
@@ -70,7 +69,7 @@ textarea {
     font-size: inherit;
     font-family: inherit;
   }
-  
+
   pre {
     border: none;
     visibility: hidden;
