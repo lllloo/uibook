@@ -1,8 +1,9 @@
 <template>
-  <label
-    class="base-checkout"
+  <component
+    :is="isLabel ? 'label' : 'div'"
+    class="base-checkbox"
     :class="{
-      'base-checkout--outline': outline,
+      'base-checkbox--outline': outline,
       'is-disabled': disabled,
       'is-checked': isChecked
     }"
@@ -13,16 +14,16 @@
       type="checkbox"
       :disabled="disabled"
     />
-    <div class="base-checkout__checkout">
+    <div class="base-checkbox__checkbox">
       <IconCheck />
     </div>
     <div
       v-if="label"
-      class="base-checkout__label"
+      class="base-checkbox__label"
     >
       {{ label }}
     </div>
-  </label>
+  </component>
 </template>
 
 <script setup>
@@ -47,6 +48,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  isLabel: {
+    type: Boolean,
+    default: true
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -76,7 +81,7 @@ input[type='checkbox'] {
   z-index: -1;
 }
 
-.base-checkout {
+.base-checkbox {
   --border-size: 1px;
   --padding: calc(var(--base-padding) - var(--border-size));
 
@@ -96,7 +101,7 @@ input[type='checkbox'] {
 
   input {
     &:checked {
-      + .base-checkout__checkout {
+      + .base-checkbox__checkbox {
         border: 1px solid;
         background: var(--color);
 
@@ -107,7 +112,7 @@ input[type='checkbox'] {
     }
   }
 
-  &__checkout {
+  &__checkbox {
     display: inline-flex;
     justify-content: center;
     align-items: center;

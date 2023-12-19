@@ -1,9 +1,9 @@
-import BaseCheckout from '@/components/base/BaseCheckout.vue'
+import BaseCheckbox from '@/components/base/BaseCheckbox.vue'
 import BaseField from '@/components/base/BaseField.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  component: BaseCheckout,
+  component: BaseCheckbox,
   argTypes: {
     modelValue: {
       control: 'boolean',
@@ -14,13 +14,13 @@ export default {
     label: 'Checkout'
   },
   render: (args, { vModel }) => ({
-    components: { BaseCheckout },
+    components: { BaseCheckbox },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" />
+      <BaseCheckbox v-bind="args" v-model="modelValue" />
     `
   })
 }
@@ -35,32 +35,32 @@ export const Outline = {
 
 export const Color = {
   render: (args, { vModel }) => ({
-    components: { BaseCheckout },
+    components: { BaseCheckbox },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" />
-      <BaseCheckout v-bind="args" v-model="modelValue" class="primary" />
+      <BaseCheckbox v-bind="args" v-model="modelValue" />
+      <BaseCheckbox v-bind="args" v-model="modelValue" class="primary" />
       <br>
-      <BaseCheckout v-bind="args" v-model="modelValue" outline />
-      <BaseCheckout v-bind="args" v-model="modelValue" class="primary" outline />
+      <BaseCheckbox v-bind="args" v-model="modelValue" outline />
+      <BaseCheckbox v-bind="args" v-model="modelValue" class="primary" outline />
     `
   })
 }
 
 export const Size = {
   render: (args, { vModel }) => ({
-    components: { BaseCheckout },
+    components: { BaseCheckbox },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" class="small" outline />
-      <BaseCheckout v-bind="args" v-model="modelValue" outline />
-      <BaseCheckout v-bind="args" v-model="modelValue" class="large" outline />
+      <BaseCheckbox v-bind="args" v-model="modelValue" class="small" outline />
+      <BaseCheckbox v-bind="args" v-model="modelValue" outline />
+      <BaseCheckbox v-bind="args" v-model="modelValue" class="large" outline />
     `
   })
 }
@@ -70,14 +70,14 @@ export const Disabled = {
     disabled: true
   },
   render: (args, { vModel }) => ({
-    components: { BaseCheckout },
+    components: { BaseCheckbox },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
-      <BaseCheckout v-bind="args" v-model="modelValue" />
-      <BaseCheckout v-bind="args" v-model="modelValue" outline />
+      <BaseCheckbox v-bind="args" v-model="modelValue" />
+      <BaseCheckbox v-bind="args" v-model="modelValue" outline />
     `
   })
 }
@@ -93,15 +93,15 @@ export const WithWrap = {
     modelValue: []
   },
   render: (args, { vModel }) => ({
-    components: { BaseField, BaseCheckout },
+    components: { BaseField, BaseCheckbox },
     setup() {
       const modelValue = vModel('modelValue')
       return { args, modelValue }
     },
     template: `
       <BaseField label="標題">
-        <BaseCheckout v-bind="args" v-model="modelValue" value="1" style="margin-right: 10px;" />
-        <BaseCheckout v-bind="args" v-model="modelValue" value="2" />
+        <BaseCheckbox v-bind="args" v-model="modelValue" value="1" style="margin-right: 10px;" />
+        <BaseCheckbox v-bind="args" v-model="modelValue" value="2" />
       </BaseField>
     `
   })

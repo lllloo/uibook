@@ -1,5 +1,6 @@
 <template>
-  <label
+  <component
+    :is="isLabel ? 'label' : 'div'"
     class="base-radio"
     :class="{
       'base-radio--outline': outline,
@@ -20,7 +21,7 @@
     >
       {{ label }}
     </div>
-  </label>
+  </component>
 </template>
 
 <script setup>
@@ -44,6 +45,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  isLabel: {
+    type: Boolean,
+    default: true
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -90,7 +95,7 @@ input[type='radio'] {
     }
   }
 
-  &__radio {
+  .base-radio__radio {
     display: inline-flex;
     justify-content: center;
     align-items: center;
