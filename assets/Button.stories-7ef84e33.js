@@ -1,4 +1,4 @@
-import{B as n}from"./BaseButton-c3bf19a5.js";import"./vue.esm-bundler-e9714d41.js";import"./_plugin-vue_export-helper-c27b6911.js";const E={component:n,render:t=>({components:{BaseButton:n},setup(){return{args:t}},template:`
+import{B as n}from"./BaseButton-e28d3f7f.js";import"./vue.esm-bundler-e9714d41.js";import"./_plugin-vue_export-helper-c27b6911.js";const E={component:n,render:t=>({components:{BaseButton:n},setup(){return{args:t}},template:`
       <BaseButton v-bind="args">
         Button
       </BaseButton>
