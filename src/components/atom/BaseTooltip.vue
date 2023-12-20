@@ -54,7 +54,7 @@ const { floatingStyles, middlewareData, placement } = useFloating(placementRef, 
 .base-tooltip {
   --padding: var(--base-padding);
   --border-color: #c8cacb;
-  --color: var(--primary);
+  --color: var(--color-primary);
 
   background: #fff;
   color: #000;

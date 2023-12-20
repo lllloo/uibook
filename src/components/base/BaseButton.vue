@@ -91,15 +91,15 @@ button {
   // color
   &.primary {
     --color: var(--color-primary);
-    --background: var(--white);
+    --background: var(--color-white);
 
     &:hover {
-      --color: var(--white);
+      --color: var(--color-white);
       --background: var(--color-primary);
     }
 
     &.fill {
-      --color: var(--white);
+      --color: var(--color-white);
       --background: var(--color-primary);
 
       &:hover {

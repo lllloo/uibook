@@ -95,7 +95,7 @@ input[type='checkbox'] {
   font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
-  padding: var(--base-padding);
+  padding: var(--padding) calc(var(--padding) * 2);
 
   color: var(--color);
   background: var(--background);
@@ -106,11 +106,11 @@ input[type='checkbox'] {
     align-items: center;
     width: 16px;
     height: 16px;
-    border: 1px solid var(--border-color);
     overflow: hidden;
-    margin-right: var(--padding);
+    border: 1px solid var(--border-color);
     border-radius: var(--base-border-radius);
     background: var(--background);
+    margin-right: var(--padding);
 
     > svg {
       width: 80%;

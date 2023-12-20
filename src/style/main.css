@@ -37,18 +37,10 @@
 }
 
 :root {
-  --white: #fff;
-  --black: #000;
-  --primary: #2680c2;
-  --success: #24a57f;
-  --warning: #f5b72a;
-  --danger: #f2414d;
-  --disable: #829ab1;
-
   --base-font-size: 1rem;
   --base-line-height: 1.25;
   --base-border-radius: 0.25rem;
-  --base-padding: 0.375rem;
+  --base-padding: 0.5rem;
   --base-size-padding: var(--base-padding);
 }
 
@@ -61,7 +53,7 @@
 }
 
 .radius {
-  --base-border-radius: var(--base-font-size);
+  --base-border-radius: calc(var(--base-font-size) + var(--base-padding));
 }
 
 /* @keyframes fade-in {

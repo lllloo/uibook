@@ -83,8 +83,7 @@ input[type='radio'] {
   font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
-  padding: var(--padding);
-  margin-right: var(--padding);
+  padding: var(--padding) calc(var(--padding) * 2);
 
   color: var(--color);
   background: var(--background);
@@ -96,9 +95,11 @@ input[type='radio'] {
     width: 16px;
     height: 16px;
     overflow: hidden;
-    border-radius: 50%;
     border: 1px solid var(--border-color);
-    background: var(--input-background);
+    border-radius: 50%;
+    background: var(--background);
+    margin-right: var(--padding);
+
     @at-root .is-checked#{&} {
       border: 5px solid var(--color);
     }
@@ -113,20 +114,20 @@ input[type='radio'] {
     border: var(--border-size) solid var(--border-color);
   }
 
+  &.is-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
   &.fill {
     .base-radio__radio {
       display: none;
     }
     @at-root .is-checked#{&} {
-      color: var(--color-white);
+      color: #fff;
       background: var(--color);
       border-color: var(--color);
     }
-  }
-
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
   }
 
   &.primary {
