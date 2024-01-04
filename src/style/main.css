@@ -32,29 +32,42 @@
     --color-danger: #f2414d;
     --color-danger-dark: #e12d39;
 
-    --color-gray: #caced7;
+    --color-gray: #D1D5DB;
   }
 }
 
 :root {
   --base-font-size: 1rem;
   --base-line-height: 1.25;
-  --base-border-radius: 0.25rem;
+  --base-border-radius: 0.375rem;
   --base-padding: 0.5rem;
   --base-size-padding: var(--base-padding);
+
+  --base-border-size: 1px;
+
+  --base-color: var(--color-black);
+  --base-hover-color: var(--color-black-light);
+  --base-sub-color: var(--color-white);
+  --base-border-color: var(--color-gray);
 }
 
 .small {
-  --base-padding: calc(var(--base-size-padding) - 0.125rem);
+  --base-padding: 0.375rem;
 }
 
 .large {
-  --base-padding: calc(var(--base-size-padding) + 0.125rem);
+  --base-padding: 0.625rem;
 }
 
 .radius {
   --base-border-radius: calc(var(--base-font-size) + var(--base-padding));
 }
+
+.primary {
+  --base-color: var(--color-primary);
+  --base-hover-color: var(--color-primary-dark);
+}
+
 
 /* @keyframes fade-in {
   from { opacity: 0; }

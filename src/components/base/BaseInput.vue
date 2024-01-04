@@ -1,36 +1,3 @@
-<template>
-  <div
-    class="base-input"
-    :class="{
-      'is-disabled': disabled
-    }"
-  >
-    <slot />
-    <template v-if="isPassword">
-      <IconEye
-        v-if="isShowPassword"
-        class="password-icon"
-        @click="isShowPassword = !isShowPassword"
-      />
-      <IconEyeSlash
-        v-else
-        class="password-icon"
-        @click="isShowPassword = !isShowPassword"
-      >
-      </IconEyeSlash>
-    </template>
-    <input
-      v-model="value"
-      :class="inputClass"
-      :name="name"
-      :type="isShowPassword ? 'text' : type"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :autocomplete="isPassword ? 'off' : 'on'"
-    />
-  </div>
-</template>
-
 <script setup>
 const props = defineProps({
   modelValue: {
@@ -45,7 +12,15 @@ const props = defineProps({
     type: String,
     default: ''
   },
+  name: {
+    type: String,
+    default: ''
+  },
   disabled: {
+    type: Boolean,
+    default: false
+  },
+  readonly: {
     type: Boolean,
     default: false
   },
@@ -53,9 +28,9 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  name: {
-    type: String,
-    default: ''
+  inputStyle: {
+    type: Object,
+    default: () => ({})
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -68,6 +43,47 @@ const isPassword = computed(() => props.type === 'password')
 const isShowPassword = ref(false)
 </script>
 
+<template>
+  <div
+    class="base-input"
+    :class="{
+      'has-icon': $slots.default,
+      'is-password': isPassword
+    }"
+  >
+    <span
+      v-if="$slots.default"
+      class="icon"
+    >
+      <slot />
+    </span>
+
+    <input
+      v-model="value"
+      :class="inputClass"
+      :style="inputStyle"
+      :name="name"
+      :type="isShowPassword ? 'text' : type"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+      :autocomplete="isPassword ? 'off' : 'on'"
+    />
+    <template v-if="isPassword">
+      <IconEye
+        v-if="isShowPassword"
+        class="password-icon"
+        @click="isShowPassword = !isShowPassword"
+      />
+      <IconEyeSlash
+        v-else
+        class="password-icon"
+        @click="isShowPassword = !isShowPassword"
+      />
+    </template>
+  </div>
+</template>
+
 <style lang="scss" scoped>
 input {
   border: none;
@@ -76,27 +92,32 @@ input {
 }
 
 .base-input {
-  --border-size: 1px;
-  --padding: calc(var(--base-padding) - var(--border-size));
-
-  --color: var(--color-black);
-  --background: var(--color-white);
-  --border-color: var(--color-gray);
-
-  position: relative;
-  width: 100%;
   font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
+  padding: 0;
+
+  position: relative;
+  width: 100%;
+
+  --color: var(--base-color);
+  --sub-color: var(--base-sub-color);
   color: var(--color);
+  background: var(--sub-color);
 
   input {
     width: 100%;
+    padding: var(--base-padding) calc(var(--base-padding) * 2);
     border-radius: inherit;
-    padding: var(--padding) calc(var(--padding) * 2);
-    border: var(--border-size) solid var(--border-color);
+    border: var(--base-border-size) solid var(--base-border-color);
+
     &:focus {
-      --border-color: var(--color-black);
+      border-color: var(--color);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
   }
 
@@ -104,10 +125,18 @@ input {
     fill: currentColor;
   }
 
+  .icon {
+    position: absolute;
+    left: calc(var(--base-padding) * 2);
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+  }
+
   .password-icon {
     width: 16px;
     position: absolute;
-    right: calc(var(--padding) * 2);
+    right: calc(var(--base-padding) * 2);
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -116,18 +145,15 @@ input {
     opacity: 0.7;
   }
 
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+  &.has-icon {
     input {
-      cursor: not-allowed;
+      padding-left: calc(var(--base-padding) * 5);
     }
   }
 
-  // color
-  &.primary {
-    input:focus {
-      --border-color: var(--color-primary);
+  &.is-password {
+    input {
+      padding-right: calc(var(--base-padding) * 5);
     }
   }
 }

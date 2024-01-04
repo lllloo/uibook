@@ -1,18 +1,10 @@
 <script setup>
 defineProps({
-  radius: {
-    type: Boolean,
-    default: false
-  },
-  circle: {
-    type: Boolean,
-    default: false
-  },
   text: {
     type: Boolean,
     default: false
   },
-  disabled: {
+  outline: {
     type: Boolean,
     default: false
   }
@@ -23,11 +15,9 @@ defineProps({
   <button
     class="base-button"
     :class="{
-      'base-button--circle': circle,
       'base-button--text': text,
-      'is-disabled': disabled
+      'base-button--outline': outline
     }"
-    :disabled="disabled"
   >
     <slot />
   </button>
@@ -40,72 +30,39 @@ button {
 }
 
 .base-button {
-  --border-size: 1px;
-  --padding: calc(var(--base-padding) - var(--border-size));
-
-  --color: var(--color-black);
-  --background: var(--color-white);
-  --border-color: var(--border-color);
-
   font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
-  padding: var(--padding) calc(var(--padding) * 2);
+  padding: var(--base-padding) calc(var(--base-padding) * 2);
 
-  color: var(--color);
-  background: var(--background);
-  border: var(--border-size) solid var(--border-color,);
+  --color: var(--base-color);
+  --hover-color: var(--base-hover-color);
+  --sub-color: var(--base-sub-color);
+
+  color: var(--sub-color);
+  background: var(--color);
+  border: var(--base-border-size) solid;
 
   &:hover {
-    --color: var(--color-white);
-    --background: var(--color-black);
-    --border-color: var(--background);
+    background: var(--hover-color);
   }
 
-  &--circle {
-    width: calc(
-      var(--base-font-size) * var(--base-line-height) + var(--padding) * 2 + var(--border-size) * 2
-    );
-    border-radius: 50%;
-    padding: var(--padding);
+  &--text,
+  &--outline {
+    color: var(--color);
+    background: transparent;
+    &:hover {
+      color: var(--sub-color);
+      background: var(--color);
+    }
   }
-
   &--text {
-    --border-color: transparent;
+    border-color: transparent;
   }
 
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  &.fill {
-    --color: var(--color-white);
-    --background: var(--color-black);
-    --border-color: var(--background);
-    &:hover {
-      --background: var(--color-black-light);
-    }
-  }
-
-  // color
-  &.primary {
-    --color: var(--color-primary);
-    --background: var(--color-white);
-
-    &:hover {
-      --color: var(--color-white);
-      --background: var(--color-primary);
-    }
-
-    &.fill {
-      --color: var(--color-white);
-      --background: var(--color-primary);
-
-      &:hover {
-        --background: var(--color-primary-dark);
-      }
-    }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 </style>

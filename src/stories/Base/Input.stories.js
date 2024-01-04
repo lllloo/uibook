@@ -39,20 +39,6 @@ export const Color = {
   })
 }
 
-export const Type = {
-  render: (args, { vModel }) => ({
-    components: { BaseInput },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
-    template: `
-      <BaseInput v-bind="args" v-model="modelValue" />
-      <BaseInput v-bind="args" v-model="modelValue" class="radius" />
-    `
-  })
-}
-
 export const Size = {
   render: (args, { vModel }) => ({
     components: { BaseInput },
@@ -68,12 +54,6 @@ export const Size = {
   })
 }
 
-export const Disabled = {
-  args: {
-    disabled: true
-  }
-}
-
 export const Icon = {
   render: (args, { vModel }) => ({
     components: { BaseInput, IconSearch },
@@ -82,15 +62,11 @@ export const Icon = {
       return { args, modelValue }
     },
     template: `
-      <BaseInput v-bind="args" v-model="modelValue" inputClass="!pl-8">
-        <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-70">
-          <IconSearch />
-        </span>
+      <BaseInput v-bind="args" v-model="modelValue">
+        <IconSearch />
       </BaseInput>
-      <BaseInput v-bind="args" v-model="modelValue" class="primary" inputClass="!pl-8">
-        <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-70">
-          <IconSearch />
-        </span>
+      <BaseInput v-bind="args" v-model="modelValue" class="primary">
+        <IconSearch />
       </BaseInput>
     `
   })
@@ -107,16 +83,24 @@ export const Password = {
       return { args, modelValue }
     },
     template: `
-      <BaseInput v-bind="args" v-model="modelValue" inputClass="!pl-8">
-        <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-60">
-          <IconSearch />
-        </span>
+      <BaseInput v-bind="args" v-model="modelValue">
+        <IconSearch />
       </BaseInput>
-      <BaseInput v-bind="args" v-model="modelValue" class="primary" inputClass="!pl-8">
-        <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-60">
-          <IconSearch />
-        </span>
+      <BaseInput v-bind="args" v-model="modelValue" class="primary">
+        <IconSearch />
       </BaseInput>
     `
   })
+}
+
+export const Readonly = {
+  args: {
+    readonly: true
+  }
+}
+
+export const Disabled = {
+  args: {
+    disabled: true
+  }
 }

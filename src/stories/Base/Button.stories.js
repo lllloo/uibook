@@ -34,26 +34,6 @@ export const Color = {
   })
 }
 
-export const Type = {
-  render: (args) => ({
-    components: { BaseButton },
-    setup() {
-      return { args }
-    },
-    template: `
-      <BaseButton>
-        Primary
-      </BaseButton>
-      <BaseButton class="radius">
-        Primary
-      </BaseButton>
-      <BaseButton  circle>
-        1
-      </BaseButton>
-    `
-  })
-}
-
 export const Size = {
   render: (args) => ({
     components: { BaseButton },
@@ -75,47 +55,43 @@ export const Size = {
 }
 
 export const Text = {
+  args: {
+    text: true,
+  },
   render: (args) => ({
     components: { BaseButton },
     setup() {
       return { args }
     },
     template: `
-      <BaseButton text>
+      <BaseButton v-bind="args">
         Button
       </BaseButton>
 
-      <BaseButton class="primary" text>
+      <BaseButton v-bind="args" class="primary">
         Button
       </BaseButton>
     `
   })
 }
 
-export const Fill = {
+export const OutLine = {
+  args: {
+    outline: true,
+  },
   render: (args) => ({
     components: { BaseButton },
     setup() {
       return { args }
     },
     template: `
-      <BaseButton class="fill">
-        Button
-      </BaseButton>
+    <BaseButton v-bind="args">
+    Button
+  </BaseButton>
 
-      <BaseButton class="primary fill">
-        Button
-      </BaseButton>
-
-      <br>
-
-      <BaseButton class="fill hover:!bg-white hover:!text-black">
-        Button
-      </BaseButton>
-
-      <BaseButton class="primary fill hover:!bg-white hover:!text-primary">
-        Button
-      </BaseButton>
+  <BaseButton v-bind="args" class="primary">
+    Button
+  </BaseButton>
     `
   })
 }
@@ -131,7 +107,7 @@ export const Disable = {
         Primary
       </BaseButton>
 
-      <BaseButton class="fill" disabled>
+      <BaseButton class="primary" disabled>
         Button
       </BaseButton>
     `
