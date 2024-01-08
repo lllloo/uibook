@@ -5,7 +5,6 @@ import IconSearch from '@/components/icons/IconSearch.vue'
 export default {
   component: BaseInput,
   args: {
-    label: '標題',
     placeholder: '請輸入',
     modelValue: ''
   },
@@ -91,6 +90,12 @@ export const Password = {
       </BaseInput>
     `
   })
+}
+
+export const Textarea = {
+  args: {
+    type: 'textarea'
+  }
 }
 
 export const Readonly = {

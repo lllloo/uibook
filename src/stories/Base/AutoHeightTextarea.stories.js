@@ -4,7 +4,6 @@ import BaseAutoHeightTextarea from '@/components/base/BaseAutoHeightTextarea.vue
 export default {
   component: BaseAutoHeightTextarea,
   args: {
-    label: '標題',
     placeholder: '請輸入',
     modelValue: ''
   },
@@ -37,6 +36,12 @@ export const Size = {
       <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" class="large" />
     `
   })
+}
+
+export const Readonly = {
+  args: {
+    readonly: true
+  }
 }
 
 export const Disabled = {

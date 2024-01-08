@@ -16,6 +16,10 @@ const props = defineProps({
     type: String,
     default: ''
   },
+  rows: {
+    type: Number,
+    default: 2
+  },
   disabled: {
     type: Boolean,
     default: false
@@ -58,7 +62,19 @@ const isShowPassword = ref(false)
       <slot />
     </span>
 
+    <textarea
+      v-if="type === 'textarea'"
+      v-model="value"
+      :class="inputClass"
+      :style="inputStyle"
+      :name="name"
+      :placeholder="placeholder"
+      :rows="rows"
+      :disabled="disabled"
+      :readonly="readonly"
+    />
     <input
+      v-else
       v-model="value"
       :class="inputClass"
       :style="inputStyle"
@@ -85,7 +101,8 @@ const isShowPassword = ref(false)
 </template>
 
 <style lang="scss" scoped>
-input {
+input,
+textarea {
   border: none;
   outline: none;
   background: transparent;
@@ -105,7 +122,8 @@ input {
   color: var(--color);
   background: var(--sub-color);
 
-  input {
+  input,
+  textarea {
     width: 100%;
     padding: var(--base-padding) calc(var(--base-padding) * 2);
     border-radius: inherit;

@@ -1,19 +1,3 @@
-<template>
-  <div
-    class="auto-height-textarea"
-    :class="{
-      'is-disabled': disabled
-    }"
-  >
-    <pre>{{ value }}<br></pre>
-    <textarea
-      v-model="value"
-      :placeholder="placeholder"
-      :disabled="disabled"
-    />
-  </div>
-</template>
-
 <script setup>
 const props = defineProps({
   modelValue: {
@@ -24,7 +8,15 @@ const props = defineProps({
     type: String,
     default: ''
   },
+  name: {
+    type: String,
+    default: ''
+  },
   disabled: {
+    type: Boolean,
+    default: false
+  },
+  readonly: {
     type: Boolean,
     default: false
   }
@@ -36,6 +28,19 @@ const value = computed({
 })
 </script>
 
+<template>
+  <div class="auto-height-textarea">
+    <pre>{{ value }}<br></pre>
+    <textarea
+      v-model="value"
+      :name="name"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+    />
+  </div>
+</template>
+
 <style lang="scss" scoped>
 textarea {
   border: none;
@@ -44,25 +49,24 @@ textarea {
 }
 
 .auto-height-textarea {
-  --border-size: 1px;
-  --padding: calc(var(--base-padding) - var(--border-size));
-
-  --color: var(--color-black);
-  --background: var(--color-white);
-  --border-color: var(--color-gray);
-
-  position: relative;
-  width: 100%;
   font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
+  padding: 0;
+
+  position: relative;
+  width: 100%;
+
+  --color: var(--base-color);
+  --sub-color: var(--base-sub-color);
   color: var(--color);
+  background: var(--sub-color);
 
   pre,
   textarea {
-    margin: 0;
+    padding: var(--base-padding) calc(var(--base-padding) * 2);
     border-radius: inherit;
-    padding: var(--padding) calc(var(--padding) * 2);
+    border: var(--base-border-size) solid transparent;
     word-break: break-word;
     line-height: inherit;
     white-space: pre-wrap;
@@ -71,7 +75,6 @@ textarea {
   }
 
   pre {
-    border: none;
     visibility: hidden;
   }
 
@@ -84,17 +87,15 @@ textarea {
     resize: none;
     // 有時候太快會產生 scrollbar 會造成scrollbar出現問題
     overflow: hidden;
-    border: var(--border-size) solid var(--border-color);
-    &:focus {
-      --border-color: var(--color-black);
-    }
-  }
+    border-color: var(--base-border-color);
 
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    textarea {
-      cursor: not-allowed;
+    &:focus {
+      border-color: var(--color);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
   }
 }
