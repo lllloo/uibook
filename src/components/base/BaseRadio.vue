@@ -1,29 +1,3 @@
-<template>
-  <component
-    :is="isLabel ? 'label' : 'div'"
-    class="base-radio"
-    :class="{
-      'base-radio--outline': outline,
-      'is-disabled': disabled,
-      'is-checked': syncValue === value
-    }"
-  >
-    <input
-      v-model="syncValue"
-      :value="value"
-      type="radio"
-      :disabled="disabled"
-    />
-    <div class="base-radio__radio" />
-    <div
-      v-if="label"
-      class="base-radio__label"
-    >
-      {{ label }}
-    </div>
-  </component>
-</template>
-
 <script setup>
 const props = defineProps({
   label: {
@@ -46,9 +20,17 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  readonly: {
+    type: Boolean,
+    default: false
+  },
   isLabel: {
     type: Boolean,
     default: true
+  },
+  isButton: {
+    type: Boolean,
+    default: false
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -57,6 +39,33 @@ const syncValue = computed({
   set: (val) => emit('update:modelValue', val)
 })
 </script>
+
+<template>
+  <component
+    :is="isLabel ? 'label' : 'div'"
+    class="base-radio"
+    :class="{
+      'base-radio--outline': outline,
+      'is-button': isButton,
+      'is-disabled': disabled,
+      'is-checked': syncValue === value
+    }"
+  >
+    <input
+      v-model="syncValue"
+      :value="value"
+      type="radio"
+      :disabled="disabled || readonly"
+    />
+    <div class="base-radio__radio" />
+    <div
+      v-if="label"
+      class="base-radio__label"
+    >
+      {{ label }}
+    </div>
+  </component>
+</template>
 
 <style lang="scss" scoped>
 input[type='radio'] {
@@ -70,35 +79,29 @@ input[type='radio'] {
 }
 
 .base-radio {
-  --border-size: 1px;
-  --padding: calc(var(--base-padding) - var(--border-size));
-
-  --color: var(--color-black);
-  --background: var(--color-white);
-  --border-color: var(--color-gray);
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-padding);
 
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: var(--padding) calc(var(--padding) * 2);
 
+  --color: var(--base-color);
+  --sub-color: var(--base-sub-color);
   color: var(--color);
-  background: var(--background);
+  background: var(--sub-color);
 
+  &:hover {
+    --base-border-color: var(--color);
+  }
   .base-radio__radio {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
     width: 16px;
     height: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--base-border-color);
     border-radius: 50%;
-    background: var(--background);
-    margin-right: var(--padding);
+    margin-right: var(--base-padding);
 
     @at-root .is-checked#{&} {
       border: 5px solid var(--color);
@@ -111,27 +114,26 @@ input[type='radio'] {
   }
 
   &--outline {
-    border: var(--border-size) solid var(--border-color);
+    color: var(--color);
+    border: var(--base-border-size) solid;
   }
 
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  &.fill {
+  &.is-button {
+    color: var(--color);
+    border: var(--base-border-size) solid;
     .base-radio__radio {
       display: none;
     }
-    @at-root .is-checked#{&} {
-      color: #fff;
+    &.is-checked,
+    &:hover {
+      color: var(--sub-color);
       background: var(--color);
-      border-color: var(--color);
     }
   }
 
-  &.primary {
-    --color: var(--color-primary);
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 </style>

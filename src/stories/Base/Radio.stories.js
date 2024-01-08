@@ -54,7 +54,7 @@ export const Color = {
   })
 }
 
-export const Fill = {
+export const Button = {
   render: (args, { vModel }) => ({
     components: { BaseRadio },
     setup() {
@@ -66,11 +66,10 @@ export const Fill = {
         value: {{modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" class="fill" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" class="primary fill" />
-      <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="3" class="fill" outline />
-      <BaseRadio v-bind="args" v-model="modelValue" value="4" class="primary fill" outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" isButton />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" isButton />
+      <BaseRadio v-bind="args" v-model="modelValue" value="3" isButton />
+      <BaseRadio v-bind="args" v-model="modelValue" value="4" class="primary" isButton />
     `
   })
 }
@@ -83,10 +82,6 @@ export const Size = {
       return { args, modelValue }
     },
     template: `
-      <div>
-        value: {{modelValue}}<br>
-      </div>
-      <br>
       <BaseRadio v-bind="args" v-model="modelValue" value="1" class="small" outline />
       <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
       <BaseRadio v-bind="args" v-model="modelValue" value="3" class="large" outline />
@@ -94,9 +89,10 @@ export const Size = {
   })
 }
 
-export const Disabled = {
+export const Readonly = {
   args: {
-    disabled: true
+    readonly: true,
+    modelValue: '1'
   },
   render: (args, { vModel }) => ({
     components: { BaseRadio },
@@ -105,8 +101,36 @@ export const Disabled = {
       return { args, modelValue }
     },
     template: `
+      <div>
+        value: {{modelValue}}<br>
+      </div>
+      <br>
       <BaseRadio v-bind="args" v-model="modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="3" outline />
+    `
+  })
+}
+
+export const Disabled = {
+  args: {
+    disabled: true,
+    modelValue: '1'
+  },
+  render: (args, { vModel }) => ({
+    components: { BaseRadio },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <div>
+        value: {{modelValue}}<br>
+      </div>
+      <br>
+      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="2" />
+      <BaseRadio v-bind="args" v-model="modelValue" value="3" outline />
     `
   })
 }

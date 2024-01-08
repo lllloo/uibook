@@ -1,31 +1,3 @@
-<template>
-  <component
-    :is="isLabel ? 'label' : 'div'"
-    class="base-checkbox"
-    :class="{
-      'base-checkbox--outline': outline,
-      'is-disabled': disabled,
-      'is-checked': isChecked
-    }"
-  >
-    <input
-      v-model="syncValue"
-      :value="value"
-      type="checkbox"
-      :disabled="disabled"
-    />
-    <div class="base-checkbox__checkbox">
-      <IconCheck />
-    </div>
-    <div
-      v-if="label"
-      class="base-checkbox__label"
-    >
-      {{ label }}
-    </div>
-  </component>
-</template>
-
 <script setup>
 const props = defineProps({
   label: {
@@ -49,9 +21,17 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  readonly: {
+    type: Boolean,
+    default: false
+  },
   isLabel: {
     type: Boolean,
     default: true
+  },
+  isButton: {
+    type: Boolean,
+    default: false
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -69,6 +49,35 @@ const isChecked = computed(() => {
 })
 </script>
 
+<template>
+  <component
+    :is="isLabel ? 'label' : 'div'"
+    class="base-checkbox"
+    :class="{
+      'base-checkbox--outline': outline,
+      'is-button': isButton,
+      'is-disabled': disabled,
+      'is-checked': isChecked
+    }"
+  >
+    <input
+      v-model="syncValue"
+      :value="value"
+      type="checkbox"
+      :disabled="disabled || readonly"
+    />
+    <div class="base-checkbox__checkbox">
+      <IconCheck />
+    </div>
+    <div
+      v-if="label"
+      class="base-checkbox__label"
+    >
+      {{ label }}
+    </div>
+  </component>
+</template>
+
 <style lang="scss" scoped>
 input[type='checkbox'] {
   display: none;
@@ -82,49 +91,46 @@ input[type='checkbox'] {
 }
 
 .base-checkbox {
-  --border-size: 1px;
-  --padding: calc(var(--base-padding) - var(--border-size));
-
-  --color: var(--color-black);
-  --background: var(--color-white);
-  --border-color: var(--color-gray);
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-padding);
 
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: var(--padding) calc(var(--padding) * 2);
 
+  --color: var(--base-color);
+  --sub-color: var(--base-sub-color);
   color: var(--color);
-  background: var(--background);
+  background: var(--sub-color);
 
+  &:hover {
+    --base-border-color: var(--color);
+  }
   .base-checkbox__checkbox {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 16px;
     height: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    border-radius: var(--base-border-radius);
-    background: var(--background);
-    margin-right: var(--padding);
-
-    > svg {
-      width: 80%;
-      fill: var(--color-white);
-      display: none;
-    }
+    border: 1px solid var(--base-border-color);
+    border-radius: 4px;
+    margin-right: var(--base-padding);
 
     @at-root .is-checked#{&} {
-      border: 1px solid;
+      color: var(--sub-color);
       background: var(--color);
+      border-color: var(--color);
+    }
+  }
 
-      > svg {
-        display: block;
-      }
+  :deep(svg) {
+    width: 80%;
+    display: none;
+    fill: currentColor;
+    @at-root .is-checked#{&} {
+      display: block;
     }
   }
 
@@ -134,27 +140,26 @@ input[type='checkbox'] {
   }
 
   &--outline {
-    border: var(--border-size) solid var(--border-color);
+    color: var(--color);
+    border: var(--base-border-size) solid;
   }
 
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  &.fill {
+  &.is-button {
+    color: var(--color);
+    border: var(--base-border-size) solid;
     .base-checkbox__checkbox {
       display: none;
     }
-    @at-root .is-checked#{&} {
-      color: var(--color-white);
+    &.is-checked,
+    &:hover {
+      color: var(--sub-color);
       background: var(--color);
-      border-color: var(--color);
     }
   }
 
-  &.primary {
-    --color: var(--color-primary);
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 </style>
