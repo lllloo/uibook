@@ -52,10 +52,6 @@ const { floatingStyles, middlewareData, placement } = useFloating(placementRef, 
 </script>
 <style lang="scss" scoped>
 .base-tooltip {
-  --padding: var(--base-padding);
-  --border-color: #c8cacb;
-  --color: var(--color-primary);
-
   background: #fff;
   color: #000;
   width: max-content;
@@ -72,7 +68,7 @@ const { floatingStyles, middlewareData, placement } = useFloating(placementRef, 
     height: 10px;
     z-index: 1;
     background: #fff;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--base-border-color);
     margin-left: -5px;
     &.top {
       bottom: 0;
@@ -90,9 +86,9 @@ const { floatingStyles, middlewareData, placement } = useFloating(placementRef, 
   &__content {
     border-radius: 5px;
     color: #000;
-    padding: var(--padding) calc(var(--padding) * 2);
+    padding: var(--base-padding) calc(var(--base-padding) * 2);
     z-index: 1;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--base-border-color);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
     overflow: hidden;
   }

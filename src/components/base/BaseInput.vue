@@ -52,7 +52,8 @@ const isShowPassword = ref(false)
     class="base-input"
     :class="{
       'has-icon': $slots.default,
-      'is-password': isPassword
+      'is-password': isPassword,
+      'is-disabled': disabled,
     }"
   >
     <span
@@ -149,6 +150,9 @@ textarea {
     top: 50%;
     transform: translateY(-50%);
     opacity: 0.7;
+    @at-root .is-disabled#{&} {
+      opacity: 0.5;
+    }
   }
 
   .password-icon {
@@ -161,6 +165,9 @@ textarea {
     justify-content: center;
     align-items: center;
     opacity: 0.7;
+    @at-root .is-disabled#{&} {
+      opacity: 0.5;
+    }
   }
 
   &.has-icon {
