@@ -20,13 +20,23 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      imports: ["vue", "vue-router"],
+      imports: [
+        "vue", 
+        "vue-router",
+        {
+          '@/js/baseService': [
+            'baseGet', 'basePost'
+          ],
+        }
+      ],
+      dts: true,
       eslintrc: {
         enabled: true,
         globalsPropValue: true,
       },
     }),
     Components({
+      dts: true,
       resolvers: [
         HeadlessUiResolver(),
       ],

@@ -9,6 +9,9 @@
         "./src/*"
       ],
     },
+    "types": [
+      "vite/client"
+    ]
   },
   "exclude": [
     "node_modules"

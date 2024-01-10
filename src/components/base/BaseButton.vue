@@ -13,6 +13,7 @@ defineProps({
 
 <template>
   <button
+    type="button"
     class="base-button"
     :class="{
       'base-button--text': text,

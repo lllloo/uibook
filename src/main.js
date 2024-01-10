@@ -10,6 +10,17 @@ const router = createRouter({
   routes
 })
 
+async function enableMocking() {
+  // @ts-ignore
+  if (import.meta.env.MODE !== 'development') {
+    return
+  }
+  const { worker } = await import('./mocks/browser')
+  return worker.start()
+}
+
 const app = createApp(App)
 app.use(router)
-app.mount('#app')
+enableMocking().then(() => {
+  app.mount('#app')
+})

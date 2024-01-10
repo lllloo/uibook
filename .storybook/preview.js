@@ -1,8 +1,8 @@
 import '@/style/main.css'
-import './decorators.css'
-
+import { worker } from '@/mocks/browser';
 import { useArgs } from '@storybook/client-api'
 
+worker.start();
 export const decorators = [
   (story, context) => {
     const args = context.args
@@ -15,15 +15,7 @@ export const decorators = [
         }
       })
     return story({ ...context, vModel })
-  },
-  (story) => ({
-    components: { story },
-    template: `
-      <div class="decorators">
-        <story/>
-      </div>
-    `
-  })
+  }
 ]
 
 /** @type { import('@storybook/vue3').Preview } */
