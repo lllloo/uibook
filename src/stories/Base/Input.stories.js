@@ -107,5 +107,21 @@ export const Readonly = {
 export const Disabled = {
   args: {
     disabled: true
-  }
+  },
+  render: (args, { vModel }) => ({
+    components: { BaseInput, IconSearch },
+    setup() {
+      const modelValue = vModel('modelValue')
+      return { args, modelValue }
+    },
+    template: `
+      <BaseInput v-bind="args" v-model="modelValue" />
+      <BaseInput v-bind="args" v-model="modelValue">
+        <IconSearch />
+      </BaseInput>
+      <BaseInput v-bind="args" v-model="modelValue" class="primary">
+        <IconSearch />
+      </BaseInput>
+    `
+  })
 }

@@ -1,3 +1,48 @@
+<script setup>
+const props = defineProps({
+  options: {
+    /** @type import('vue').PropType<{label: string, value: string|number}[]> */
+    type: Array,
+    default: () => []
+  },
+  modelValue: {
+    type: [String, Number],
+    default: ''
+  },
+  placeholder: {
+    type: String,
+    default: ''
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+})
+const inputRef = ref()
+const open = () => {
+  inputRef.value.focus()
+}
+
+const emit = defineEmits(['update:modelValue', 'change'])
+const value = computed({
+  get: () => props.modelValue,
+  set: (val) => {
+    emit('update:modelValue', val)
+    emit('change', val)
+  }
+})
+
+const showLabel = computed(() => {
+  return props.options.find((item) => item.value === value.value)?.label
+})
+
+const notSelected = computed(() => {
+  return value.value === ''
+})
+
+const isFocus = ref(false)
+</script>
+
 <template>
   <div
     class="base-select"
@@ -39,50 +84,6 @@
     </BaseTooltip>
   </div>
 </template>
-<script setup>
-const props = defineProps({
-  options: {
-    /** @type import('vue').PropType<{label: string, value: string|number}[]> */
-    type: Array,
-    default: () => []
-  },
-  modelValue: {
-    type: String,
-    default: ''
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  }
-})
-const inputRef = ref()
-const open = () => {
-  inputRef.value.focus()
-}
-
-const emit = defineEmits(['update:modelValue', 'change'])
-const value = computed({
-  get: () => props.modelValue,
-  set: (val) => {
-    emit('update:modelValue', val)
-    emit('change', val)
-  }
-})
-
-const showLabel = computed(() => {
-  return props.options.find((item) => item.value === value.value)?.label
-})
-
-const notSelected = computed(() => {
-  return value.value === ''
-})
-
-const isFocus = ref(false)
-</script>
 
 <style lang="scss" scoped>
 input {
@@ -99,32 +100,42 @@ li {
 }
 
 .base-select {
-  --border-size: 1px;
-  --padding: calc(var(--base-padding) - var(--border-size));
-
-  --color: var(--color-black);
-  --background: var(--color-white);
-  --border-color: var(--color-gray);
-
-  cursor: pointer;
-  position: relative;
-  width: 100%;
   font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   border-radius: var(--base-border-radius);
+  padding: 0;
+
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+
+  --color: var(--base-color);
+  --sub-color: var(--base-sub-color);
   color: var(--color);
+  background: var(--sub-color);
 
   input {
+    cursor: inherit;
     width: 100%;
+    padding: var(--base-padding) calc(var(--base-padding) * 2);
     border-radius: inherit;
-    padding: var(--padding) calc(var(--padding) * 2);
-    border: var(--border-size) solid var(--border-color);
+    border: var(--base-border-size) solid var(--base-border-color);
+
     &:focus {
-      --border-color: var(--color-black);
+      border-color: var(--color);
       ~ .down {
         transform: translateY(-50%) rotate(180deg);
       }
     }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  :deep(svg) {
+    fill: currentColor;
   }
 
   .down {
@@ -133,7 +144,10 @@ li {
     top: 50%;
     transform: translateY(-50%);
     transform-origin: 50%;
-    fill: var(--border-color);
+    opacity: 0.7;
+    @at-root .is-disabled#{&} {
+      opacity: 0.5;
+    }
   }
 
   ul {
@@ -141,8 +155,8 @@ li {
     flex-direction: column;
 
     li {
-      line-height: var(--line-height);
-      padding: var(--padding) 0;
+      line-height: var(--base-line-height);
+      padding: var(--base-padding) 0;
       display: flex;
       align-items: center;
       color: #333;
@@ -156,14 +170,6 @@ li {
 
   &.selected {
     color: var(--color);
-  }
-
-  &.is-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    input {
-      cursor: not-allowed;
-    }
   }
 }
 </style>
