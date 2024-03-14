@@ -7,14 +7,11 @@ export default {
     placeholder: '請輸入',
     modelValue: ''
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseAutoHeightTextarea },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" />
     `
   })
 }
@@ -24,16 +21,13 @@ export const Default = {
 }
 
 export const Size = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseAutoHeightTextarea },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" class="small" />
-      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" />
-      <BaseAutoHeightTextarea v-bind="args" v-model="modelValue" class="large" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" class="small" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" class="large" />
     `
   })
 }

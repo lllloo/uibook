@@ -22,14 +22,11 @@ export default {
       { label: '選項3', value: '3' }
     ]
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseSelect },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseSelect v-bind="args" v-model="modelValue" />
+      <BaseSelect v-bind="args" v-model="args.modelValue" />
     `
   })
 }
@@ -39,16 +36,13 @@ export const Default = {
 }
 
 export const Size = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseSelect },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseSelect v-bind="args" v-model="modelValue" class="small" />
-      <BaseSelect v-bind="args" v-model="modelValue" />
-      <BaseSelect v-bind="args" v-model="modelValue" class="large" />
+      <BaseSelect v-bind="args" v-model="args.modelValue" class="small" />
+      <BaseSelect v-bind="args" v-model="args.modelValue" />
+      <BaseSelect v-bind="args" v-model="args.modelValue" class="large" />
     `
   })
 }
@@ -60,15 +54,12 @@ export const Disabled = {
 }
 
 export const WithWrap = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseField, BaseSelect },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <BaseField label="標題">
-        <BaseSelect v-bind="args" v-model="modelValue" />
+        <BaseSelect v-bind="args" v-model="args.modelValue" />
       </BaseField>
     `
   })

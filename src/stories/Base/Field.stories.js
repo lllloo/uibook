@@ -9,9 +9,7 @@ export default {
   },
   render: (args) => ({
     components: { BaseField, BaseInput },
-    setup() {
-      return { args }
-    },
+    setup: () => ({ args }),
     template: `
       <BaseField v-bind="args">
         <BaseInput label="標題" placeholder="請輸入" />

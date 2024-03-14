@@ -5,9 +5,7 @@ export default {
   component: BaseButton,
   render: (args) => ({
     components: { BaseButton },
-    setup() {
-      return { args }
-    },
+    setup: () => ({ args }),
     template: `
       <BaseButton v-bind="args">
         Button
@@ -23,9 +21,7 @@ export const Default = {
 export const Color = {
   render: (args) => ({
     components: { BaseButton },
-    setup() {
-      return { args }
-    },
+    setup: () => ({ args }),
     template: `
       <BaseButton class="primary">
         Primary
@@ -37,9 +33,7 @@ export const Color = {
 export const Size = {
   render: (args) => ({
     components: { BaseButton },
-    setup() {
-      return { args }
-    },
+    setup: () => ({ args }),
     template: `
       <BaseButton class="small">
         Small
@@ -56,13 +50,11 @@ export const Size = {
 
 export const Text = {
   args: {
-    text: true,
+    text: true
   },
   render: (args) => ({
     components: { BaseButton },
-    setup() {
-      return { args }
-    },
+    setup: () => ({ args }),
     template: `
       <BaseButton v-bind="args">
         Button
@@ -77,13 +69,11 @@ export const Text = {
 
 export const OutLine = {
   args: {
-    outline: true,
+    outline: true
   },
   render: (args) => ({
     components: { BaseButton },
-    setup() {
-      return { args }
-    },
+    setup: () => ({ args }),
     template: `
     <BaseButton v-bind="args">
     Button
@@ -99,9 +89,7 @@ export const OutLine = {
 export const Disable = {
   render: (args) => ({
     components: { BaseButton },
-    setup() {
-      return { args }
-    },
+    setup: () => ({ args }),
     template: `
       <BaseButton disabled>
         Primary

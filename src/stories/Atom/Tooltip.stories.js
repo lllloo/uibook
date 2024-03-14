@@ -14,12 +14,11 @@ export default {
       `
     })
   ],
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseTooltip, BaseButton },
     setup() {
-      const modelValue = vModel('modelValue')
       const isFocus = ref(false)
-      return { args, modelValue, isFocus }
+      return { args, isFocus }
     },
     template: `
       <BaseButton ref="buttonRef" @click="isFocus = !isFocus">

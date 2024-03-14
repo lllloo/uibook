@@ -8,14 +8,11 @@ export default {
     placeholder: '請輸入',
     modelValue: ''
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseInput },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="modelValue" />
+      <BaseInput v-bind="args" v-model="args.modelValue" />
     `
   })
 }
@@ -25,46 +22,37 @@ export const Default = {
 }
 
 export const Color = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseInput },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="modelValue" />
-      <BaseInput class="primary" v-bind="args" v-model="modelValue" />
+      <BaseInput v-bind="args" v-model="args.modelValue" />
+      <BaseInput class="primary" v-bind="args" v-model="args.modelValue" />
     `
   })
 }
 
 export const Size = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseInput },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="modelValue" class="small" /> 
-      <BaseInput v-bind="args" v-model="modelValue" />
-      <BaseInput v-bind="args" v-model="modelValue" class="large" />
+      <BaseInput v-bind="args" v-model="args.modelValue" class="small" /> 
+      <BaseInput v-bind="args" v-model="args.modelValue" />
+      <BaseInput v-bind="args" v-model="args.modelValue" class="large" />
     `
   })
 }
 
 export const Icon = {
-  render: (args, { vModel }) => ({
-    components: { BaseInput, IconSearch },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+  render: (args) => ({
+    components: { BaseInput },
+    setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="modelValue">
+      <BaseInput v-bind="args" v-model="args.modelValue">
         <IconSearch />
       </BaseInput>
-      <BaseInput v-bind="args" v-model="modelValue" class="primary">
+      <BaseInput v-bind="args" v-model="args.modelValue" class="primary">
         <IconSearch />
       </BaseInput>
     `
@@ -75,17 +63,14 @@ export const Password = {
   args: {
     type: 'password'
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseInput, IconSearch },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="modelValue">
+      <BaseInput v-bind="args" v-model="args.modelValue">
         <IconSearch />
       </BaseInput>
-      <BaseInput v-bind="args" v-model="modelValue" class="primary">
+      <BaseInput v-bind="args" v-model="args.modelValue" class="primary">
         <IconSearch />
       </BaseInput>
     `
@@ -108,18 +93,15 @@ export const Disabled = {
   args: {
     disabled: true
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseInput, IconSearch },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="modelValue" />
-      <BaseInput v-bind="args" v-model="modelValue">
+      <BaseInput v-bind="args" v-model="args.modelValue" />
+      <BaseInput v-bind="args" v-model="args.modelValue">
         <IconSearch />
       </BaseInput>
-      <BaseInput v-bind="args" v-model="modelValue" class="primary">
+      <BaseInput v-bind="args" v-model="args.modelValue" class="primary">
         <IconSearch />
       </BaseInput>
     `

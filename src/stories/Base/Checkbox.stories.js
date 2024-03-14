@@ -13,18 +13,15 @@ export default {
   args: {
     label: 'Checkout'
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseCheckbox },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseCheckbox v-bind="args" v-model="modelValue" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" />
     `
   })
 }
@@ -47,22 +44,19 @@ export const Color = {
   args: {
     modelValue: []
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseCheckbox },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="1" />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="2" class="primary" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" class="primary" />
       <br>
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="3" outline />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="4" class="primary" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="4" class="primary" outline />
     `
   })
 }
@@ -77,36 +71,30 @@ export const Button = {
   args: {
     modelValue: []
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseCheckbox },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="1" isButton />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="2" isButton />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="3" isButton />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="4" class="primary" isButton />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" isButton />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" isButton />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" isButton />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="4" class="primary" isButton />
     `
   })
 }
 
 export const Size = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseCheckbox },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseCheckbox v-bind="args" v-model="modelValue" class="small" outline />
-      <BaseCheckbox v-bind="args" v-model="modelValue" outline />
-      <BaseCheckbox v-bind="args" v-model="modelValue" class="large" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" class="small" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" class="large" outline />
     `
   })
 }
@@ -122,20 +110,17 @@ export const Readonly = {
     readonly: true,
     modelValue: ['1']
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseCheckbox },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="1" />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="2" />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="3" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" outline />
     `
   })
 }
@@ -151,20 +136,17 @@ export const Disabled = {
     disabled: true,
     modelValue: ['1']
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseCheckbox },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="1" />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="2" />
-      <BaseCheckbox v-bind="args" v-model="modelValue" value="3" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" outline />
     `
   })
 }
@@ -179,20 +161,17 @@ export const WithWrap = {
   args: {
     modelValue: []
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseField, BaseCheckbox },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
       <BaseField label="標題">
-        <BaseCheckbox v-bind="args" v-model="modelValue" value="1" style="margin-right: 10px;" />
-        <BaseCheckbox v-bind="args" v-model="modelValue" value="2" />
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" style="margin-right: 10px;" />
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" />
       </BaseField>
     `
   })

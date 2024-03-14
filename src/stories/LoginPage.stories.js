@@ -1,7 +1,7 @@
-import LoginPage from '@/pages/LoginPage.vue';
+import LoginPage from '@/pages/LoginPage.vue'
 
 export default {
-  component: LoginPage,
-};
+  component: LoginPage
+}
 
 export const Default = {}

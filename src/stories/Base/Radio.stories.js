@@ -8,19 +8,16 @@ export default {
     label: 'Radio',
     modelValue: ''
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseRadio },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
     `
   })
 }
@@ -34,57 +31,48 @@ export const Outline = {
 }
 
 export const Color = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseRadio },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" class="primary" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" class="primary" />
       <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="3" outline />
-      <BaseRadio v-bind="args" v-model="modelValue" value="4" class="primary" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="4" class="primary" outline />
     `
   })
 }
 
 export const Button = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseRadio },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" isButton />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" isButton />
-      <BaseRadio v-bind="args" v-model="modelValue" value="3" isButton />
-      <BaseRadio v-bind="args" v-model="modelValue" value="4" class="primary" isButton />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" isButton />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" isButton />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" isButton />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="4" class="primary" isButton />
     `
   })
 }
 
 export const Size = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseRadio },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" class="small" outline />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" outline />
-      <BaseRadio v-bind="args" v-model="modelValue" value="3" class="large" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" class="small" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" class="large" outline />
     `
   })
 }
@@ -94,20 +82,17 @@ export const Readonly = {
     readonly: true,
     modelValue: '1'
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseRadio },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="3" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" outline />
     `
   })
 }
@@ -117,39 +102,33 @@ export const Disabled = {
     disabled: true,
     modelValue: '1'
   },
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseRadio },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="2" />
-      <BaseRadio v-bind="args" v-model="modelValue" value="3" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" outline />
     `
   })
 }
 
 export const WithWrap = {
-  render: (args, { vModel }) => ({
+  render: (args) => ({
     components: { BaseField, BaseRadio },
-    setup() {
-      const modelValue = vModel('modelValue')
-      return { args, modelValue }
-    },
+    setup: () => ({ args }),
     template: `
       <div>
-        value: {{modelValue}}<br>
+        value: {{args.modelValue}}<br>
       </div>
       <br>
       <BaseField label="標題">
-        <BaseRadio v-bind="args" v-model="modelValue" value="1" />
-        <BaseRadio v-bind="args" v-model="modelValue" value="2" />
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
       </BaseField>
     `
   })
