@@ -30,10 +30,10 @@ export default defineConfig({
         }
       ],
       dts: true,
-      eslintrc: {
-        enabled: true,
-        globalsPropValue: true,
-      },
+      // eslintrc: {
+      //   enabled: true,
+      //   globalsPropValue: true,
+      // },
     }),
     Components({
       dts: true,

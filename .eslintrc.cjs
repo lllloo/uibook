@@ -29,6 +29,7 @@ module.exports = {
     'cypress-image-diff.config.js',
     'cypress/support/*',
     'postcss.config.js',
-    'tailwind.config.js'
+    'tailwind.config.js',
+    '*.d.ts'
   ],
 }
