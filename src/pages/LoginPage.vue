@@ -53,5 +53,11 @@ const login = () => {
     >
       登入
     </BaseButton>
+
+    <BaseButton
+      color="primary"
+    >
+      123
+    </BaseButton>
   </form>
 </template>

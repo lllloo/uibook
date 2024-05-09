@@ -12,11 +12,7 @@ module.exports = {
       black: '#000',
       white: '#fff',
       gray: colors.gray,
-      primary: {
-        light: 'var(--color-primary-light)',
-        DEFAULT: 'var(--color-primary)',
-        dark: 'var{--color-primary-dark)',
-      },
+      primary: '#3593c2',
     },
   },
   plugins: [],
