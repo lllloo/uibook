@@ -1,5 +1,7 @@
 <script setup lang="ts">
 export interface Props {
+  class?: string
+  inputClass?: string
   modelValue: string
   color?: 'black' | 'primary'
   size?: 'sm' | 'md' | 'lg'
@@ -8,11 +10,11 @@ export interface Props {
   placeholder?: string
   type: 'text' | 'password' | 'textarea'
   name?: string
-  class?: string
-  inputClass?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  class: '',
+  inputClass: '',
   modelValue: '',
   color: 'black',
   size: 'md',
@@ -20,9 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   placeholder: '請輸入',
   type: 'text',
-  name: '',
-  class: '',
-  inputClass: ''
+  name: ''
 })
 
 const emit = defineEmits<{
@@ -55,7 +55,6 @@ const colorClasses = {
 
 const sizeClasses = {
   input: {
-    base: 'w-full px-4 py-2 rounded-md outline-none',
     sm: 'text-sm',
     md: 'text-base',
     lg: 'text-lg'
@@ -68,10 +67,11 @@ const wrapClasses = computed(() => {
 })
 
 const inputClasses = computed(() => {
+  const baseClass = 'w-full px-4 py-2 rounded-md outline-none'
   const colorClass = colorClasses.input[props.color]
-  const sizeClass = `${sizeClasses.input.base} ${sizeClasses.input[props.size]}`
+  const sizeClass = sizeClasses.input[props.size]
   const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
-  return twMerge(colorClass, sizeClass, disabledClass, props.inputClass)
+  return twMerge(baseClass, colorClass, sizeClass, disabledClass, props.inputClass)
 })
 </script>
 

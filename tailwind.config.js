@@ -6,14 +6,17 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      black: '#000',
-      white: '#fff',
-      gray: colors.gray,
-      primary: '#3593c2',
-    },
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        black: '#000',
+        white: '#fff',
+        gray: colors.gray,
+        primary: '#3593c2',
+        error: colors.red[500]
+      },
+    }
   },
   plugins: [],
 }

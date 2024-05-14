@@ -12,7 +12,7 @@ export default {
     setup: () => ({ args }),
     template: `
       <BaseField v-bind="args">
-        <BaseInput label="標題" placeholder="請輸入" />
+        <BaseInput placeholder="請輸入" />
       </BaseField>
     `
   })
@@ -20,9 +20,44 @@ export default {
 
 export const Default = {}
 
+export const Color = {
+  args: {
+    color: 'primary'
+  },
+  render: (args) => ({
+    components: { BaseField, BaseInput },
+    setup: () => ({ args }),
+    template: `
+      <BaseField v-bind="args">
+        <BaseInput placeholder="請輸入" color="primary" />
+      </BaseField>
+    `
+  })
+}
+
+
 export const OneLine = {
   args: {
     label: '標題',
     oneLine: true
   }
+}
+
+export const Error = {
+  args: {
+    label: '標題',
+    error: '必填'
+  },
+  render: (args) => ({
+    components: { BaseField, BaseInput },
+    setup: () => ({ args }),
+    template: `
+      <BaseField v-bind="args" class="mb-6">
+        <BaseInput placeholder="請輸入" />
+      </BaseField>
+      <BaseField v-bind="args" oneLine>
+        <BaseInput placeholder="請輸入" />
+      </BaseField>
+    `
+  })
 }
