@@ -24,10 +24,15 @@ export default defineConfig({
         "vue", 
         "vue-router",
         {
+          'tailwind-merge': [
+            'twMerge'
+          ],
+        },
+        {
           '@/js/baseService': [
             'baseGet', 'basePost'
           ],
-        }
+        },
       ],
       dts: true,
       // eslintrc: {

@@ -37,10 +37,10 @@ export const Size = {
     components: { BaseButton },
     setup: () => ({ args }),
     template: `
-      <BaseButton size="sm">
+      <BaseButton size="sm" class="mr-2">
         Small
       </BaseButton>
-      <BaseButton class="mx-2">
+      <BaseButton class="mr-2">
         Button
       </BaseButton>
       <BaseButton size="lg">
@@ -65,7 +65,7 @@ export const Text = {
     components: { BaseButton },
     setup: () => ({ args }),
     template: `
-      <BaseButton color="transparent">
+      <BaseButton color="transparent" class="mr-2">
         Transparent
       </BaseButton>
       <BaseButton color="transparent" outline>
@@ -75,7 +75,7 @@ export const Text = {
   })
 }
 
-export const Disable = {
+export const Disabled = {
   args: {
     disabled: true
   },

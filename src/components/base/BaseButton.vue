@@ -1,16 +1,18 @@
 <script setup lang="ts">
 export interface Props {
   color?: 'black' | 'primary' | 'transparent'
-  size?: 'sm' | 'base' | 'lg'
+  size?: 'sm' | 'md' | 'lg'
   outline?: boolean
   disabled?: boolean
+  class?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   color: 'black',
-  size: 'base',
+  size: 'md',
   outline: false,
-  disabled: false
+  disabled: false,
+  class: ''
 })
 
 const colorClasses = {
@@ -26,21 +28,17 @@ const outlineColorClasses = {
 }
 
 const sizeClasses = {
-  sm: 'px-4 py-2 text-sm rounded',
-  base: 'px-4 py-2 text-base rounded',
-  lg: 'px-4 py-2 text-lg rounded'
+  base: 'px-4 py-2 rounded-md',
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg'
 }
 
 const buttonClasses = computed(() => {
-  const color = props.color
-  const size = props.size
-  const isOutline = props.outline
-  const isDisabled = props.disabled
-
-  const colorClass = isOutline ? outlineColorClasses[color] : colorClasses[color]
-  const sizeClass = sizeClasses[size]
-  const disabledClass = isDisabled ? 'opacity-50 cursor-not-allowed' : ''
-  return [colorClass, sizeClass, disabledClass]
+  const colorClass = props.outline ? outlineColorClasses[props.color] : colorClasses[props.color]
+  const sizeClass = `${sizeClasses.base} ${sizeClasses[props.size]}`
+  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+  return twMerge(colorClass, sizeClass, disabledClass, props.class)
 })
 </script>
 

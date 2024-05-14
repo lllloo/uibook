@@ -3,11 +3,11 @@ import IconSearch from '@/components/icons/IconSearch.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  component: BaseInput,
   args: {
     placeholder: '請輸入',
     modelValue: ''
   },
+  component: BaseInput,
   render: (args) => ({
     components: { BaseInput },
     setup: () => ({ args }),
@@ -22,14 +22,9 @@ export const Default = {
 }
 
 export const Color = {
-  render: (args) => ({
-    components: { BaseInput },
-    setup: () => ({ args }),
-    template: `
-      <BaseInput v-bind="args" v-model="args.modelValue" />
-      <BaseInput class="primary" v-bind="args" v-model="args.modelValue" />
-    `
-  })
+  args: {
+    color: 'primary'
+  },
 }
 
 export const Size = {
@@ -37,23 +32,32 @@ export const Size = {
     components: { BaseInput },
     setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="args.modelValue" class="small" /> 
-      <BaseInput v-bind="args" v-model="args.modelValue" />
-      <BaseInput v-bind="args" v-model="args.modelValue" class="large" />
+      <BaseInput v-bind="args" v-model="args.modelValue" size="sm" class="mb-2" /> 
+      <BaseInput v-bind="args" v-model="args.modelValue" class="mb-2" />
+      <BaseInput v-bind="args" v-model="args.modelValue" size="lg" class="mb-2" />
     `
   })
 }
 
 export const Icon = {
   render: (args) => ({
-    components: { BaseInput },
+    components: { BaseInput, IconSearch },
     setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="args.modelValue">
-        <IconSearch />
+      <BaseInput v-bind="args" v-model="args.modelValue" class="mb-2">
+        <template #prefix>
+          <IconSearch />
+        </template>
       </BaseInput>
-      <BaseInput v-bind="args" v-model="args.modelValue" class="primary">
-        <IconSearch />
+      <BaseInput v-bind="args" v-model="args.modelValue" color="primary" class="mb-2">
+        <template #prefix>
+          <IconSearch />
+        </template>
+      </BaseInput>
+      <BaseInput v-bind="args" v-model="args.modelValue" class="mb-2">
+        <template #suffix>
+          <IconSearch />
+        </template>
       </BaseInput>
     `
   })
@@ -67,20 +71,23 @@ export const Password = {
     components: { BaseInput, IconSearch },
     setup: () => ({ args }),
     template: `
-      <BaseInput v-bind="args" v-model="args.modelValue">
-        <IconSearch />
+      <BaseInput v-bind="args" v-model="args.modelValue" class="mb-2">
+        <template #prefix>
+          <IconSearch />
+        </template>
       </BaseInput>
-      <BaseInput v-bind="args" v-model="args.modelValue" class="primary">
-        <IconSearch />
+      <BaseInput v-bind="args" v-model="args.modelValue" color="primary" class="mb-2">
+        <template #prefix>
+          <IconSearch />
+        </template>
+      </BaseInput>
+      <BaseInput v-bind="args" v-model="args.modelValue" color="primary">
+        <template #suffix>
+          <IconSearch />
+        </template>
       </BaseInput>
     `
   })
-}
-
-export const Textarea = {
-  args: {
-    type: 'textarea'
-  }
 }
 
 export const Readonly = {
@@ -93,17 +100,4 @@ export const Disabled = {
   args: {
     disabled: true
   },
-  render: (args) => ({
-    components: { BaseInput, IconSearch },
-    setup: () => ({ args }),
-    template: `
-      <BaseInput v-bind="args" v-model="args.modelValue" />
-      <BaseInput v-bind="args" v-model="args.modelValue">
-        <IconSearch />
-      </BaseInput>
-      <BaseInput v-bind="args" v-model="args.modelValue" class="primary">
-        <IconSearch />
-      </BaseInput>
-    `
-  })
 }

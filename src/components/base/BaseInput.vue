@@ -1,43 +1,39 @@
-<script setup>
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: ''
-  },
-  type: {
-    type: String,
-    default: 'text'
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  name: {
-    type: String,
-    default: ''
-  },
-  rows: {
-    type: Number,
-    default: 2
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  readonly: {
-    type: Boolean,
-    default: false
-  },
-  inputClass: {
-    type: String,
-    default: ''
-  },
-  inputStyle: {
-    type: Object,
-    default: () => ({})
-  }
+<script setup lang="ts">
+export interface Props {
+  modelValue: string
+  color?: 'black' | 'primary'
+  size?: 'sm' | 'md' | 'lg'
+  readonly?: boolean
+  disabled?: boolean
+  placeholder?: string
+  type: 'text' | 'password' | 'textarea'
+  name?: string
+  class?: string
+  inputClass?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: '',
+  color: 'black',
+  size: 'md',
+  readonly: false,
+  disabled: false,
+  placeholder: '請輸入',
+  type: 'text',
+  name: '',
+  class: '',
+  inputClass: ''
 })
-const emit = defineEmits(['update:modelValue'])
+
+const emit = defineEmits<{
+  'update:modelValue': [value: string]
+}>()
+
+defineSlots<{
+  prefix(props: {}): any
+  suffix(props: {}): any
+}>()
+
 const value = computed({
   get: () => props.modelValue,
   set: (val) => emit('update:modelValue', val)
@@ -45,40 +41,51 @@ const value = computed({
 
 const isPassword = computed(() => props.type === 'password')
 const isShowPassword = ref(false)
+
+const colorClasses = {
+  wrap: {
+    black: 'text-black fill-black',
+    primary: 'text-primary fill-primary'
+  },
+  input: {
+    black: 'text-black border border-black focus:border-black/50',
+    primary: 'text-primary border border-primary focus:border-primary/50'
+  }
+}
+
+const sizeClasses = {
+  input: {
+    base: 'w-full px-4 py-2 rounded-md outline-none',
+    sm: 'text-sm',
+    md: 'text-base',
+    lg: 'text-lg'
+  }
+}
+
+const wrapClasses = computed(() => {
+  const colorClass = colorClasses.wrap[props.color]
+  return twMerge('relative', 'rounded', colorClass, props.class)
+})
+
+const inputClasses = computed(() => {
+  const colorClass = colorClasses.input[props.color]
+  const sizeClass = `${sizeClasses.input.base} ${sizeClasses.input[props.size]}`
+  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+  return twMerge(colorClass, sizeClass, disabledClass, props.inputClass)
+})
 </script>
 
 <template>
-  <div
-    class="base-input"
-    :class="{
-      'has-icon': $slots.default,
-      'is-password': isPassword,
-      'is-disabled': disabled,
-    }"
-  >
-    <span
-      v-if="$slots.default"
-      class="icon"
+  <div :class="wrapClasses">
+    <div
+      v-if="$slots.prefix"
+      class="absolute left-0 top-1/2 flex w-8 -translate-y-1/2 items-center pl-4"
     >
-      <slot />
-    </span>
-
-    <textarea
-      v-if="type === 'textarea'"
-      v-model="value"
-      :class="inputClass"
-      :style="inputStyle"
-      :name="name"
-      :placeholder="placeholder"
-      :rows="rows"
-      :disabled="disabled"
-      :readonly="readonly"
-    />
+      <slot name="prefix" />
+    </div>
     <input
-      v-else
       v-model="value"
-      :class="inputClass"
-      :style="inputStyle"
+      :class="[inputClasses, $slots.prefix ? 'pl-10' : '']"
       :name="name"
       :type="isShowPassword ? 'text' : type"
       :placeholder="placeholder"
@@ -86,100 +93,25 @@ const isShowPassword = ref(false)
       :readonly="readonly"
       :autocomplete="isPassword ? 'off' : 'on'"
     />
-    <template v-if="isPassword">
-      <IconEye
-        v-if="isShowPassword"
-        class="password-icon"
-        @click="isShowPassword = !isShowPassword"
-      />
-      <IconEyeSlash
-        v-else
-        class="password-icon"
-        @click="isShowPassword = !isShowPassword"
-      />
-    </template>
+    <div
+      v-if="isPassword || $slots.suffix"
+      class="absolute right-0 top-1/2 flex -translate-y-1/2 items-center pr-4"
+    >
+      <template v-if="$slots.suffix">
+        <slot name="suffix" />
+      </template>
+      <template v-if="isPassword">
+        <IconEye
+          v-if="isShowPassword"
+          class="ml-2 w-5"
+          @click="isShowPassword = !isShowPassword"
+        />
+        <IconEyeSlash
+          v-else
+          class="ml-2 w-5"
+          @click="isShowPassword = !isShowPassword"
+        />
+      </template>
+    </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-input,
-textarea {
-  border: none;
-  outline: none;
-  background: transparent;
-}
-
-.base-input {
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: 0;
-
-  position: relative;
-  width: 100%;
-
-  --color: var(--base-color);
-  --sub-color: var(--base-sub-color);
-  color: var(--color);
-  background: var(--sub-color);
-
-  input,
-  textarea {
-    width: 100%;
-    padding: var(--base-padding) calc(var(--base-padding) * 2);
-    border-radius: inherit;
-    border: var(--base-border-size) solid var(--base-border-color);
-
-    &:focus {
-      border-color: var(--color);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-  }
-
-  :deep(svg) {
-    fill: currentColor;
-  }
-
-  .icon {
-    position: absolute;
-    left: calc(var(--base-padding) * 2);
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.7;
-    @at-root .is-disabled#{&} {
-      opacity: 0.5;
-    }
-  }
-
-  .password-icon {
-    width: 16px;
-    position: absolute;
-    right: calc(var(--base-padding) * 2);
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.7;
-    @at-root .is-disabled#{&} {
-      opacity: 0.5;
-    }
-  }
-
-  &.has-icon {
-    input {
-      padding-left: calc(var(--base-padding) * 5);
-    }
-  }
-
-  &.is-password {
-    input {
-      padding-right: calc(var(--base-padding) * 5);
-    }
-  }
-}
-</style>
