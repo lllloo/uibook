@@ -1,38 +1,74 @@
-<script setup>
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: ''
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  name: {
-    type: String,
-    default: ''
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  readonly: {
-    type: Boolean,
-    default: false
-  }
+<script setup lang="ts">
+export interface Props {
+  class?: string
+  inputClass?: string
+  color?: 'black' | 'primary'
+  size?: 'sm' | 'md' | 'lg'
+  readonly?: boolean
+  disabled?: boolean
+  placeholder?: string
+  name?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  class: '',
+  inputClass: '',
+  color: 'black',
+  size: 'md',
+  readonly: false,
+  disabled: false,
+  placeholder: '請輸入',
+  name: ''
 })
-const emit = defineEmits(['update:modelValue'])
-const value = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+
+const value = defineModel<string>()
+
+const colors = {
+  base: {
+    black: 'text-black fill-black',
+    primary: 'text-primary fill-primary'
+  },
+  input: {
+    black: 'text-black ring-1 ring-inset ring-black/70 focus:ring-black',
+    primary: 'text-primary ring-1 ring-inset ring-primary/70 focus:ring-primary'
+  }
+}
+
+const sizes = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg'
+}
+
+const classes = computed(() => {
+  const baseClass = 'relative rounded-md shadow-md'
+  const colorClass = colors.base[props.color]
+  return twMerge(baseClass, colorClass, props.class)
+})
+
+// shadow-md
+
+const preClasses = computed(() => {
+  const baseClass =
+    'w-full px-4 py-2 rounded-md outline-none break-words whitespace-pre-wrap font-sans'
+  const sizeClass = sizes[props.size]
+  return twMerge(baseClass, sizeClass, props.inputClass)
+})
+const inputClasses = computed(() => {
+  const baseClass = 'absolute top-0 left-0 w-full h-full resize-none overflow-hidden'
+  const colorClass = colors.input[props.color]
+  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+  return twMerge(preClasses.value, baseClass, colorClass, disabledClass, props.inputClass)
 })
 </script>
 
 <template>
-  <div class="auto-height-textarea">
-    <pre>{{ value }}<br></pre>
+  <div :class="classes">
+    <!-- 'invisible'。 -->
+    <pre :class="[preClasses]">{{ value }}<br></pre>
     <textarea
       v-model="value"
+      :class="[inputClasses]"
       :name="name"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -40,63 +76,3 @@ const value = computed({
     />
   </div>
 </template>
-
-<style lang="scss" scoped>
-textarea {
-  border: none;
-  outline: none;
-  background: transparent;
-}
-
-.auto-height-textarea {
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: 0;
-
-  position: relative;
-  width: 100%;
-
-  --color: var(--base-color);
-  --sub-color: var(--base-sub-color);
-  color: var(--color);
-  background: var(--sub-color);
-
-  pre,
-  textarea {
-    padding: var(--base-padding) calc(var(--base-padding) * 2);
-    border-radius: inherit;
-    border: var(--base-border-size) solid transparent;
-    word-break: break-word;
-    line-height: inherit;
-    white-space: pre-wrap;
-    font-size: inherit;
-    font-family: inherit;
-  }
-
-  pre {
-    visibility: hidden;
-  }
-
-  textarea {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    resize: none;
-    // 有時候太快會產生 scrollbar 會造成scrollbar出現問題
-    overflow: hidden;
-    border-color: var(--base-border-color);
-
-    &:focus {
-      border-color: var(--color);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-  }
-}
-</style>

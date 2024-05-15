@@ -1,7 +1,6 @@
 import BaseInput from '@/components/base/BaseInput.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 
-// More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
   args: {
     placeholder: '請輸入',

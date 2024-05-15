@@ -1,139 +1,102 @@
-<script setup>
-const props = defineProps({
-  label: {
-    type: String,
-    default: ''
-  },
-  modelValue: {
-    type: String,
-    default: ''
-  },
-  value: {
-    type: String,
-    default: ''
-  },
-  outline: {
-    type: Boolean,
-    default: false
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  readonly: {
-    type: Boolean,
-    default: false
-  },
-  isLabel: {
-    type: Boolean,
-    default: true
-  },
-  isButton: {
-    type: Boolean,
-    default: false
-  }
+<script setup lang="ts">
+export interface Props {
+  class?: string
+  radioClass?: string
+  color?: 'black' | 'primary'
+  size?: 'sm' | 'md' | 'lg'
+  label?: string
+  name?: string
+  value?: string
+  readonly?: boolean
+  disabled?: boolean
+  isLabel?: boolean
+  button?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  class: '',
+  radioClass: '',
+  color: 'black',
+  size: 'md',
+  label: '',
+  name: '',
+  value: '',
+  readonly: false,
+  disabled: false,
+  isLabel: true,
+  button: false
 })
-const emit = defineEmits(['update:modelValue'])
-const syncValue = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+
+const syncValue = defineModel<string>()
+
+const isChecked = computed(() => syncValue.value === props.value)
+
+const colors = {
+  base: {
+    black: 'text-black',
+    primary: 'text-primary'
+  },
+  radio: {
+    black: 'border border-black',
+    primary: 'border border-primary'
+  },
+  button: {
+    black: 'bg-black text-white',
+    primary: 'bg-primary text-white'
+  },
+  border: {
+    black: 'ring-1 ring-inset ring-black',
+    primary: 'ring-1 ring-inset ring-primary'
+  }
+}
+
+const sizes = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg'
+}
+
+const classes = computed(() => {
+  const baseClass = 'inline-flex items-center px-4 py-2 rounded-md outline-none group'
+  const colorClass = colors.base[props.color]
+  const buttonClass = props.button ? colors.border[props.color] : ''
+  const checkClass = props.button && isChecked.value ? colors.button[props.color] : ''
+  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+  return twMerge(baseClass, colorClass, buttonClass, checkClass, disabledClass, props.class)
+})
+
+const labelClasses = computed(() => {
+  const sizeClass = sizes[props.size]
+  return twMerge(sizeClass)
+})
+
+const radioClasses = computed(() => {
+  const baseClass = 'w-4 h-4 border border-black rounded-full mr-2'
+  const colorClass = colors.radio[props.color]
+  const buttonClass = props.button ? 'hidden' : ''
+  const checkClass = 'group-[.is-checked]:border-4'
+  return twMerge(baseClass, colorClass, buttonClass, checkClass, props.radioClass)
 })
 </script>
 
 <template>
   <component
     :is="isLabel ? 'label' : 'div'"
-    class="base-radio"
-    :class="{
-      'base-radio--outline': outline,
-      'is-button': isButton,
-      'is-disabled': disabled,
-      'is-checked': syncValue === value
-    }"
+    :class="[classes, isChecked ? 'is-checked' : '']"
   >
     <input
+      v-show="false"
       v-model="syncValue"
       :value="value"
       type="radio"
       :disabled="disabled || readonly"
     />
-    <div class="base-radio__radio" />
+    <div :class="radioClasses" />
     <div
       v-if="label"
-      class="base-radio__label"
+      :class="labelClasses"
     >
       {{ label }}
     </div>
   </component>
 </template>
-
-<style lang="scss" scoped>
-input[type='radio'] {
-  opacity: 0;
-  outline: none;
-  position: absolute;
-  margin: 0;
-  width: 0;
-  height: 0;
-  z-index: -1;
-}
-
-.base-radio {
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: var(--base-padding);
-
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-
-  --color: var(--base-color);
-  --sub-color: var(--base-sub-color);
-  color: var(--color);
-  background: var(--sub-color);
-
-  &:hover {
-    --base-border-color: var(--color);
-  }
-  .base-radio__radio {
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--base-border-color);
-    border-radius: 50%;
-    margin-right: var(--base-padding);
-
-    @at-root .is-checked#{&} {
-      border: 5px solid var(--color);
-    }
-  }
-
-  &__label {
-    display: flex;
-    align-items: center;
-  }
-
-  &--outline {
-    color: var(--color);
-    border: var(--base-border-size) solid;
-  }
-
-  &.is-button {
-    color: var(--color);
-    border: var(--base-border-size) solid;
-    .base-radio__radio {
-      display: none;
-    }
-    &.is-checked,
-    &:hover {
-      color: var(--sub-color);
-      background: var(--color);
-    }
-  }
-
-  &.is-disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-}
-</style>

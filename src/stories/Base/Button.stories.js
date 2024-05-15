@@ -1,6 +1,5 @@
 import BaseButton from '@/components/base/BaseButton.vue'
 
-// More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
   argTypes: {
     color: {
@@ -33,17 +32,20 @@ export const Color = {
 }
 
 export const Size = {
+  args: {
+    class: 'mr-2'
+  },
   render: (args) => ({
     components: { BaseButton },
     setup: () => ({ args }),
     template: `
-      <BaseButton size="sm" class="mr-2">
+      <BaseButton v-bind="args" size="sm">
         Small
       </BaseButton>
-      <BaseButton class="mr-2">
+      <BaseButton v-bind="args">
         Button
       </BaseButton>
-      <BaseButton size="lg">
+      <BaseButton v-bind="args" size="lg">
         Large
       </BaseButton>
     `
@@ -54,25 +56,6 @@ export const OutLine = {
   args: {
     outline: true
   },
-}
-
-export const Text = {
-  args: {
-    color: 'transparent',
-    outline: true
-  },
-  render: (args) => ({
-    components: { BaseButton },
-    setup: () => ({ args }),
-    template: `
-      <BaseButton color="transparent" class="mr-2">
-        Transparent
-      </BaseButton>
-      <BaseButton color="transparent" outline>
-        Transparent Outline
-      </BaseButton>
-    `
-  })
 }
 
 export const Disabled = {

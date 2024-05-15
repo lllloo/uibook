@@ -2,20 +2,18 @@
 export interface Props {
   class?: string
   inputClass?: string
-  modelValue: string
   color?: 'black' | 'primary'
   size?: 'sm' | 'md' | 'lg'
   readonly?: boolean
   disabled?: boolean
   placeholder?: string
-  type: 'text' | 'password' | 'textarea'
+  type: 'text' | 'password'
   name?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   class: '',
   inputClass: '',
-  modelValue: '',
   color: 'black',
   size: 'md',
   readonly: false,
@@ -25,58 +23,50 @@ const props = withDefaults(defineProps<Props>(), {
   name: ''
 })
 
-const emit = defineEmits<{
-  'update:modelValue': [value: string]
-}>()
-
 defineSlots<{
   prefix(props: {}): any
   suffix(props: {}): any
 }>()
 
-const value = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
-})
+const value = defineModel<string>()
 
 const isPassword = computed(() => props.type === 'password')
 const isShowPassword = ref(false)
 
-const colorClasses = {
-  wrap: {
+const colors = {
+  base: {
     black: 'text-black fill-black',
     primary: 'text-primary fill-primary'
   },
   input: {
-    black: 'text-black border border-black focus:border-black/50',
-    primary: 'text-primary border border-primary focus:border-primary/50'
+    black: 'text-black ring-1 ring-inset ring-black/70 focus:ring-black',
+    primary: 'text-primary ring-1 ring-inset ring-primary/70 focus:ring-primary'
   }
 }
 
-const sizeClasses = {
-  input: {
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg'
-  }
+const sizes = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg'
 }
 
-const wrapClasses = computed(() => {
-  const colorClass = colorClasses.wrap[props.color]
-  return twMerge('relative', 'rounded', colorClass, props.class)
+const classes = computed(() => {
+  const baseClass = 'relative rounded-md'
+  const colorClass = colors.base[props.color]
+  return twMerge(baseClass, colorClass, props.class)
 })
 
 const inputClasses = computed(() => {
-  const baseClass = 'w-full px-4 py-2 rounded-md outline-none'
-  const colorClass = colorClasses.input[props.color]
-  const sizeClass = sizeClasses.input[props.size]
+  const baseClass = 'w-full px-4 py-2 rounded-md shadow-md outline-none'
+  const colorClass = colors.input[props.color]
+  const sizeClass = sizes[props.size]
   const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
   return twMerge(baseClass, colorClass, sizeClass, disabledClass, props.inputClass)
 })
 </script>
 
 <template>
-  <div :class="wrapClasses">
+  <div :class="classes">
     <div
       v-if="$slots.prefix"
       class="absolute left-0 top-1/2 flex w-8 -translate-y-1/2 items-center pl-4"

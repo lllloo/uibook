@@ -1,9 +1,7 @@
 import BaseCheckbox from '@/components/base/BaseCheckbox.vue'
 import BaseField from '@/components/base/BaseField.vue'
 
-// More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  component: BaseCheckbox,
   argTypes: {
     modelValue: {
       control: 'boolean',
@@ -13,6 +11,7 @@ export default {
   args: {
     label: 'Checkout'
   },
+  component: BaseCheckbox,
   render: (args) => ({
     components: { BaseCheckbox },
     setup: () => ({ args }),
@@ -42,6 +41,7 @@ export const Color = {
     }
   },
   args: {
+    class: 'mr-2',
     modelValue: []
   },
   render: (args) => ({
@@ -53,15 +53,20 @@ export const Color = {
       </div>
       <br>
       <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" class="primary" />
-      <br>
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" outline />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="4" class="primary" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" color="primary" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" button />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="4" color="primary" button />
     `
   })
 }
 
 export const Button = {
+  args: {
+    button: true
+  },
+}
+
+export const Size = {
   argTypes: {
     modelValue: {
       control: 'array',
@@ -75,26 +80,9 @@ export const Button = {
     components: { BaseCheckbox },
     setup: () => ({ args }),
     template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" isButton />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" isButton />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" isButton />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="4" class="primary" isButton />
-    `
-  })
-}
-
-export const Size = {
-  render: (args) => ({
-    components: { BaseCheckbox },
-    setup: () => ({ args }),
-    template: `
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" class="small" outline />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" outline />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" class="large" outline />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" size="sm" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" />
+      <BaseCheckbox v-bind="args" v-model="args.modelValue" size="lg" />
     `
   })
 }

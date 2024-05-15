@@ -1,165 +1,110 @@
-<script setup>
-const props = defineProps({
-  label: {
-    type: String,
-    default: ''
-  },
-  modelValue: {
-    /** @type import('vue').PropType<boolean|Array<string|number>> */
-    type: [Array, Boolean],
-    default: false
-  },
-  value: {
-    type: String,
-    default: ''
-  },
-  outline: {
-    type: Boolean,
-    default: false
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  readonly: {
-    type: Boolean,
-    default: false
-  },
-  isLabel: {
-    type: Boolean,
-    default: true
-  },
-  isButton: {
-    type: Boolean,
-    default: false
-  }
-})
-const emit = defineEmits(['update:modelValue'])
-const syncValue = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+<script setup lang="ts">
+export interface Props {
+  class?: string
+  checkboxClass?: string
+  color?: 'black' | 'primary'
+  size?: 'sm' | 'md' | 'lg'
+  label?: string
+  name?: string
+  value?: string
+  readonly?: boolean
+  disabled?: boolean
+  isLabel?: boolean
+  button?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  class: '',
+  checkboxClass: '',
+  color: 'black',
+  size: 'md',
+  label: '',
+  name: '',
+  value: '',
+  readonly: false,
+  disabled: false,
+  isLabel: true,
+  button: false
 })
 
+const syncValue = defineModel<boolean | Array<string>>()
+
 const isChecked = computed(() => {
+  if (syncValue.value === undefined) return false
   if (typeof syncValue.value === 'boolean') {
     return syncValue.value
   } else {
     return syncValue.value.includes(props.value)
   }
 })
+
+const colors = {
+  base: {
+    black: 'text-black',
+    primary: 'text-primary'
+  },
+  radio: {
+    black: 'border border-black',
+    primary: 'border border-primary'
+  },
+  button: {
+    black: 'bg-black text-white',
+    primary: 'bg-primary text-white'
+  },
+  border: {
+    black: 'ring-1 ring-inset ring-black',
+    primary: 'ring-1 ring-inset ring-primary'
+  }
+}
+
+const sizes = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg'
+}
+
+const classes = computed(() => {
+  const baseClass = 'inline-flex items-center px-4 py-2 rounded-md outline-none group'
+  const colorClass = colors.base[props.color]
+  const buttonClass = props.button ? colors.border[props.color] : ''
+  const checkClass = props.button && isChecked.value ? colors.button[props.color] : ''
+  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+  return twMerge(baseClass, colorClass, buttonClass, checkClass, disabledClass, props.class)
+})
+
+const labelClasses = computed(() => {
+  const sizeClass = sizes[props.size]
+  return twMerge(sizeClass)
+})
+
+const checkboxClasses = computed(() => {
+  const baseClass = 'w-4 h-4 border border-black rounded mr-2 flex items-center justify-center'
+  const colorClass = colors.radio[props.color]
+  const buttonClass = props.button ? 'hidden' : ''
+  return twMerge(baseClass, colorClass, buttonClass, props.checkboxClass)
+})
 </script>
 
 <template>
   <component
     :is="isLabel ? 'label' : 'div'"
-    class="base-checkbox"
-    :class="{
-      'base-checkbox--outline': outline,
-      'is-button': isButton,
-      'is-disabled': disabled,
-      'is-checked': isChecked
-    }"
+    :class="[classes, isChecked ? 'is-checked' : '']"
   >
     <input
+      v-show="false"
       v-model="syncValue"
       :value="value"
       type="checkbox"
       :disabled="disabled || readonly"
     />
-    <div class="base-checkbox__checkbox">
-      <IconCheck />
+    <div :class="checkboxClasses">
+      <IconCheck v-if="isChecked" />
     </div>
     <div
       v-if="label"
-      class="base-checkbox__label"
+      :class="labelClasses"
     >
       {{ label }}
     </div>
   </component>
 </template>
-
-<style lang="scss" scoped>
-input[type='checkbox'] {
-  display: none;
-  opacity: 0;
-  outline: none;
-  position: absolute;
-  margin: 0;
-  width: 0;
-  height: 0;
-  z-index: -1;
-}
-
-.base-checkbox {
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
-  border-radius: var(--base-border-radius);
-  padding: var(--base-padding);
-
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-
-  --color: var(--base-color);
-  --sub-color: var(--base-sub-color);
-  color: var(--color);
-  background: var(--sub-color);
-
-  &:hover {
-    --base-border-color: var(--color);
-  }
-  .base-checkbox__checkbox {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--base-border-color);
-    border-radius: 4px;
-    margin-right: var(--base-padding);
-
-    @at-root .is-checked#{&} {
-      color: var(--sub-color);
-      background: var(--color);
-      border-color: var(--color);
-    }
-  }
-
-  :deep(svg) {
-    width: 80%;
-    display: none;
-    fill: currentColor;
-    @at-root .is-checked#{&} {
-      display: block;
-    }
-  }
-
-  &__label {
-    display: flex;
-    align-items: center;
-  }
-
-  &--outline {
-    color: var(--color);
-    border: var(--base-border-size) solid;
-  }
-
-  &.is-button {
-    color: var(--color);
-    border: var(--base-border-size) solid;
-    .base-checkbox__checkbox {
-      display: none;
-    }
-    &.is-checked,
-    &:hover {
-      color: var(--sub-color);
-      background: var(--color);
-    }
-  }
-
-  &.is-disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-}
-</style>

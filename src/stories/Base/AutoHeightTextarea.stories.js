@@ -1,12 +1,11 @@
 import BaseAutoHeightTextarea from '@/components/base/BaseAutoHeightTextarea.vue'
 
-// More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  component: BaseAutoHeightTextarea,
   args: {
     placeholder: '請輸入',
     modelValue: ''
   },
+  component: BaseAutoHeightTextarea,
   render: (args) => ({
     components: { BaseAutoHeightTextarea },
     setup: () => ({ args }),
@@ -21,13 +20,16 @@ export const Default = {
 }
 
 export const Size = {
+  args: {
+    class: 'mb-2'
+  },
   render: (args) => ({
     components: { BaseAutoHeightTextarea },
     setup: () => ({ args }),
     template: `
-      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" class="small" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" size="sm" />
       <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" />
-      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" class="large" />
+      <BaseAutoHeightTextarea v-bind="args" v-model="args.modelValue" size="lg" />
     `
   })
 }

@@ -1,13 +1,12 @@
 import BaseRadio from '@/components/base/BaseRadio.vue'
 import BaseField from '@/components/base/BaseField.vue'
 
-// More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 export default {
-  component: BaseRadio,
   args: {
     label: 'Radio',
     modelValue: ''
   },
+  component: BaseRadio,
   render: (args) => ({
     components: { BaseRadio },
     setup: () => ({ args }),
@@ -24,13 +23,10 @@ export default {
 
 export const Default = {}
 
-export const Outline = {
-  args: {
-    outline: true
-  }
-}
-
 export const Color = {
+  args: {
+    class: 'mr-2',
+  },
   render: (args) => ({
     components: { BaseRadio },
     setup: () => ({ args }),
@@ -40,27 +36,9 @@ export const Color = {
       </div>
       <br>
       <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" class="primary" />
-      <br>
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" outline />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="4" class="primary" outline />
-    `
-  })
-}
-
-export const Button = {
-  render: (args) => ({
-    components: { BaseRadio },
-    setup: () => ({ args }),
-    template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" isButton />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" isButton />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" isButton />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="4" class="primary" isButton />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" color="primary" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" button />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="4" color="primary" button />
     `
   })
 }
@@ -70,11 +48,18 @@ export const Size = {
     components: { BaseRadio },
     setup: () => ({ args }),
     template: `
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" class="small" outline />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" outline />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" class="large" outline />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" size="sm" />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="2"  />
+      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" size="lg" />
     `
   })
+}
+
+export const Button = {
+  args: {
+    class: 'mr-2',
+    button: true
+  },
 }
 
 export const Readonly = {
@@ -92,7 +77,6 @@ export const Readonly = {
       <br>
       <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
       <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" outline />
     `
   })
 }
@@ -112,7 +96,6 @@ export const Disabled = {
       <br>
       <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
       <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" outline />
     `
   })
 }

@@ -2,7 +2,7 @@
 export interface Props {
   class?: string
   labelClass?: string
-  wrapClass?: string
+  contentClass?: string
   color?: 'black' | 'primary'
   size?: 'sm' | 'md' | 'lg'
   label?: string
@@ -14,6 +14,7 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {
   class: '',
   labelClass: '',
+  contentClass: '',
   color: 'black',
   size: 'md',
   label: '',
@@ -22,12 +23,12 @@ const props = withDefaults(defineProps<Props>(), {
   isLabel: true
 })
 
-const colorClasses = {
+const colors = {
   black: 'text-black',
   primary: 'text-primary'
 }
 
-const sizeClasses = {
+const sizes = {
   label: {
     sm: 'text-sm',
     md: 'text-base',
@@ -47,19 +48,19 @@ const classes = computed(() => {
 
 const labelClasses = computed(() => {
   const baseClass = props.oneLine ? 'font-bold mr-2 shrink-0' : 'font-bold mb-2'
-  const colorClass = colorClasses[props.color]
-  const sizeClass = sizeClasses.label[props.size]
+  const colorClass = colors[props.color]
+  const sizeClass = sizes.label[props.size]
   return twMerge(baseClass, colorClass, sizeClass, props.labelClass)
 })
 
-const wrapClasses = computed(() => {
+const contentClasses = computed(() => {
   const baseClass = 'relative w-full'
-  return twMerge(baseClass)
+  return twMerge(baseClass, props.contentClass)
 })
 
 const errorClasses = computed(() => {
   const baseClass = 'text-error absolute left-0 top-full opacity-70'
-  const sizeClass = sizeClasses.error[props.size]
+  const sizeClass = sizes.error[props.size]
   return twMerge(baseClass, sizeClass)
 })
 </script>
@@ -77,7 +78,7 @@ const errorClasses = computed(() => {
     </div>
     <div
       v-if="!!$slots.default"
-      :class="wrapClasses"
+      :class="contentClasses"
     >
       <slot />
       <div
