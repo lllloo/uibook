@@ -1,49 +1,67 @@
 <script setup lang="ts">
-export interface Props {
-  class?: string
-  color?: 'black' | 'primary'
-  size?: 'sm' | 'md' | 'lg'
+const button = cva(['px-4 py-2 rounded-md shadow-md'], {
+  variants: {
+    color: {
+      black: 'bg-black text-white  hover:bg-black/70',
+      primary: ' bg-primary text-white hover:bg-primary/70'
+    },
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg'
+    },
+    outline: {
+      true: 'ring-1 ring-inset'
+    },
+    disabled: {
+      true: 'opacity-50 cursor-not-allowed'
+    }
+  },
+  compoundVariants: [
+    {
+      color: 'black',
+      outline: true,
+      class: 'bg-white text-black  ring-black hover:bg-black/10'
+    },
+    {
+      color: 'primary',
+      outline: true,
+      class: 'bg-white text-primary  ring-primary hover:bg-primary/10'
+    }
+  ],
+  defaultVariants: { color: 'black', outline: false, size: 'md' }
+})
+
+export interface Props extends VariantProps<typeof button> {
   outline?: boolean
   disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  class: '',
   color: 'black',
   size: 'md',
   outline: false,
   disabled: false
 })
 
-const colors = {
-  black: 'text-white bg-black hover:bg-black/70',
-  primary: 'text-white bg-primary hover:bg-primary/70'
-}
-
-const outlineColors = {
-  black: 'text-black ring-1 ring-inset ring-black hover:bg-black/10',
-  primary: 'text-primary ring-1 ring-inset ring-primary hover:bg-primary/10'
-}
-
-const sizes = {
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg'
-}
-
-const classes = computed(() => {
-  const baseClass = 'px-4 py-2 rounded-md shadow-md'
-  const colorClass = props.outline ? outlineColors[props.color] : colors[props.color]
-  const sizeClass = sizes[props.size]
-  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
-  return twMerge(baseClass, colorClass, sizeClass, disabledClass, props.class)
+const attrs = useAttrs()
+const className = computed(() => {
+  return twMerge(
+    button({
+      color: props.color,
+      size: props.size,
+      outline: props.outline,
+      disabled: props.disabled
+    }),
+    attrs.class as string
+  )
 })
 </script>
 
 <template>
   <button
     type="button"
-    :class="classes"
+    :class="className"
   >
     <slot />
   </button>

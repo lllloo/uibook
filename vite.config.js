@@ -24,6 +24,11 @@ export default defineConfig({
         "vue", 
         "vue-router",
         {
+          'class-variance-authority': [
+            'cva'
+          ]
+        },
+        {
           'tailwind-merge': [
             'twMerge'
           ],
@@ -32,6 +37,11 @@ export default defineConfig({
           '@/js/baseService': [
             'baseGet', 'basePost'
           ],
+        },
+        {
+          from: 'class-variance-authority',
+          imports: ['VariantProps'],
+          type: true,
         },
       ],
       dts: true,
