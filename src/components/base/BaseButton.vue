@@ -32,7 +32,7 @@ const button = cva(['px-4 py-2 rounded-md shadow-md'], {
   defaultVariants: { color: 'black', outline: false, size: 'md' }
 })
 
-export interface Props extends VariantProps<typeof button> {
+export interface Props extends /** @vue-ignore */ VariantProps<typeof button> {
   outline?: boolean
   disabled?: boolean
 }
