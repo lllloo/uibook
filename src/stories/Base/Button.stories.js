@@ -3,10 +3,10 @@ import BaseButton from '@/components/base/BaseButton.vue'
 export default {
   argTypes: {
     color: {
-      control: 'text',
+      control: 'text'
     },
     size: {
-      control: 'text',
+      control: 'text'
     }
   },
   component: BaseButton,
@@ -28,7 +28,7 @@ export const Default = {
 export const Color = {
   args: {
     color: 'primary'
-  },
+  }
 }
 
 export const Size = {
@@ -55,11 +55,19 @@ export const Size = {
 export const OutLine = {
   args: {
     outline: true
-  },
+  }
 }
 
 export const Disabled = {
   args: {
     disabled: true
-  },
+  }
+}
+
+export const Link = {
+  args: {
+    tag: 'a',
+    href: 'https://www.google.com',
+    target: '_blank'
+  }
 }
