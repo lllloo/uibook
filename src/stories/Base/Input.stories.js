@@ -23,7 +23,7 @@ export const Default = {
 export const Color = {
   args: {
     color: 'primary'
-  },
+  }
 }
 
 export const Size = {
@@ -38,55 +38,10 @@ export const Size = {
   })
 }
 
-export const Icon = {
-  render: (args) => ({
-    components: { BaseInput, IconSearch },
-    setup: () => ({ args }),
-    template: `
-      <BaseInput v-bind="args" v-model="args.modelValue" class="mb-2">
-        <template #prefix>
-          <IconSearch />
-        </template>
-      </BaseInput>
-      <BaseInput v-bind="args" v-model="args.modelValue" color="primary" class="mb-2">
-        <template #prefix>
-          <IconSearch />
-        </template>
-      </BaseInput>
-      <BaseInput v-bind="args" v-model="args.modelValue" class="mb-2">
-        <template #suffix>
-          <IconSearch />
-        </template>
-      </BaseInput>
-    `
-  })
-}
-
-export const Password = {
+export const OutLine = {
   args: {
-    type: 'password'
-  },
-  render: (args) => ({
-    components: { BaseInput, IconSearch },
-    setup: () => ({ args }),
-    template: `
-      <BaseInput v-bind="args" v-model="args.modelValue" class="mb-2">
-        <template #prefix>
-          <IconSearch />
-        </template>
-      </BaseInput>
-      <BaseInput v-bind="args" v-model="args.modelValue" color="primary" class="mb-2">
-        <template #prefix>
-          <IconSearch />
-        </template>
-      </BaseInput>
-      <BaseInput v-bind="args" v-model="args.modelValue" color="primary">
-        <template #suffix>
-          <IconSearch />
-        </template>
-      </BaseInput>
-    `
-  })
+    outline: false
+  }
 }
 
 export const Readonly = {
@@ -98,5 +53,5 @@ export const Readonly = {
 export const Disabled = {
   args: {
     disabled: true
-  },
+  }
 }
