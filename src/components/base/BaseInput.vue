@@ -52,7 +52,7 @@ const className = computed(() => {
   )
 })
 
-const value = defineModel<string>()
+const value = defineModel<string|number>()
 const isPassword = computed(() => attrs.type === 'password')
 </script>
 

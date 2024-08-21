@@ -4,14 +4,25 @@ import BaseInput from '@/components/base/BaseInput.vue'
 export default {
   component: BaseField,
   args: {
-    label: '標題'
+    label: '標題',
+    name: 'name',
+    modelValue: ''
   },
   render: (args) => ({
     components: { BaseField, BaseInput },
     setup: () => ({ args }),
     template: `
-      <BaseField v-bind="args">
-        <BaseInput placeholder="請輸入" />
+      <BaseField
+        v-bind="args"
+        v-model="args.modelValue"
+        v-slot="{ field }"
+        class="mb-4"
+      >
+        <BaseInput
+          v-model="field.value"
+          :name="field.name"
+          placeholder="請輸入"
+        />
       </BaseField>
     `
   })
@@ -22,41 +33,5 @@ export const Default = {}
 export const Color = {
   args: {
     color: 'primary'
-  },
-  render: (args) => ({
-    components: { BaseField, BaseInput },
-    setup: () => ({ args }),
-    template: `
-      <BaseField v-bind="args">
-        <BaseInput placeholder="請輸入" color="primary" />
-      </BaseField>
-    `
-  })
-}
-
-
-export const OneLine = {
-  args: {
-    label: '標題',
-    oneLine: true
   }
-}
-
-export const Error = {
-  args: {
-    label: '標題',
-    error: '必填'
-  },
-  render: (args) => ({
-    components: { BaseField, BaseInput },
-    setup: () => ({ args }),
-    template: `
-      <BaseField v-bind="args" class="mb-6">
-        <BaseInput placeholder="請輸入" />
-      </BaseField>
-      <BaseField v-bind="args" oneLine>
-        <BaseInput placeholder="請輸入" />
-      </BaseField>
-    `
-  })
 }

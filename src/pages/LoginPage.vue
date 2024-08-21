@@ -1,63 +1,67 @@
 <script setup>
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
 
 const schema = z.object({
-  account: z.string().min(1, { message: '必填' }),
-  password: z.string().min(1, { message: '必填' }),
+  account: z.string().min(1, { message: '必填' }).default(''),
+  password: z.string().min(1, { message: '必填' }).default('')
 })
 
 const data = reactive({
   account: '',
-  password: '',
+  password: ''
 })
+
+const { handleSubmit, resetForm } = useForm({
+  validationSchema: toTypedSchema(schema)
+})
+
+const login = handleSubmit((values) => {
+  alert(JSON.stringify(values, null, 2))
+})
+
 const error = ref({})
-const login = () => {
-  const result = schema.safeParse(data);
-  if (!result.success) {
-    error.value = result.error.format();
-    return;
-  }
-  error.value = {}
-  basePost('/login', data).then((res) => {
-    console.log(res)
-  })
-}
 </script>
 <template>
   <form class="flex w-full flex-col p-5">
-    {{ error }}
     <BaseField
       label="帳號"
-      :error="error?.account?._errors[0]"
+      name="account"
+      v-model="data.account"
+      v-slot="{ field }"
+      class="mb-4"
     >
       <BaseInput
-        v-model="data.account"
-        name="account"
+        v-model="field.value"
+        :name="field.name"
         placeholder="請輸入"
       />
     </BaseField>
     <BaseField
       label="密碼"
-      :error="error?.password?._errors[0]"
+      name="password"
+      v-model="data.password"
+      v-slot="{ field }"
     >
       <BaseInput
-        v-model="data.password"
-        name="password"
+        v-model="field.value"
+        :name="field.name"
         type="password"
         placeholder="請輸入"
       />
     </BaseField>
     <BaseButton
-      class="mt-10"
+      class="mb-2 mt-10"
       @click="login"
     >
       登入
     </BaseButton>
-
     <BaseButton
-      color="primary"
+      outline
+      @click="resetForm"
     >
-      123
+      取消
     </BaseButton>
   </form>
 </template>

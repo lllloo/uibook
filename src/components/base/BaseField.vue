@@ -1,92 +1,73 @@
 <script setup lang="ts">
+import { useField } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
+
+const fieldCva = cva(['w-full', 'transition-colors'], {
+  variants: {
+    color: {
+      default: 'text-black',
+      primary: 'text-primary'
+    },
+    size: {
+      default: 'text-base',
+      sm: 'text-sm',
+      lg: 'text-lg'
+    }
+  },
+  defaultVariants: {
+    color: 'default',
+    size: 'default'
+  }
+})
+
+type FieldVariants = VariantProps<typeof fieldCva>
 export interface Props {
-  class?: string
-  labelClass?: string
-  contentClass?: string
-  color?: 'black' | 'primary'
-  size?: 'sm' | 'md' | 'lg'
+  color?: FieldVariants['color']
+  size?: FieldVariants['size']
+  tag?: string
   label?: string
-  oneLine?: boolean
-  error?: string
-  isLabel?: boolean
+  name?: string
+  modelValue?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  class: '',
-  labelClass: '',
-  contentClass: '',
-  color: 'black',
-  size: 'md',
-  label: '',
-  oneLine: false,
-  error: '',
-  isLabel: true
+  tag: 'div',
+  name: ''
 })
 
-const colors = {
-  black: 'text-black',
-  primary: 'text-primary'
-}
-
-const sizes = {
-  label: {
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg'
-  },
-  error: {
-    sm: 'text-xs',
-    md: 'text-sm',
-    lg: 'text-base'
-  }
-}
-
-const classes = computed(() => {
-  const baseClass = props.oneLine ? 'flex items-center' : 'flex flex-col'
-  return twMerge(baseClass, props.class)
+const attrs = useAttrs()
+const className = computed(() => {
+  return twMerge(
+    fieldCva({
+      color: props.color,
+      size: props.size
+    }),
+    attrs.class as string
+  )
 })
 
-const labelClasses = computed(() => {
-  const baseClass = props.oneLine ? 'font-bold mr-2 shrink-0' : 'font-bold mb-2'
-  const colorClass = colors[props.color]
-  const sizeClass = sizes.label[props.size]
-  return twMerge(baseClass, colorClass, sizeClass, props.labelClass)
-})
-
-const contentClasses = computed(() => {
-  const baseClass = 'relative w-full'
-  return twMerge(baseClass, props.contentClass)
-})
-
-const errorClasses = computed(() => {
-  const baseClass = 'text-error absolute left-0 top-full opacity-70'
-  const sizeClass = sizes.error[props.size]
-  return twMerge(baseClass, sizeClass)
-})
+const field = reactive(useField<Props['modelValue']>(() => props.name, undefined))
 </script>
 
 <template>
   <component
-    :is="isLabel ? 'label' : 'div'"
-    :class="classes"
+    :is="tag"
+    :class="className"
   >
-    <div
-      v-if="label"
-      :class="labelClasses"
+    <label
+      v-if="props.label"
+      :for="props.name"
+      class="mb-1 inline-block text-base font-bold"
     >
-      {{ label }}
-    </div>
-    <div
-      v-if="!!$slots.default"
-      :class="contentClasses"
+      {{ props.label }}
+    </label>
+    <slot :field="field" />
+    <span
+      v-if="field.errorMessage"
+      class="text-sm text-red-500"
     >
-      <slot />
-      <div
-        v-if="error"
-        :class="errorClasses"
-      >
-        {{ error }}
-      </div>
-    </div>
+      {{ field.errorMessage }}
+    </span>
   </component>
 </template>

@@ -45,7 +45,7 @@ type ButtonVariants = VariantProps<typeof button>
 export interface Props {
   color?: ButtonVariants['color']
   size?: ButtonVariants['size']
-  outline?: ButtonVariants['outline']
+  outline?: boolean
   tag?: string
 }
 
@@ -70,6 +70,7 @@ const className = computed(() => {
   <component
     :is="tag"
     :class="className"
+    type="button"
   >
     <slot />
   </component>
