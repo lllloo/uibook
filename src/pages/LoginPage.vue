@@ -6,6 +6,7 @@ import { z } from 'zod'
 const schema = z.object({
   account: z.string().min(1, { message: '必填' }).default(''),
   password: z.string().min(1, { message: '必填' }).default(''),
+  gender: z.enum(['M', 'F'], { message: '必填' }),
   check: z
     .boolean()
     .refine((value) => value === true, '必填')
@@ -15,6 +16,7 @@ const schema = z.object({
 const data = reactive({
   account: '',
   password: '',
+  gender: '',
   check: false
 })
 
@@ -56,6 +58,31 @@ const error = ref({})
         type="password"
         placeholder="請輸入"
       />
+    </BaseField>
+
+    <BaseField
+      label="性別"
+      name="gender"
+      v-model="data.gender"
+      v-slot="{ field }"
+      class="mb-4"
+    >
+      <label class="inline-flex items-center">
+        <BaseRadio
+          v-model="field.value"
+          :name="field.name"
+          value="M"
+        />
+        <span class="ml-2"> 男 </span>
+      </label>
+      <label class="ml-4 inline-flex items-center">
+        <BaseRadio
+          v-model="field.value"
+          :name="field.name"
+          value="F"
+        />
+        <span class="ml-2"> 女 </span>
+      </label>
     </BaseField>
 
     <BaseField

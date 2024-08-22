@@ -15,8 +15,18 @@ export default {
         value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
+        <span class="ml-2">
+          1
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
+        <span class="ml-2">
+          2
+        </span>
+      </label>
     `
   })
 }
@@ -25,7 +35,7 @@ export const Default = {}
 
 export const Color = {
   args: {
-    class: 'mr-2',
+    class: 'mr-2'
   },
   render: (args) => ({
     components: { BaseRadio },
@@ -35,10 +45,30 @@ export const Color = {
         value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" color="primary" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" button />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="4" color="primary" button />
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="1" color="primary" />
+        <span class="ml-2">
+          1
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="2" color="primary" />
+        <span class="ml-2">
+          2
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="3" color="primary" />
+        <span class="ml-2">
+          3
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="4" color="primary" />
+        <span class="ml-2">
+          4
+        </span>
+      </label>
     `
   })
 }
@@ -48,71 +78,30 @@ export const Size = {
     components: { BaseRadio },
     setup: () => ({ args }),
     template: `
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" size="sm" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2"  />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="3" size="lg" />
-    `
-  })
-}
-
-export const Button = {
-  args: {
-    class: 'mr-2',
-    button: true
-  },
-}
-
-export const Readonly = {
-  args: {
-    readonly: true,
-    modelValue: '1'
-  },
-  render: (args) => ({
-    components: { BaseRadio },
-    setup: () => ({ args }),
-    template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="sm" size="sm" />
+        <span class="ml-2">
+          sm
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="default" />
+        <span class="ml-2">
+          default
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseRadio v-bind="args" v-model="args.modelValue" value="lg" size="lg" />
+        <span class="ml-2">
+          lg
+        </span>
+      </label>
     `
   })
 }
 
 export const Disabled = {
   args: {
-    disabled: true,
-    modelValue: '1'
-  },
-  render: (args) => ({
-    components: { BaseRadio },
-    setup: () => ({ args }),
-    template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
-    `
-  })
-}
-
-export const WithWrap = {
-  render: (args) => ({
-    components: { BaseField, BaseRadio },
-    setup: () => ({ args }),
-    template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseField label="標題">
-        <BaseRadio v-bind="args" v-model="args.modelValue" value="1" />
-        <BaseRadio v-bind="args" v-model="args.modelValue" value="2" />
-      </BaseField>
-    `
-  })
+    disabled: true
+  }
 }

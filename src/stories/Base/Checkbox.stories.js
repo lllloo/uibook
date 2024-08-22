@@ -21,7 +21,7 @@ export default {
       </div>
       <br>
       <label class="flex items-center">
-        <BaseCheckbox v-bind="args" v-model="args.modelValue" name="name" />
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" />
         <span class="ml-2">
           標題
         </span>

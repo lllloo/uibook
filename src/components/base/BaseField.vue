@@ -58,16 +58,16 @@ const field = reactive(useField<Props['modelValue']>(() => props.name, undefined
     <label
       v-if="props.label"
       :for="props.name"
-      class="mb-1 inline-block text-base font-bold"
+      class="mb-1 block text-base font-bold"
     >
       {{ props.label }}
     </label>
     <slot :field="field" />
-    <span
+    <div
       v-if="field.errorMessage"
       class="text-sm text-red-500"
     >
       {{ field.errorMessage }}
-    </span>
+    </div>
   </component>
 </template>
