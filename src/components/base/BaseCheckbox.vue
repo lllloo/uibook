@@ -1,110 +1,57 @@
 <script setup lang="ts">
+const checkbox = cva(
+  [
+    'h-4 w-4 rounded shadow-md',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+    'transition-colors',
+    'disabled:cursor-not-allowed disabled:opacity-50',
+    'appearance-none'
+  ],
+  {
+    variants: {
+      color: {
+        default: 'border border-black/50 checked:bg-black text-black',
+        primary: 'border border-primary/50 checked:bg-primary text-primary'
+      },
+      size: {
+        default: '',
+        sm: 'h-3.5 w-3.5',
+        lg: 'h-5 w-5'
+      }
+    },
+    defaultVariants: {
+      color: 'default',
+      size: 'default'
+    }
+  }
+)
+
+type CheckboxVariants = VariantProps<typeof checkbox>
 export interface Props {
-  class?: string
-  checkboxClass?: string
-  color?: 'black' | 'primary'
-  size?: 'sm' | 'md' | 'lg'
-  label?: string
-  name?: string
-  value?: string
-  readonly?: boolean
-  disabled?: boolean
-  isLabel?: boolean
-  button?: boolean
+  color?: CheckboxVariants['color']
+  size?: CheckboxVariants['size']
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  class: '',
-  checkboxClass: '',
-  color: 'black',
-  size: 'md',
-  label: '',
-  name: '',
-  value: '',
-  readonly: false,
-  disabled: false,
-  isLabel: true,
-  button: false
+const props = withDefaults(defineProps<Props>(), {})
+
+const attrs = useAttrs()
+const className = computed(() => {
+  return twMerge(
+    checkbox({
+      color: props.color,
+      size: props.size
+    }),
+    attrs.class as string
+  )
 })
 
-const syncValue = defineModel<boolean | Array<string>>()
-
-const isChecked = computed(() => {
-  if (syncValue.value === undefined) return false
-  if (typeof syncValue.value === 'boolean') {
-    return syncValue.value
-  } else {
-    return syncValue.value.includes(props.value)
-  }
-})
-
-const colors = {
-  base: {
-    black: 'text-black',
-    primary: 'text-primary'
-  },
-  radio: {
-    black: 'border border-black',
-    primary: 'border border-primary'
-  },
-  button: {
-    black: 'bg-black text-white',
-    primary: 'bg-primary text-white'
-  },
-  border: {
-    black: 'ring-1 ring-inset ring-black',
-    primary: 'ring-1 ring-inset ring-primary'
-  }
-}
-
-const sizes = {
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg'
-}
-
-const classes = computed(() => {
-  const baseClass = 'inline-flex items-center px-4 py-2 rounded-md outline-none group'
-  const colorClass = colors.base[props.color]
-  const buttonClass = props.button ? colors.border[props.color] : ''
-  const checkClass = props.button && isChecked.value ? colors.button[props.color] : ''
-  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
-  return twMerge(baseClass, colorClass, buttonClass, checkClass, disabledClass, props.class)
-})
-
-const labelClasses = computed(() => {
-  const sizeClass = sizes[props.size]
-  return twMerge(sizeClass)
-})
-
-const checkboxClasses = computed(() => {
-  const baseClass = 'w-4 h-4 border border-black rounded mr-2 flex items-center justify-center'
-  const colorClass = colors.radio[props.color]
-  const buttonClass = props.button ? 'hidden' : ''
-  return twMerge(baseClass, colorClass, buttonClass, props.checkboxClass)
-})
+const value = defineModel<string | number>()
 </script>
 
 <template>
-  <component
-    :is="isLabel ? 'label' : 'div'"
-    :class="[classes, isChecked ? 'is-checked' : '']"
-  >
-    <input
-      v-show="false"
-      v-model="syncValue"
-      :value="value"
-      type="checkbox"
-      :disabled="disabled || readonly"
-    />
-    <div :class="checkboxClasses">
-      <IconCheck v-if="isChecked" />
-    </div>
-    <div
-      v-if="label"
-      :class="labelClasses"
-    >
-      {{ label }}
-    </div>
-  </component>
+  <input
+    v-model="value"
+    :class="className"
+    type="checkbox"
+  />
 </template>

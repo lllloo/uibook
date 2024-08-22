@@ -28,7 +28,7 @@ export interface Props {
   tag?: string
   label?: string
   name?: string
-  modelValue?: string
+  modelValue?: any
 }
 
 const props = withDefaults(defineProps<Props>(), {

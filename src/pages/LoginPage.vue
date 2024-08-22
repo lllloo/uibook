@@ -5,12 +5,17 @@ import { z } from 'zod'
 
 const schema = z.object({
   account: z.string().min(1, { message: '必填' }).default(''),
-  password: z.string().min(1, { message: '必填' }).default('')
+  password: z.string().min(1, { message: '必填' }).default(''),
+  check: z
+    .boolean()
+    .refine((value) => value === true, '必填')
+    .default(false)
 })
 
 const data = reactive({
   account: '',
-  password: ''
+  password: '',
+  check: false
 })
 
 const { handleSubmit, resetForm } = useForm({
@@ -43,6 +48,7 @@ const error = ref({})
       name="password"
       v-model="data.password"
       v-slot="{ field }"
+      class="mb-4"
     >
       <BaseInput
         v-model="field.value"
@@ -51,6 +57,21 @@ const error = ref({})
         placeholder="請輸入"
       />
     </BaseField>
+
+    <BaseField
+      name="check"
+      v-model="data.check"
+      v-slot="{ field }"
+    >
+      <label class="flex items-center">
+        <BaseCheckbox
+          v-model="field.value"
+          :name="field.name"
+        />
+        <span class="ml-2"> 同意會員規則 </span>
+      </label>
+    </BaseField>
+
     <BaseButton
       class="mb-2 mt-10"
       @click="login"

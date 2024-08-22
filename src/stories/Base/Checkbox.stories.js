@@ -20,18 +20,17 @@ export default {
         value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" />
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" name="name" />
+        <span class="ml-2">
+          標題
+        </span>
+      </label>
     `
   })
 }
 
 export const Default = {}
-
-export const Outline = {
-  args: {
-    outline: true
-  }
-}
 
 export const Color = {
   argTypes: {
@@ -52,18 +51,32 @@ export const Color = {
         value: {{args.modelValue}}<br>
       </div>
       <br>
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" color="primary" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" button />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="4" color="primary" button />
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" color="primary" />
+        <span class="ml-2">
+          1
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" color="primary" />
+        <span class="ml-2">
+          2
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" color="primary" />
+        <span class="ml-2">
+          3
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="4" color="primary" />
+        <span class="ml-2">
+          4
+        </span>
+      </label>
     `
   })
-}
-
-export const Button = {
-  args: {
-    button: true
-  },
 }
 
 export const Size = {
@@ -80,87 +93,30 @@ export const Size = {
     components: { BaseCheckbox },
     setup: () => ({ args }),
     template: `
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" size="sm" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" size="lg" />
-    `
-  })
-}
-
-export const Readonly = {
-  argTypes: {
-    modelValue: {
-      control: 'array',
-      name: 'v-model'
-    }
-  },
-  args: {
-    readonly: true,
-    modelValue: ['1']
-  },
-  render: (args) => ({
-    components: { BaseCheckbox },
-    setup: () => ({ args }),
-    template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" outline />
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="sm" size="sm" />
+        <span class="ml-2">
+          sm
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="default" />
+        <span class="ml-2">
+          default
+        </span>
+      </label>
+      <label class="flex items-center">
+        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="lg" size="lg" />
+        <span class="ml-2">
+          lg
+        </span>
+      </label>
     `
   })
 }
 
 export const Disabled = {
-  argTypes: {
-    modelValue: {
-      control: 'array',
-      name: 'v-model'
-    }
-  },
   args: {
-    disabled: true,
-    modelValue: ['1']
-  },
-  render: (args) => ({
-    components: { BaseCheckbox },
-    setup: () => ({ args }),
-    template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" />
-      <BaseCheckbox v-bind="args" v-model="args.modelValue" value="3" outline />
-    `
-  })
-}
-
-export const WithWrap = {
-  argTypes: {
-    modelValue: {
-      control: 'array',
-      name: 'v-model'
-    }
-  },
-  args: {
-    modelValue: []
-  },
-  render: (args) => ({
-    components: { BaseField, BaseCheckbox },
-    setup: () => ({ args }),
-    template: `
-      <div>
-        value: {{args.modelValue}}<br>
-      </div>
-      <br>
-      <BaseField label="標題">
-        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="1" style="margin-right: 10px;" />
-        <BaseCheckbox v-bind="args" v-model="args.modelValue" value="2" />
-      </BaseField>
-    `
-  })
+    disabled: true
+  }
 }
