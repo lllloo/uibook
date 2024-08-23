@@ -14,7 +14,8 @@ const input = cva(
         primary: 'text-primary  border-primary/50 focus:border-primary ring-primary/70'
       },
       outline: {
-        true: 'border py-[7px]'
+        true: 'border py-[7px]',
+        false: 'border-none'
       },
       size: {
         default: 'text-base',
@@ -34,10 +35,12 @@ export interface Props {
   color?: InputVariants['color']
   size?: InputVariants['size']
   outline?: InputVariants['outline']
+  tag?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  outline: true
+  outline: true,
+  tag: 'input'
 })
 
 const attrs = useAttrs()
@@ -52,13 +55,14 @@ const className = computed(() => {
   )
 })
 
-const value = defineModel<string|number>()
+const value = defineModel<any>()
 const isPassword = computed(() => attrs.type === 'password')
 </script>
 
 <template>
-  <input
+  <component
     v-model="value"
+    :is="tag"
     :class="className"
     :autocomplete="isPassword ? 'off' : 'on'"
   />

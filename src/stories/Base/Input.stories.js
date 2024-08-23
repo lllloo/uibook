@@ -1,5 +1,4 @@
 import BaseInput from '@/components/base/BaseInput.vue'
-import IconSearch from '@/components/icons/IconSearch.vue'
 
 export default {
   args: {
