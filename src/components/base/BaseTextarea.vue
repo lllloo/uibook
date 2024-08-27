@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const input = cva(
+import { useTextareaAutosize } from '@vueuse/core'
+const textarea = cva(
   [
     'w-full',
     'px-4 py-2 rounded-md shadow-md',
@@ -30,21 +31,23 @@ const input = cva(
   }
 )
 
-type InputVariants = VariantProps<typeof input>
+type TextareaVariants = VariantProps<typeof textarea>
 export interface Props {
-  color?: InputVariants['color']
-  size?: InputVariants['size']
-  outline?: InputVariants['outline']
+  color?: TextareaVariants['color']
+  size?: TextareaVariants['size']
+  outline?: TextareaVariants['outline']
+  autoHeight?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  outline: true
+  outline: true,
+  autoHeight: false
 })
 
 const attrs = useAttrs()
 const className = computed(() => {
   return twMerge(
-    input({
+    textarea({
       color: props.color,
       size: props.size,
       outline: props.outline
@@ -54,13 +57,33 @@ const className = computed(() => {
 })
 
 const value = defineModel<any>()
-const isPassword = computed(() => attrs.type === 'password')
+
+const textareaRef = ref()
+if (props.autoHeight) {
+  useTextareaAutosize({
+    input: value,
+    element: textareaRef,
+    styleProp: 'minHeight'
+  })
+}
 </script>
 
 <template>
-  <input
+  <textarea
     v-model="value"
     :class="className"
-    :autocomplete="isPassword ? 'off' : 'on'"
+    rows="2"
+    ref="textareaRef"
   />
 </template>
+
+<style lang="scss" scoped>
+textarea {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+</style>
