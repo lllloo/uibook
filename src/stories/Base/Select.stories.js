@@ -40,9 +40,9 @@ export const Size = {
     components: { BaseSelect },
     setup: () => ({ args }),
     template: `
-      <BaseSelect v-bind="args" v-model="args.modelValue" class="small" />
-      <BaseSelect v-bind="args" v-model="args.modelValue" />
-      <BaseSelect v-bind="args" v-model="args.modelValue" class="large" />
+      <BaseSelect v-bind="args" v-model="args.modelValue" size="sm" class="mb-2"  />
+      <BaseSelect v-bind="args" v-model="args.modelValue" class="mb-2" />
+      <BaseSelect v-bind="args" v-model="args.modelValue" size="lg" />
     `
   })
 }
@@ -51,16 +51,4 @@ export const Disabled = {
   args: {
     disabled: true
   }
-}
-
-export const WithWrap = {
-  render: (args) => ({
-    components: { BaseField, BaseSelect },
-    setup: () => ({ args }),
-    template: `
-      <BaseField label="標題">
-        <BaseSelect v-bind="args" v-model="args.modelValue" />
-      </BaseField>
-    `
-  })
 }
