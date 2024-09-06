@@ -8,13 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
-        black: '#000',
-        white: '#fff',
-        gray: colors.gray,
-        primary: '#3593c2',
-        error: colors.red[500]
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        ring: 'rgb(var(--color-ring) / <alpha-value>)',
       },
     }
   },

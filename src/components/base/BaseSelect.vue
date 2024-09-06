@@ -1,12 +1,11 @@
 <script setup lang="ts">
+import { baseCva } from './base'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 const select = cva(
   [
     'w-full text-left',
     'px-4 py-2 rounded-md shadow-md',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-    'transition-colors',
-    'disabled:cursor-not-allowed disabled:opacity-50'
+    ...baseCva
   ],
   {
     variants: {
@@ -80,8 +79,8 @@ const value = defineModel<any>()
         >
           <li
             :class="[
-              selected ? 'bg-amber-500 text-white' : '',
-              active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
+              selected ? 'bg-gray-300' : '',
+              active ? 'bg-gray-200' : '',
               'cursor-default select-none px-4 py-[7px]'
             ]"
           >

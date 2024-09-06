@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
 
 const fieldCva = cva(['w-full', 'transition-colors'], {
   variants: {

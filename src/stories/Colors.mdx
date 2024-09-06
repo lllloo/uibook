@@ -12,33 +12,19 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks'
   <ColorItem
     title="primary"
     colors={{
-      light: 'var(--color-primary-light)',
-      default: 'var(--color-primary)',
-      dark: 'var(--color-primary-dark)'
+      default: 'rgb(var(--color-primary))',
     }}
   />
   <ColorItem
-    title="success"
+    title="secondary"
     colors={{
-      light: 'var(--color-success-light)',
-      default: 'var(--color-success)',
-      dark: 'var(--color-success-dark)'
+      default: 'rgb(var(--color-secondary))',
     }}
   />
   <ColorItem
-    title="warning"
+    title="ring"
     colors={{
-      light: 'var(--color-warning-light)',
-      default: 'var(--color-warning)',
-      dark: 'var(--color-warning-dark)'
-    }}
-  />
-  <ColorItem
-    title="danger"
-    colors={{
-      light: 'var(--color-danger-light)',
-      default: 'var(--color-danger)',
-      dark: 'var(--color-danger-dark)'
+      default: 'rgb(var(--color-ring))',
     }}
   />
 </ColorPalette>
