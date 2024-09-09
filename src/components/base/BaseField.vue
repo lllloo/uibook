@@ -23,14 +23,12 @@ type FieldVariants = VariantProps<typeof fieldCva>
 export interface Props {
   color?: FieldVariants['color']
   size?: FieldVariants['size']
-  tag?: string
   label?: string
   name?: string
   modelValue?: any
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  tag: 'div',
   name: ''
 })
 
@@ -50,16 +48,17 @@ const field = reactive(useField<Props['modelValue']>(() => props.name, undefined
 
 <template>
   <component
-    :is="tag"
+    :is="label ? 'label' : 'div'"
     :class="className"
   >
-    <label
+    <component
+      :is="label ? 'span' : 'label'"
       v-if="props.label"
       :for="props.name"
       class="mb-1 block text-base font-bold"
     >
       {{ props.label }}
-    </label>
+    </component>
     <slot :field="field" />
     <div
       v-if="field.errorMessage"
