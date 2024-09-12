@@ -113,5 +113,17 @@ const data = reactive({
         ]"
       />
     </BaseField>
+
+    <BaseField
+      label="時間"
+      class="mb-4"
+    >
+      <BaseDatepicker
+        auto-apply
+        :enable-time-picker="false"
+        format="yyyy/MM/dd"
+        model-type="yyyy/MM/dd"
+      />
+    </BaseField>
   </div>
 </template>
