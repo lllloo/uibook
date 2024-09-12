@@ -54,8 +54,8 @@ const value = defineModel<any>()
 
 <template>
   <Listbox
-    as="div"
     v-model="value"
+    as="div"
   >
     <div class="relative">
       <ListboxButton :class="className">{{ value?.label || placeholder }}</ListboxButton>
@@ -63,10 +63,10 @@ const value = defineModel<any>()
         class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-black bg-white"
       >
         <ListboxOption
-          class="py-1"
-          v-slot="{ active, selected }"
           v-for="item in options"
+          v-slot="{ active, selected }"
           :key="item.value"
+          class="py-1"
           :value="item"
           as="template"
         >

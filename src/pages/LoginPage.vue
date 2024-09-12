@@ -31,11 +31,11 @@ const login = handleSubmit((values) => {
 <template>
   <form class="flex w-full flex-col p-5">
     <BaseField
+      v-slot="{ field }"
+      v-model="data.account"
       label="帳號"
       name="account"
       class="mb-4"
-      v-model="data.account"
-      v-slot="{ field }"
     >
       <BaseInput
         v-bind="field"
@@ -44,11 +44,11 @@ const login = handleSubmit((values) => {
     </BaseField>
 
     <BaseField
+      v-slot="{ field }"
+      v-model="data.password"
       label="密碼"
       name="password"
       class="mb-4"
-      v-model="data.password"
-      v-slot="{ field }"
     >
       <BaseInput
         v-bind="field"
@@ -58,11 +58,11 @@ const login = handleSubmit((values) => {
     </BaseField>
 
     <BaseField
+      v-slot="{ field }"
+      v-model="data.gender"
       label="性別"
       name="gender"
       class="mb-4"
-      v-model="data.gender"
-      v-slot="{ field }"
     >
       <div>
         <label class="inline-flex items-center">
@@ -83,9 +83,9 @@ const login = handleSubmit((values) => {
     </BaseField>
 
     <BaseField
-      name="check"
-      v-model="data.check"
       v-slot="{ field }"
+      v-model="data.check"
+      name="check"
     >
       <label class="flex items-center">
         <BaseCheckbox v-bind="field" />

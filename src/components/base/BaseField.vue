@@ -56,9 +56,9 @@ const id = computed(() => `field-${props.name}`)
 
 <template>
   <Field
-    :name="name"
-    v-model="value"
     v-slot="{ field, errorMessage }"
+    v-model="value"
+    :name="name"
   >
     <div :class="className">
       <label

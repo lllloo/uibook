@@ -62,10 +62,10 @@ if (props.autoHeight) {
 
 <template>
   <textarea
+    ref="textareaRef"
     v-model="value"
     :class="className"
     rows="2"
-    ref="textareaRef"
   />
 </template>
 
