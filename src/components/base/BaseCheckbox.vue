@@ -37,7 +37,7 @@ const className = computed(() => {
   )
 })
 
-const value = defineModel<string | number>()
+const value = defineModel<string | number | string[]>()
 </script>
 
 <template>
