@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useField } from 'vee-validate'
+import { Field } from 'vee-validate'
 
 const fieldCva = cva(['w-full', 'transition-colors'], {
   variants: {
@@ -43,28 +43,38 @@ const className = computed(() => {
   )
 })
 
-const field = reactive(useField<Props['modelValue']>(() => props.name, undefined))
+const emit = defineEmits(['update:modelValue'])
+const value = computed({
+  get: () => props.modelValue,
+  set: (value) => {
+    emit('update:modelValue', value)
+  }
+})
+
+const id = computed(() => `field-${props.name}`)
 </script>
 
 <template>
-  <component
-    :is="label ? 'label' : 'div'"
-    :class="className"
+  <Field
+    :name="name"
+    v-model="value"
+    v-slot="{ field, errorMessage }"
   >
-    <component
-      :is="label ? 'span' : 'label'"
-      v-if="props.label"
-      :for="props.name"
-      class="mb-1 block text-base font-bold"
-    >
-      {{ props.label }}
-    </component>
-    <slot :field="field" />
-    <div
-      v-if="field.errorMessage"
-      class="text-sm text-red-500"
-    >
-      {{ field.errorMessage }}
+    <div :class="className">
+      <label
+        v-if="props.label"
+        :for="id"
+        class="mb-1 block text-base font-bold"
+      >
+        {{ props.label }}
+      </label>
+      <slot :field="{ id, ...field }" />
+      <div
+        v-if="errorMessage"
+        class="text-sm text-red-500"
+      >
+        {{ errorMessage }}
+      </div>
     </div>
-  </component>
+  </Field>
 </template>

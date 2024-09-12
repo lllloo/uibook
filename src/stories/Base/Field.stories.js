@@ -14,13 +14,13 @@ export default {
     template: `
       <BaseField
         v-bind="args"
-        v-model="args.modelValue"
         v-slot="{ field }"
+        v-model="args.modelValue"
         class="mb-4"
+        name="test"
       >
         <BaseInput
-          v-model="field.value"
-          :name="field.name"
+          v-bind="field"
           placeholder="請輸入"
         />
       </BaseField>
