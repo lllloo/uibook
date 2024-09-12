@@ -1,4 +1,4 @@
-import{_ as c}from"./BaseButton-C-yBJPsA.js";import"./vue.esm-bundler-CAdwILBD.js";import"./bundle-mjs-Ciha5a76.js";const O={argTypes:{color:{control:"text"},size:{control:"text"}},component:c,render:o=>({components:{BaseButton:c},setup:()=>({args:o}),template:`
+import{_ as c}from"./BaseButton--tLZRYuH.js";import"./vue.esm-bundler-CTq_6KXf.js";import"./bundle-mjs-Ciha5a76.js";const O={argTypes:{color:{control:"text"},size:{control:"text"}},component:c,render:o=>({components:{BaseButton:c},setup:()=>({args:o}),template:`
       <BaseButton v-bind="args">
         Button
       </BaseButton>

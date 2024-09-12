@@ -1,4 +1,4 @@
-import{_ as r}from"./BaseRadio-B0u9Gnnq.js";import"./BaseField-D-H150kA.js";import"./vue.esm-bundler-CAdwILBD.js";import"./bundle-mjs-Ciha5a76.js";const y={args:{label:"Radio",modelValue:""},component:r,render:e=>({components:{BaseRadio:r},setup:()=>({args:e}),template:`
+import{_ as r}from"./BaseRadio-U1pdi9CM.js";import"./BaseField-w0DDbMXK.js";import"./vue.esm-bundler-CTq_6KXf.js";import"./bundle-mjs-Ciha5a76.js";const y={args:{label:"Radio",modelValue:""},component:r,render:e=>({components:{BaseRadio:r},setup:()=>({args:e}),template:`
       <div>
         value: {{args.modelValue}}<br>
       </div>

@@ -1,4 +1,4 @@
-import{ae as o,af as a,ag as l,ah as e}from"./index-uJvwEu5t.js";import{u as s}from"./index-DWOW9I3r.js";import"./iframe-CWIrvhjD.js";import"../sb-preview/runtime.js";import"./index-D-8MO0q_.js";import"./index-CZMoOfTY.js";import"./index-DrFu-skq.js";function n(r){const t={a:"a",h1:"h1",p:"p",...s(),...r.components};return o.jsxs(o.Fragment,{children:[`
+import{ae as o,af as a,ag as l,ah as e}from"./index-gSQjqI_s.js";import{u as s}from"./index-CRvP8qXt.js";import"./iframe-BD-yvCso.js";import"../sb-preview/runtime.js";import"./index-D-8MO0q_.js";import"./index-CZMoOfTY.js";import"./index-DrFu-skq.js";function n(r){const t={a:"a",h1:"h1",p:"p",...s(),...r.components};return o.jsxs(o.Fragment,{children:[`
 `,`
 `,o.jsx(a,{title:"Colors"}),`
 `,o.jsx(t.h1,{id:"colors",children:"Colors"}),`

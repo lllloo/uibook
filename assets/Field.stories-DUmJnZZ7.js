@@ -1,4 +1,4 @@
-import{_ as a}from"./BaseField-D-H150kA.js";import{_ as p}from"./BaseInput-i9wc_U6B.js";import"./vue.esm-bundler-CAdwILBD.js";import"./bundle-mjs-Ciha5a76.js";const _={component:a,args:{label:"標題",name:"name",modelValue:""},render:c=>({components:{BaseField:a,BaseInput:p},setup:()=>({args:c}),template:`
+import{_ as a}from"./BaseField-w0DDbMXK.js";import{_ as p}from"./BaseInput-Bap_G0R6.js";import"./vue.esm-bundler-CTq_6KXf.js";import"./bundle-mjs-Ciha5a76.js";const _={component:a,args:{label:"標題",name:"name",modelValue:""},render:c=>({components:{BaseField:a,BaseInput:p},setup:()=>({args:c}),template:`
       <BaseField
         v-bind="args"
         v-slot="{ field }"
