@@ -29,11 +29,6 @@ export default defineConfig({
           ]
         },
         {
-          'tailwind-merge': [
-            'twMerge'
-          ],
-        },
-        {
           '@/js/baseService': [
             'baseGet', 'basePost'
           ],

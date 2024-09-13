@@ -21,6 +21,8 @@
     "@vuepic/vue-datepicker": "^9.0.3",
     "@vueuse/core": "^11.0.1",
     "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "modern-normalize": "^2.0.0",
     "tailwind-merge": "^2.4.0",
     "universal-cookie": "^7.2.0",

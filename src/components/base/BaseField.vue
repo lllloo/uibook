@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { cn } from './base'
 import { Field } from 'vee-validate'
 
-const fieldCva = cva(['w-full', 'transition-colors'], {
+const variants = cva(['w-full', 'transition-colors'], {
   variants: {
     color: {
       default: 'text-black',
@@ -12,38 +13,28 @@ const fieldCva = cva(['w-full', 'transition-colors'], {
       sm: 'text-sm',
       lg: 'text-lg'
     }
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'default'
   }
 })
 
-type FieldVariants = VariantProps<typeof fieldCva>
+type Variants = VariantProps<typeof variants>
 export interface Props {
-  color?: FieldVariants['color']
-  size?: FieldVariants['size']
+  color?: Variants['color']
+  size?: Variants['size']
   label?: string
   name?: string
   modelValue?: any
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  name: ''
-})
-
-const attrs = useAttrs()
-const className = computed(() => {
-  return twMerge(
-    fieldCva({
-      color: props.color,
-      size: props.size
-    }),
-    attrs.class as string
-  )
+  color: 'default',
+  size: 'default',
+  label: '',
+  name: '',
+  modelValue: ''
 })
 
 const emit = defineEmits(['update:modelValue'])
+
 const value = computed({
   get: () => props.modelValue,
   set: (value) => {
@@ -60,7 +51,7 @@ const id = computed(() => `field-${props.name}`)
     v-model="value"
     :name="name"
   >
-    <div :class="className">
+    <div :class="cn(variants({ color, size }), $attrs.class ?? '')">
       <label
         v-if="props.label"
         :for="id"

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { baseCva } from './base'
+import { cn, baseCva } from './base'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
-const select = cva(['w-full text-left', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
+
+const variants = cva(['w-full text-left px-4 py-2 rounded-md shadow-md', ...baseCva], {
   variants: {
     color: {
       default: 'text-black  border-black/50 focus:border-black ring-black/70',
@@ -16,37 +17,24 @@ const select = cva(['w-full text-left', 'px-4 py-2 rounded-md shadow-md', ...bas
       sm: 'text-sm',
       lg: 'text-lg'
     }
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'default'
   }
 })
 
-type SelectVariants = VariantProps<typeof select>
+type Variants = VariantProps<typeof variants>
 export interface Props {
-  color?: SelectVariants['color']
-  size?: SelectVariants['size']
-  outline?: SelectVariants['outline']
-  options?: { label: string; value: string | number }[]
+  color?: Variants['color']
+  size?: Variants['size']
+  outline?: Variants['outline']
   placeholder?: string
+  options?: { label: string; value: string | number }[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
+  color: 'default',
+  size: 'default',
   outline: true,
-  placeholder: '請選擇'
-})
-
-const attrs = useAttrs()
-const className = computed(() => {
-  return twMerge(
-    select({
-      color: props.color,
-      size: props.size,
-      outline: props.outline
-    }),
-    attrs.class as string
-  )
+  placeholder: '請選擇',
+  options: () => []
 })
 
 const value = defineModel<any>()
@@ -58,7 +46,9 @@ const value = defineModel<any>()
     as="div"
   >
     <div class="relative">
-      <ListboxButton :class="className">{{ value?.label || placeholder }}</ListboxButton>
+      <ListboxButton :class="cn(variants({ color, size, outline }), $attrs.class ?? '')">
+        {{ value?.label || placeholder }}
+      </ListboxButton>
       <ListboxOptions
         class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-black bg-white"
       >

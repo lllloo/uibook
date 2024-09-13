@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { baseCva } from './base'
-const input = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
+import { cn, baseCva } from './base'
+
+const variants = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
   variants: {
     color: {
       default: 'text-black  border-black/50 focus:border-black ring-black/70',
@@ -15,35 +16,23 @@ const input = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
       sm: 'text-sm',
       lg: 'text-lg'
     }
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'default'
   }
 })
 
-type InputVariants = VariantProps<typeof input>
+type Variants = VariantProps<typeof variants>
 export interface Props {
-  color?: InputVariants['color']
-  size?: InputVariants['size']
-  outline?: InputVariants['outline']
+  color?: Variants['color']
+  size?: Variants['size']
+  outline?: Variants['outline']
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
+  color: 'default',
+  size: 'default',
   outline: true
 })
 
 const attrs = useAttrs()
-const className = computed(() => {
-  return twMerge(
-    input({
-      color: props.color,
-      size: props.size,
-      outline: props.outline
-    }),
-    attrs.class as string
-  )
-})
 
 const value = defineModel<any>()
 const isPassword = computed(() => attrs.type === 'password')
@@ -52,7 +41,7 @@ const isPassword = computed(() => attrs.type === 'password')
 <template>
   <input
     v-model="value"
-    :class="className"
+    :class="cn(variants({ color, size, outline }), $attrs.class ?? '')"
     :autocomplete="isPassword ? 'off' : 'on'"
   />
 </template>

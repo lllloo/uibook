@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { baseCva } from './base'
-const checkbox = cva(['h-4 w-4 rounded shadow-md', 'appearance-none', ...baseCva], {
+import { cn, baseCva } from './base'
+
+const variants = cva(['h-4 w-4 rounded shadow-md', 'appearance-none', ...baseCva], {
   variants: {
     color: {
       default: 'border border-black/50 checked:bg-black text-black',
@@ -11,39 +12,27 @@ const checkbox = cva(['h-4 w-4 rounded shadow-md', 'appearance-none', ...baseCva
       sm: 'h-3.5 w-3.5',
       lg: 'h-5 w-5'
     }
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'default'
   }
 })
 
-type CheckboxVariants = VariantProps<typeof checkbox>
+type Variants = VariantProps<typeof variants>
 export interface Props {
-  color?: CheckboxVariants['color']
-  size?: CheckboxVariants['size']
+  color?: Variants['color']
+  size?: Variants['size']
 }
 
-const props = withDefaults(defineProps<Props>(), {})
-
-const attrs = useAttrs()
-const className = computed(() => {
-  return twMerge(
-    checkbox({
-      color: props.color,
-      size: props.size
-    }),
-    attrs.class as string
-  )
+withDefaults(defineProps<Props>(), {
+  color: 'default',
+  size: 'default'
 })
 
-const value = defineModel<string | number | string[]>()
+const value = defineModel<string | number | string[] | number[]>()
 </script>
 
 <template>
   <input
     v-model="value"
-    :class="className"
+    :class="cn(variants({ color, size }), $attrs.class ?? '')"
     type="checkbox"
   />
 </template>

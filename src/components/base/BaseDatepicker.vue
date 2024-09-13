@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { baseCva } from './base'
-
+import { cn, baseCva } from './base'
 import VueDatePicker from '@vuepic/vue-datepicker'
+import { type VueDatePickerProps } from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
-const input = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
+const variants = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
   variants: {
     color: {
       default: 'text-black  border-black/50 focus:border-black ring-black/70',
@@ -19,45 +19,34 @@ const input = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
       sm: 'text-sm',
       lg: 'text-lg'
     }
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'default'
   }
 })
 
-type InputVariants = VariantProps<typeof input>
+type Variants = VariantProps<typeof variants>
 export interface Props {
-  color?: InputVariants['color']
-  size?: InputVariants['size']
-  outline?: InputVariants['outline']
+  color?: Variants['color']
+  size?: Variants['size']
+  outline?: Variants['outline']
+  placeholder?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  outline: true
+withDefaults(defineProps<Props>(), {
+  color: 'default',
+  size: 'default',
+  outline: true,
+  placeholder: ''
 })
 
-const attrs = useAttrs()
-const className = computed(() => {
-  return twMerge(
-    input({
-      color: props.color,
-      size: props.size,
-      outline: props.outline
-    }),
-    attrs.class as string
-  )
-})
-
-const value = defineModel<any>()
+const value = defineModel<VueDatePickerProps['modelValue']>()
 </script>
 
 <template>
   <VueDatePicker v-model="value">
     <template #trigger>
       <input
-        :class="className"
+        :class="cn(variants({ color, size, outline }), $attrs.class ?? '')"
         :value="value"
+        :placeholder="placeholder"
         readonly
       />
     </template>

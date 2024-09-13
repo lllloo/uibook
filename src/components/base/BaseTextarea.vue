@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { baseCva } from './base'
+import { cn, baseCva } from './base'
 import { useTextareaAutosize } from '@vueuse/core'
-const textarea = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
+
+const variants = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
   variants: {
     color: {
       default: 'text-black  border-black/50 focus:border-black ring-black/70',
@@ -16,36 +17,22 @@ const textarea = cva(['w-full', 'px-4 py-2 rounded-md shadow-md', ...baseCva], {
       sm: 'text-sm',
       lg: 'text-lg'
     }
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'default'
   }
 })
 
-type TextareaVariants = VariantProps<typeof textarea>
+type Variants = VariantProps<typeof variants>
 export interface Props {
-  color?: TextareaVariants['color']
-  size?: TextareaVariants['size']
-  outline?: TextareaVariants['outline']
+  color?: Variants['color']
+  size?: Variants['size']
+  outline?: Variants['outline']
   autoHeight?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  color: 'default',
+  size: 'default',
   outline: true,
   autoHeight: false
-})
-
-const attrs = useAttrs()
-const className = computed(() => {
-  return twMerge(
-    textarea({
-      color: props.color,
-      size: props.size,
-      outline: props.outline
-    }),
-    attrs.class as string
-  )
 })
 
 const value = defineModel<any>()
@@ -64,7 +51,7 @@ if (props.autoHeight) {
   <textarea
     ref="textareaRef"
     v-model="value"
-    :class="className"
+    :class="cn(variants({ color, size, outline }), $attrs.class ?? '')"
     rows="2"
   />
 </template>

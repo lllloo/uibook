@@ -3,10 +3,13 @@ import BaseTextarea from '@/components/base/BaseTextarea.vue'
 
 const data = reactive({
   radio: 'A',
-  checkbox: ['A']
+  checkbox: ['A'],
+  select: '',
+  time: ''
 })
 </script>
 <template>
+  {{ data }}
   <div class="flex w-full flex-col">
     <BaseField
       label="標題"
@@ -104,6 +107,7 @@ const data = reactive({
       class="mb-4"
     >
       <BaseSelect
+        v-model="data.select"
         class="mr-2"
         placeholder="請輸入"
         :options="[
@@ -119,10 +123,11 @@ const data = reactive({
       class="mb-4"
     >
       <BaseDatepicker
+        v-model="data.time"
         auto-apply
         :enable-time-picker="false"
-        format="yyyy/MM/dd"
-        model-type="yyyy/MM/dd"
+        placeholder="請輸入"
+        format="MM/dd/yyyy"
       />
     </BaseField>
   </div>

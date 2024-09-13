@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { baseCva } from './base'
-const radio = cva(['h-4 w-4 shadow-md', 'appearance-none', ...baseCva], {
+import { cn, baseCva } from './base'
+
+const variants = cva(['h-4 w-4 shadow-md', 'appearance-none', ...baseCva], {
   variants: {
     color: {
       default: 'border border-black/50 checked:bg-black text-black',
@@ -11,30 +12,18 @@ const radio = cva(['h-4 w-4 shadow-md', 'appearance-none', ...baseCva], {
       sm: 'h-3.5 w-3.5',
       lg: 'h-5 w-5'
     }
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'default'
   }
 })
 
-type RadioVariants = VariantProps<typeof radio>
+type Variants = VariantProps<typeof variants>
 export interface Props {
-  color?: RadioVariants['color']
-  size?: RadioVariants['size']
+  color?: Variants['color']
+  size?: Variants['size']
 }
 
-const props = withDefaults(defineProps<Props>(), {})
-
-const attrs = useAttrs()
-const className = computed(() => {
-  return twMerge(
-    radio({
-      color: props.color,
-      size: props.size
-    }),
-    attrs.class as string
-  )
+withDefaults(defineProps<Props>(), {
+  color: 'default',
+  size: 'default'
 })
 
 const value = defineModel<string | number>()
@@ -43,7 +32,7 @@ const value = defineModel<string | number>()
 <template>
   <input
     v-model="value"
-    :class="className"
+    :class="cn(variants({ color, size }), $attrs.class ?? '')"
     type="radio"
   />
 </template>
