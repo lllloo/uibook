@@ -1,4 +1,4 @@
-import{_ as m}from"./BaseInput-Bap_G0R6.js";import"./vue.esm-bundler-CTq_6KXf.js";import"./bundle-mjs-Ciha5a76.js";const L={args:{placeholder:"請輸入",modelValue:""},component:m,render:t=>({components:{BaseInput:m},setup:()=>({args:t}),template:`
+import{_ as m}from"./BaseInput-DikQbk1C.js";import"./vue.esm-bundler-Cx2lTPfH.js";import"./index-yolqV4Z8.js";const L={args:{placeholder:"請輸入",modelValue:""},component:m,render:t=>({components:{BaseInput:m},setup:()=>({args:t}),template:`
       <BaseInput v-bind="args" v-model="args.modelValue" />
     `})},e={args:{}},s={args:{color:"primary"}},r={render:t=>({components:{BaseInput:m},setup:()=>({args:t}),template:`
       <BaseInput v-bind="args" v-model="args.modelValue" size="sm" class="mb-2" /> 

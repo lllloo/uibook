@@ -1,4 +1,4 @@
-import{_ as r}from"./BaseCheckbox-BkYJbZph.js";import"./BaseField-w0DDbMXK.js";import"./vue.esm-bundler-CTq_6KXf.js";import"./bundle-mjs-Ciha5a76.js";const k={argTypes:{modelValue:{control:"boolean",name:"v-model"}},args:{label:"Checkout"},component:r,render:e=>({components:{BaseCheckbox:r},setup:()=>({args:e}),template:`
+import{_ as r}from"./BaseCheckbox-CSFkv1BJ.js";import"./BaseField-BNnHM36V.js";import"./vue.esm-bundler-Cx2lTPfH.js";import"./index-yolqV4Z8.js";const k={argTypes:{modelValue:{control:"boolean",name:"v-model"}},args:{label:"Checkout"},component:r,render:e=>({components:{BaseCheckbox:r},setup:()=>({args:e}),template:`
       <div>
         value: {{args.modelValue}}<br>
       </div>

@@ -1,4 +1,4 @@
-import{B as c}from"./BaseTextarea-CmCsAMDI.js";import"./vue.esm-bundler-CTq_6KXf.js";import"./bundle-mjs-Ciha5a76.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const E={args:{placeholder:"請輸入",modelValue:""},component:c,render:m=>({components:{BaseTextarea:c},setup:()=>({args:m}),template:`
+import{B as c}from"./BaseTextarea-BQHBVf_o.js";import"./vue.esm-bundler-Cx2lTPfH.js";import"./index-yolqV4Z8.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const E={args:{placeholder:"請輸入",modelValue:""},component:c,render:m=>({components:{BaseTextarea:c},setup:()=>({args:m}),template:`
       <BaseTextarea v-bind="args" v-model="args.modelValue" />
     `})},e={args:{}},a={args:{color:"primary"}},r={render:m=>({components:{BaseTextarea:c},setup:()=>({args:m}),template:`
       <BaseTextarea v-bind="args" v-model="args.modelValue" size="sm" class="mb-2" /> 
